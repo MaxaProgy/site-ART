@@ -1,0 +1,13 @@
+version: "3"
+
+volumes:
+  site_art_db:
+
+services:
+  site_art:
+    build: .
+    restart: always
+    ports:
+    - 80:5000
+
+
