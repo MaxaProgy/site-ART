@@ -5,9 +5,28 @@ volumes:
 
 services:
   site_art:
+    container_name: site_art
     build: .
     restart: always
     ports:
-    - 80:5000
+    - 5000:5000
+    volumes:
+      - ./logs/gunicorn-access.log:/var/log/gunicorn/gunicorn-access.log
+      - ./logs/gunicorn-error.log:/var/log/gunicorn/gunicorn-error.log
+      - ./static/:/usr/src/app/static/
+      - ./media:/usr/src/app/media
+    command: gunicorn --workers 3 --bind  0.0.0.0:5000 --access-logfile /var/log/gunicorn/gunicorn-access.log --error-logfile /var/log/gunicorn/gunicorn-error.log wsgi:app
 
-
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+    - ./logs/nginx-eccess.log:/var/log/nginx/nginx-eccess.log
+    - ./logs/nginx-error.log:/var/log/nginx/nginx-error.log
+    - ./static:/usr/src/app/static/
+    - ./media:/usr/src/app/media
+    depends_on:
+      - site_art
