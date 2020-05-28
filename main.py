@@ -20,5 +20,7 @@ def index():
 
 
 db_session.global_init("db/art_point_db.sqlite")
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

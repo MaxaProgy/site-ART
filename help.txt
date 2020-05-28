@@ -1,0 +1,28 @@
+    sudo docker images -a                                               список образов
+    sudo docker rmi $(sudo docker images -a -q)                         удаление всех образов
+    sudo docker rmi $(sudo docker images --filter "dangling=true" -q --no-trunc) 2>/dev/null    удалить все none образы
+
+    sudo docker rmi buy_sell_project_alice buy_sell_project_buy_sell_server
+
+    sudo docker ps -a                                                   список контейнеров
+    sudo docker stop $(sudo docker ps -a -q)                            остановить все контейнеры
+    sudo docker rm $(sudo docker ps -a -f status=exited -q)             удалить все контейнеры
+
+    sudo docker volume ls                                               список volume
+    sudo docker volume create buy_sell_db                               создает volume
+
+    buy_sell_db                                   удалить volume
+
+    sudo docker build -t buy_sell .                                     создать образ
+    sudo docker run --rm -p 5055:5055 -v buysell_db:/usr/src/app/db buy_sell               запустить образ
+
+    sudo docker-compose up -d						смонтировать и запустить
+    sudo docker-compose down 						останавливает и удаляет контейнеры
+
+    sudo docker exec -it nginx bash                 Вход внутрь контейнера
+
+
+    docker logs buy_sell_project_buy_sell_server_1  			логи
+
+
+    docker run --rm alice ls -alR/usr/src/app/ 			просмотр папок
