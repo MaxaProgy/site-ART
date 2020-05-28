@@ -7,9 +7,8 @@ apt-cache policy docker-ce
 sudo apt install docker-ce
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-sudo git clone https://github.com/MariaZyryanova72/site-ART
-sudo touch /usr/src/app/logs/nginx-access.log
-sudo touch /usr/src/app/log/nginx-error.log
-sudo touch /usr/src/app/log/gunicorn-access.log
-sudo touch /usr/src/app/log/gunicorn-error.log
+sudo logs/nginx-access.log
+sudo logs/nginx-error.log
+sudo logs/gunicorn-access.log
+sudo logs/gunicorn-error.log
 sudo docker-compose up -d
