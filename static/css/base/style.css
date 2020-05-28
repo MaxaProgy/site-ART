@@ -1,3 +1,8 @@
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 header {
     width: 100vw;
     height: 70px;
@@ -10,7 +15,7 @@ header {
     display: grid;
     width: 100vw;
     height: 75px;
-    background: #1d2019;
+    background: #141814;
     grid-template-columns: 1fr 1fr;
     position: fixed;
     z-index: 10;
@@ -25,7 +30,7 @@ header {
     opacity: 0;
 }
 
-#brand,
+.brand,
 #menu,
 ul {
     display: -webkit-box;
@@ -34,11 +39,12 @@ ul {
     align-items: center;
 }
 
-#brand {
+.brand {
+    padding-top: 3px;
     padding-left: 40px;
 }
 
-#logo {
+.logo {
     width: 50px;
     height: 50px;
     background: #fff;
@@ -50,7 +56,7 @@ ul {
     cursor: pointer;
 }
 
-#word-mark {
+.word-mark {
     font-family: "News706 BT", sans-serif;
     text-align: left;
     font-weight: 700;
@@ -75,6 +81,7 @@ li {
     list-style-type: none;
 }
 li a {
+    padding-right: 9px;
     font-family: "Montserrat", sans-serif;
     text-align: center;
     font-weight: 700;
@@ -85,7 +92,7 @@ li a {
 }
 
 li a:hover {
-    color: #81aed6;
+    color: #cac3c7;
     text-decoration: none;
 }
 
@@ -181,4 +188,58 @@ li a:hover {
         -webkit-transform: scale(0.8);
         transform: scale(0.8);
     }
+    .a-base {
+        font-size: 3vh;
+    }
+
 }
+
+.entrance-a {
+    color: tomato;
+    font-size: .8rem;
+}
+
+.entrance-a:hover {
+    color: #c04b35;
+}
+
+#square {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: 30px;
+    background: #145C8C;
+}
+
+#end-base {
+    background: #141814;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+}
+
+hr {
+    border: none; /* Убираем границу */
+    background-color: #ffffff;
+    color: #ffffff;
+    height: 2px;
+}
+
+.a-base {
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 1.2vw;
+    text-align: center;
+}
+.wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+#a-end-base {
+    text-align: center;
+    padding-top: 3%;
+}
+
+.social-icons .fa-vk{background-color:#375474;}

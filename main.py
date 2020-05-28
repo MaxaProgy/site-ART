@@ -1,13 +1,10 @@
 import os
-
-from flask import Flask, request, render_template, redirect, abort, make_response, jsonify
+import random
+from flask import Flask, render_template
 import logging
 
-from package.data import db_session
-from package.data.article import Article
-from package.data.artist import Artist
-from package.data.comment import Comment
-from package.data.users import User
+from data import db_session
+from data.article import Articles
 
 logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
@@ -16,7 +13,12 @@ app.config['SECRET_KEY'] = os.urandom(24)
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('main.html', title='Главная страница')
+    session = db_session.create_session()
+    articles = session.query(Articles).all()
+    article_random = random.sample(articles, len(articles))[0]
+    article_past = session.query(Articles).filter(Articles.create_date).first()
+    return render_template('main.html', title='Главная страница',
+                           article_random=article_random, article_past=article_past)
 
 
 db_session.global_init("db/art_point_db.sqlite")
