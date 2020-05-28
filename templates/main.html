@@ -8,44 +8,66 @@
     </div>
     <div id="square"></div>
 
-
-    <div class="about-the-site-main">
-        <table align="center" border="0" width="100%" border-spacing="40px 40px">
-            <tr>
-                <td width="25%" valign="top">
-                    <h4>A</h4>
-                    <p>Eos qui ratione voluptatem sequi nesciunt. Neque porro
-                        quisquam est, qui dolor7em ipsum quia dolor sit amet,</p>
-                </td>
-                <td width="25%" valign="top">
-                    <h4>R</h4>
-                    <p>Eos qui ratione voluptatem sequi nesciunt. Neque porro
-                        quisquam est, qui dolorem ipsum quia dolor sit amet,</p>
-                </td>
-                <td width="25%" valign="top">
-                    <h4>T</h4>
-                    <p>Eos qui ratione voluptatem sequi nesciunt. Neque porro
-                        quisquam est, qui dolorem ipsum quia dolor sit amet,</p>
-                </td>
-                <td width="25%" valign="top">
-                    <h4> .</h4>
-                    <p>Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-                        qui dolorem ipsum quia dolor sit amet,</p>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="top-article_week">
-        <img class="img-article_week" src="" align="left" width="480" alt="фото статьи">
-        <p class="p-article_week" align="right"></p>
-    </div>
-
-    <div class="top-article_week">
-        <img class="img-article_week" src="" align="left" width="480" alt="фото статьи">
-        <p class="p-article_week" align="right"></p>
+    <div class="row" style="margin: 10% 5%;">
+       <div class="col-3 col-md about-the-site-main">
+           A
+           <p class="about-the-site-main-p">
+               Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+           </p>
+       </div>
+        <div class="col-3 col-md about-the-site-main">
+            R
+            <p class="about-the-site-main-p">
+                Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+            </p>
+        </div>
+        <div class="col-3 col-md about-the-site-main">
+            T
+            <p class="about-the-site-main-p">
+                Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+            </p>
+        </div>
+        <div class="col-3 col-md about-the-site-main">
+            .
+            <p class="about-the-site-main-p">
+                Eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+            </p>
+        </div>
     </div>
 
 
+    <section class="article-random" style="display: grid; grid-template-columns: 1fr 1fr;">
+        <div>
+            <a href="#" class="a-none-decor"><img id="image-article-random" src="{{ article_random.main_image }}"></a>
+        </div>
+       <div>
+           <a href="#" class="a-none-decor">
+               <h5 id="title-random">Вам должно понравится!</h5>
+               <p id="text-article-random">{{ article_random.preview }}</p>
+               <a href="#" class="a-none-decor a-article">Перейти...</a></a>
+        </div>
+    </section>
+
+    <section class="article-past" style="display: grid; grid-template-columns: 1fr 1fr;">
+        <div>
+            <a href="#" class="a-none-decor">
+                <h5 id="title-past">Последний выпуск</h5>
+                <p id="text-article-past">{{ article_past.preview }}</p>
+                <a href="#" class="a-none-decor a-article">Перейти...</a></a>
+        </div>
+        <div>
+            <a href="#" class="a-none-decor"><img id="image-article-past" src="{{ article_past.main_image }}"></a>
+        </div>
+    </section>
+
+    <section id="search-section">
+        <form class="search">
+            <input class="search-input" id="input" type="text" autocomplete="off" name="q"/>
+            <label class="search-label" for="input"></label>
+            <button class="search-button" type="reset"></button>
+            <div class="search-border"></div>
+            <div class="search-close">x</div>
+        </form>
+    </section>
 {% endblock %}
 
