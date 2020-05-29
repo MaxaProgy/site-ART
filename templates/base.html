@@ -1,13 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" >
+        <link rel="stylesheet" href="/static/css/base/style.css">
         <link rel="stylesheet" href="/static/fonts/News706%20BT%20Bold.ttf" >
-        <link rel="stylesheet" href="/static/css/style_base.css">
-        <link rel="stylesheet" href="/static/css/style_main.css">
-        <link rel="stylesheet" href="/static/css/style_search-artist.css">
         <script src="/static/js/base/script.js"></script>
         <script src="/static/js/main/script.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,6 +13,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        {% block head %}{% endblock %}
     </head>
     <body>
         <header>
@@ -52,34 +51,35 @@
             <hr>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; margin: 2% 15% 0;">
                 <a href="#" class="a-none-decor a-base" style="color: white;">Немного о нас</a>
-                <a class="a-none-decor a-base" style="color: #145b8c;">г. Тюмень</a>
+                <a class="a-none-decor a-base" style="color: white;">г. Тюмень</a>
                 <a href="http://xudozhka72.ru/" class="a-none-decor a-base" style="color: white">Художественная школа</a>
             </div>
 
             <div id="a-end-base">
-                <a href="#" class="a-none-decor" style="font-size: 1.5em;
+                <a href="#" class="a-none-decor" style="font-size: 1.8em;
                                                         color:white;
                                                         padding-right: 10px"><i class="fa fa-instagram"></i></a>
-                <a href="https://vk.com/mitinskogo_school" class="a-none-decor" style="font-size: 1.5em;
+                <a href="https://vk.com/mitinskogo_school" class="a-none-decor" style="font-size: 1.8em;
                                                         color:white;
                                                         padding-left: 10px;
                                                         padding-right: 10px"><i class="fa fa-vk"></i></a>
-                <a href="mailto:vlad@xudozhka.ru" class="a-none-decor" style="font-size: 1.5em;
+                <a href="mailto:vlad@xudozhka.ru" class="a-none-decor" style="font-size: 1.8em;
                                                         color:white;
                                                         padding-left: 10px;
                                                         padding-right: 10px"><i class="fa fa-envelope-o"></i></a>
-                <a href="tel:+7(3452)20-32-64" class="a-none-decor" style="font-size: 1.5em;
+                <a href="tel:+7(3452)20-32-64" class="a-none-decor" style="font-size: 1.8em;
                                                         color:white;
                                                         padding-left: 10px;"><i class="fa fa-phone"></i></a>
             </div>
             <div style="font-family: 'Montserrat', sans-serif;
                         color: aliceblue;
-                        font-size: .9vw;
+                        font-size: .6rem;
                         padding-top: 5%;
                         padding-bottom: 5%;
                         text-align: center;">© 2020 by M@x@_progy(Зырянова Мария) и Змановская Полина.<br>
                                                 Дипломная работа по окончанию 4 курса Детской художественной школы им. А.П. Митинского, г.Тюмень.<br>
-                We love our users! =)</div>
+                We love our users! =)
+            </div>
         </div>
     </body>
 </html>

@@ -10,12 +10,10 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    login = sqlalchemy.Column(sqlalchemy.String)
     name = sqlalchemy.Column(sqlalchemy.String)
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String)
-    create_date = sqlalchemy.Column(sqlalchemy.DateTime)
-    admin = sqlalchemy.Column(sqlalchemy.Boolean)
-
 
 
     def set_password(self, password):
