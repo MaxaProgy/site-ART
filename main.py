@@ -49,10 +49,21 @@ def search_artist():
     session = db_session.create_session()
     q = request.args.get('q')
     if q:
-        artists = session.query(Artist).filter(Artist.name.like(f'%{q}%') | Artist.text.like(f'%{q}%')).all()
+        artists = session.query(Artist).filter(Artist.name.like(f'%{q}%')).all()
     else:
         artists = session.query(Artist).all()
     return render_template('search_artist.html', title='Художники', artists=artists)
+
+
+@app.route('/search/article', methods=['GET'])
+def search_article():
+    session = db_session.create_session()
+    q = request.args.get('q')
+    if q:
+        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') | Articles.text.like(f'%{q}%')).all()
+    else:
+        articles = session.query(Articles).all()
+    return render_template('search_article.html', title='Художники', articles=articles)
 
 
 db_session.global_init("db/art_point_db.sqlite")
@@ -65,4 +76,4 @@ if user is None:
     session.commit()
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=8000)
