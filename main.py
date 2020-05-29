@@ -44,22 +44,6 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
-@app.route('/admin', methods=['GET', "POST"])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        session = db_session.create_session()
-        user = session.query(User).filter(User.login == form.login.data).first()
-
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
-            return redirect("/")
-        return render_template('login.html',
-                               message="Неправильный логин или пароль",
-                               form=form)
-    return render_template('login.html', title='Авторизация', form=form)
-
-
 @app.route('/search/artist', methods=['GET'])
 def search_artist():
     session = db_session.create_session()
