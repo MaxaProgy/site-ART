@@ -1,4 +1,4 @@
-    body {
+body {
     width: 100%;
     overflow-x: hidden;
 }
@@ -40,7 +40,7 @@ ul {
 }
 
 .brand {
-    padding-top: 3px;
+    padding-top: 10px;
     padding-left: 40px;
 }
 
@@ -57,7 +57,7 @@ ul {
 }
 
 .word-mark {
-    font-family: "News706 BT Bold", sans-serif;
+    font-family: "News706 BT", serif;
     text-align: left;
     font-weight: 700;
     font-size: 1.4rem;
@@ -242,4 +242,8 @@ hr {
     padding-top: 3%;
 }
 
-.social-icons .fa-vk{background-color:#375474;}
+
+.a-none-decor {
+    text-decoration: none !important;
+}
+
