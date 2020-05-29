@@ -19,8 +19,11 @@ app.config['SECRET_KEY'] = os.urandom(24)
 def index():
     session = db_session.create_session()
     articles = session.query(Articles).all()
-    article_random = random.sample(articles, len(articles))[0]
-    article_past = session.query(Articles).filter(Articles.create_date).first()
+    article_random = None
+    article_past = None
+    if articles:
+        article_random = random.sample(articles, len(articles))[0]
+        article_past = session.query(Articles).filter(Articles.create_date).first()
     return render_template('main.html', title='Art.',
                            article_random=article_random, article_past=article_past)
 
