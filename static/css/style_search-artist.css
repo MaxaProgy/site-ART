@@ -10,7 +10,101 @@
 }
 
 #block-artist-in-search {
-    width: 80vw;
-    margin-left: 10vw;
-    margin-right: 10vw;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 10vh 10vw 5vh;
+}
+
+#square {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: 30px;
+    background: #145C8C;
+}
+
+#name-artist-search {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 2.5vw;
+    padding-top: 5vw;
+    text-align: left;
+    color: #191d19;
+}
+
+#text-artist-search {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1.1vw;
+    width: 80%;
+    float: left;
+    padding-top: 2vw;
+    text-align: left;
+    color: #191d19;
+    margin-right: 20%;
+}
+
+#go-page {
+    color: white;
+    background-color: #1d7ebd;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .9vh 1.5vw;
+    font-size: 1.7vw;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+}
+
+#go-page:hover {
+    text-decoration: none !important;
+    background-color: #18679c;
+    color: white;
+}
+
+#a-artist{
+    margin: 3vw;
+    display: inline-block;
+    width: 30vw;
+}
+#a-artist div{
+    border-radius: 100%;
+    background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
+    overflow: hidden;  /* Ограничиваем видиую область */
+}
+#a-artist div img{
+    border-radius: 100%;
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+    width: 30vw;
+    height: auto;
+    display: block; /* Убираем полосу под картинкий */
+}
+#a-artist:hover div img{
+    opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
+    transform: scale(1.05); /* Увеличение картинки */
+}
+
+@media screen and (max-width: 767px) {
+    #text-artist-search {
+        font-size: 2vw;
+    }
+
+    #name-artist-search {
+        font-size: 3vw;
+    }
+
+    #go-page {
+        font-size: 2.8vw;
+    }
 }

@@ -19,7 +19,7 @@
 }
 
 .intro__title {
-    font-family: "News706 BT Bold", sans-serif;
+    font-family: "News706 BT", serif;
     display: block;
     line-height: 180px;
     text-align: center;
@@ -37,7 +37,7 @@
 }
 
 .about-the-site-main{
-    font-family: "News706 BT Bold", sans-serif;
+    font-family: "News706 BT", serif;
     text-align: center;
     font-weight: 700;
     font-size: 4.2rem;
@@ -159,6 +159,7 @@
     position: relative;
     overflow: hidden;
 }
+
 .search-input {
     width: 100%;
     height: 100%;
@@ -177,6 +178,7 @@
     transform: scaleX(0);
     font-family: 'PT Sans', sans-serif;
 }
+
 .search-button {
     position: absolute;
     right: 60px;
@@ -195,6 +197,7 @@
 .search-button::-moz-focus-inner {
     border: 0;
 }
+
 .search-label {
     position: absolute;
     top: 0;
