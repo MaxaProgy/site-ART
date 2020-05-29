@@ -1,4 +1,4 @@
-#intro-search-artist {
+#intro-search-article {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +9,7 @@
     background-size: cover;
 }
 
-#block-artist-in-search {
+#block-article-in-search {
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin: 10vh 10vw 5vh;
@@ -23,7 +23,7 @@
     background: #145C8C;
 }
 
-#name-artist-search {
+#name-article-search {
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
     font-size: 2.5vw;
@@ -32,7 +32,7 @@
     color: #191d19;
 }
 
-#text-artist-search {
+#text-article-search {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 1.1vw;
@@ -77,12 +77,12 @@
     display: inline-block;
     width: 30vw;
 }
-#a-artist div{
+#a-article div{
     border-radius: 100%;
     background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
     overflow: hidden;  /* Ограничиваем видиую область */
 }
-#a-artist div img{
+#a-article div img{
     object-fit: cover;
     border-radius: 100%;
     opacity: 1;
@@ -91,17 +91,17 @@
     height: 30vw;
     display: block; /* Убираем полосу под картинкий */
 }
-#a-artist:hover div img{
+#a-article:hover div img{
     opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
     transform: scale(1.05); /* Увеличение картинки */
 }
 
 @media screen and (max-width: 767px) {
-    #text-artist-search {
+    #text-article-search {
         font-size: 2vw;
     }
 
-    #name-artist-search {
+    #name-article-search {
         font-size: 3vw;
     }
 
