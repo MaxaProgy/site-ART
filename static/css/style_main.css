@@ -69,7 +69,7 @@
 
 #image-article-random {
     width: 90%;
-    margin: 7% 7% 7% 7%;
+    margin: 10% 7% 7% 7%;
     border-radius: 59px;
 }
 
@@ -87,7 +87,7 @@
     padding-top: 12%;
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
-    font-size: 2vw;
+    font-size: 2.5vw;
     margin-left: 3%;
     text-align: left;
     color: #191d19;
@@ -95,7 +95,7 @@
 
 #image-article-past {
     width: 90%;
-    margin: 7% 10% 7% 0;
+    margin: 10% 10% 7% 0;
     border-radius: 59px;
 }
 
@@ -113,7 +113,7 @@
     padding-top: 12%;
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
-    font-size: 2vw;
+    font-size: 2.5vw;
     margin-left: 10%;
     text-align: left;
     color: #191d19;
@@ -134,14 +134,22 @@
 }
 
 @media screen and (max-width: 767px) {
-    .text-article-random {
-        font-size: 1.1vh;
+    #text-article-random {
+        font-size: 2vw;
     }
     .about-the-site-main-p {
-        line-height: 1.8vh;
+        line-height: 20px;
+        font-size: 2.5vw
     }
-    .text-article-past {
-        font-size: 1.1vh;
+    #text-article-past {
+        font-size: 2vw;
+
+    }
+    #title-random {
+        font-size: 3vw;
+    }
+    #title-past {
+        font-size: 3vw;
     }
 }
 
