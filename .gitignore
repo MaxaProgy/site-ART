@@ -1,5 +1,4 @@
 /.idea/
-/venv/
 /logs/
 !/logs/empty
 /db/art_point_db.sqlite
