@@ -1,4 +1,4 @@
-body {
+    body {
     width: 100%;
     overflow-x: hidden;
 }
@@ -189,7 +189,7 @@ li a:hover {
         transform: scale(0.8);
     }
     .a-base {
-        font-size: 3vh;
+        font-size: 2vw;
     }
 
 }
@@ -229,7 +229,7 @@ hr {
     color: #ffffff;
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     text-align: center;
 }
 .wrapper {
