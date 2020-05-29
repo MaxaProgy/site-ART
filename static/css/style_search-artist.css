@@ -1,0 +1,16 @@
+#intro-search-artist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 87vh;
+    background: url("/static/img/intro_search_autor.jpg") center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+#block-artist-in-search {
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}

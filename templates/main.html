@@ -35,30 +35,33 @@
         </div>
     </div>
 
+    {% if article_random %}
+        <section class="article-random" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div>
+                <a href="#" class="a-none-decor"><img id="image-article-random" src="{{ article_random.main_image }}"></a>
+            </div>
+           <div>
+               <a href="#" class="a-none-decor">
+                   <h5 id="title-random">Вам должно понравится!</h5>
+                   <p id="text-article-random">{{ article_random.preview }}</p>
+                   <a href="#" class="a-none-decor a-article">Перейти...</a></a>
+            </div>
+        </section>
+    {% endif %}
 
-    <section class="article-random" style="display: grid; grid-template-columns: 1fr 1fr;">
-        <div>
-            <a href="#" class="a-none-decor"><img id="image-article-random" src="{{ article_random.main_image }}"></a>
-        </div>
-       <div>
-           <a href="#" class="a-none-decor">
-               <h5 id="title-random">Вам должно понравится!</h5>
-               <p id="text-article-random">{{ article_random.preview }}</p>
-               <a href="#" class="a-none-decor a-article">Перейти...</a></a>
-        </div>
-    </section>
-
-    <section class="article-past" style="display: grid; grid-template-columns: 1fr 1fr;">
-        <div>
-            <a href="#" class="a-none-decor">
-                <h5 id="title-past">Последний выпуск</h5>
-                <p id="text-article-past">{{ article_past.preview }}</p>
-                <a href="#" class="a-none-decor a-article">Перейти...</a></a>
-        </div>
-        <div>
-            <a href="#" class="a-none-decor"><img id="image-article-past" src="{{ article_past.main_image }}"></a>
-        </div>
-    </section>
+    {% if article_past %}
+        <section class="article-past" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div>
+                <a href="#" class="a-none-decor">
+                    <h5 id="title-past">Последний выпуск</h5>
+                    <p id="text-article-past">{{ article_past.preview }}</p>
+                    <a href="#" class="a-none-decor a-article">Перейти...</a></a>
+            </div>
+            <div>
+                <a href="#" class="a-none-decor"><img id="image-article-past" src="{{ article_past.main_image }}"></a>
+            </div>
+        </section>
+    {% endif %}
 
     <section id="search-section">
         <form class="search">

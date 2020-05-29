@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="intro-search-artist"></div>
+    <div id="square"></div>
+
+    <section style="margin-top: 5%" id="search-section">
+        <form class="search">
+            <input class="search-input" id="input" type="text" autocomplete="off" name="q"/>
+            <label class="search-label" for="input"></label>
+            <button class="search-button" type="reset"></button>
+            <div class="search-border"></div>
+            <div class="search-close">x</div>
+        </form>
+    </section>
+    {% if artists %}
+        {% for artist in artists %}
+            <section style="background-image: url('{{ artist.main_image }}')" id="block-artist-in-search">
+
+            </section>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

@@ -5,6 +5,7 @@ import logging
 
 from data import db_session
 from data.article import Articles
+from data.artist import Artist
 
 logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
@@ -17,12 +18,17 @@ def index():
     articles = session.query(Articles).all()
     article_random = random.sample(articles, len(articles))[0]
     article_past = session.query(Articles).filter(Articles.create_date).first()
-    return render_template('main.html', title='Главная страница',
+    return render_template('main.html', title='Art.',
                            article_random=article_random, article_past=article_past)
 
 
+@app.route('/search/artist', methods=['GET'])
+def search_artist():
+    session = db_session.create_session()
+    artists = session.query(Artist).all()
+    return render_template('search_artist.html', title='Художники', artists=artists)
+
+
 db_session.global_init("db/art_point_db.sqlite")
-
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
