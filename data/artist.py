@@ -10,6 +10,7 @@ class Artist(SqlAlchemyBase, SerializerMixin):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String)
     main_image = sqlalchemy.Column(sqlalchemy.String)
+    preview = sqlalchemy.Column(sqlalchemy.String)
 
     thesis = sqlalchemy.Column(sqlalchemy.Text)
 

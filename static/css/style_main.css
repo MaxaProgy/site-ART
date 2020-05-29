@@ -19,7 +19,7 @@
 }
 
 .intro__title {
-    font-family: "News706 BT", sans-serif;
+    font-family: "News706 BT Bold", sans-serif;
     display: block;
     line-height: 180px;
     text-align: center;
@@ -37,7 +37,7 @@
 }
 
 .about-the-site-main{
-    font-family: "News706 BT", sans-serif;
+    font-family: "News706 BT Bold", sans-serif;
     text-align: center;
     font-weight: 700;
     font-size: 4.2rem;

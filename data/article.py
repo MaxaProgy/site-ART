@@ -15,8 +15,6 @@ class Articles(SqlAlchemyBase, SerializerMixin):
 
     text = sqlalchemy.Column(sqlalchemy.Text)
 
-
-
     image_1 = sqlalchemy.Column(sqlalchemy.String)
     image_2 = sqlalchemy.Column(sqlalchemy.String)
 
