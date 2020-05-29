@@ -1,7 +1,6 @@
 import os
 import random
 from flask import Flask, render_template, redirect, request
-
 import logging
 
 from data import db_session
@@ -28,6 +27,7 @@ def index():
     return render_template('main.html', title='Art.',
                            article_random=article_random, article_past=article_past)
 
+
 @app.route('/admin', methods=['GET', "POST"])
 def login():
     form = LoginForm()
@@ -42,6 +42,7 @@ def login():
                                message="Неправильный логин или пароль",
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
+
 
 @app.route('/admin', methods=['GET', "POST"])
 def login():
