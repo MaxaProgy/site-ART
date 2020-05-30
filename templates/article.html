@@ -7,52 +7,55 @@
 {% endblock %}
 
 {% block content %}
-<div style="background-image: url('{{ article.main_image }}');
-                flex-direction: column;
-                -webkit-filter: blur(0px);
-                width: 100%;
-                height: 87vh;
-                background-repeat: no-repeat;
-                -webkit-background-size: cover;
-                background-size: cover;display: flex;
-                justify-content: center;">
-    <div class="nav">
-        <a href="#" class="nav__trigger">
-            <div class="bars"></div>
-        </a>
+    <div style="background-image: url('{{ article.main_image }}');
+            flex-direction: column;
+            -webkit-filter: blur(0px);
+            width: 100%;
+            height: 87vh;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;display: flex;
+            justify-content: center;">
+        <div class="nav">
+            <a href="#" class="nav__trigger">
+                <div class="bars"></div>
+            </a>
 
-        <div class="nav__content">
-            <nav class="nav__list">
-                <ul>
-                    <li class="nav__item"><a href="sdafg">Home</a></li>
-                    <li class="nav__item"><a href="sdfgsdf">About</a></li>
-                    <li class="nav__item"><a href="sdfgsd">Team</a></li>
-                    <li class="nav__item"><a href="sdfgsdf">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="nav__content">
+                <nav class="nav__list">
+                    <ul>
+                        <li class="nav__item"><a href="#">Home</a></li>
+                        <li class="nav__item"><a href="#">About</a></li>
+                        <li class="nav__item"><a href="#">Team</a></li>
+                        <li class="nav__item"><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
+        <div class="autor_name-title">{{ article.title }}</div>
     </div>
-    <div class="autor_name-title">{{ article.title }}</div>
-</div>
 
-<section class="container-about-the-artist">
-    <div class="autor-title">О художнике</div>
-    <p class="about-the-autor"> {{ article.thesis }} </p>
-</section>
+    <section class="container-about-the-artist">
+        <div class="autor-title">Коротко о главном</div>
+        <p class="about-the-autor"> {{ article.preview }} </p>
+    </section>
 
 
-<section class="quote">
-    <p>dlckdlkcfld</p>
-</section>
+    <section class="quote">
+    </section>
 
 
-<section class="container-biography">
-    <div class="autor-title">Биография</div>
+    <section class="container-biography">
+        <div class="autor-title">Самое главное!</div>
 
-    <div class="p-column">
-        <p class="artist-biography">{{ article.text }} </p>
-    </div>
-</section>
+        <p class="artist-biography">
+            <img src="{{ article.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+                                         height: auto;
+                                         float: left;
+                                         padding-right: 5%;
+                                         padding-bottom: 2%;" >
+            {{ article.text }}
+    </section>
 
 
 
