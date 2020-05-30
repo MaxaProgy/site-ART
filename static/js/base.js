@@ -1,4 +1,4 @@
-$( () => {
+window.addEventListener("load", function() {
 
     //On Scroll Functionality
     $(window).scroll( () => {
@@ -14,16 +14,9 @@ $( () => {
         },500);
     });
 
-    //Smooth Scrolling Using Navigation Menu
-    $('a[href*="#"]').on('click', function(e){
-        $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top - 100
-        },500);
-        e.preventDefault();
-    });
-
     //Toggle Menu
     $('#menu-toggle').on('click', () => {
+
         $('#menu-toggle').toggleClass('closeMenu');
         $('ul').toggleClass('showMenu');
 

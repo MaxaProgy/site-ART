@@ -1,0 +1,84 @@
+.autor_name-title {
+    color: #ffffff;
+    z-index: 0;
+    text-shadow: 0 0 5px rgba(0,0,0,.5);
+    transform: translate(-50%, -20%);
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    display: flex;
+    font-family: "News706 BT", sans-serif;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 55px;
+}
+
+.container-about-the-artist {
+    margin-top: 120px;
+    border: 100px;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+.autor-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #2b2b2b;
+    font-weight: bolder;
+    font-size: 2rem;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.about-the-autor {
+    color: #2b2b2b;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.9vmax;
+    font-weight: bolder;
+    font-size: 2.5vmin;
+    margin-top: 3vmax;
+    margin-bottom: 100px;
+    text-align: justify;
+    text-indent: 30px;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto
+}
+
+.quote {
+    margin-left: 5%;
+    height: 25vmin;
+    width: 90%;
+    background: url("/static/img/block.jpg") center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.container-biography {
+    background: url("/static/img/intro_biography.jpg");
+    background-size: contain;
+    border: 100px;
+    margin-top: 120px;
+    padding-left: 10%;
+    padding-right: 10%;
+    bottom: 100px;
+    position: relative;
+}
+
+.p-column {
+    column-count:2;
+    -moz-column-count:20;
+    -webkit-column-count:2;
+}
+
+.artist-biography {
+    color: #2b2b2b;
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.9vmax;
+    font-weight: bolder;
+    font-size: 2.5vmin;
+    text-align: justify;
+    text-indent: 30px;
+}
