@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/style_article.css">
+<script src="/static/js/article/script.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<div style="background-image: url('{{ article.main_image }}');
+                flex-direction: column;
+                -webkit-filter: blur(0px);
+                width: 100%;
+                height: 87vh;
+                background-repeat: no-repeat;
+                -webkit-background-size: cover;
+                background-size: cover;display: flex;
+                justify-content: center;">
+    <div class="nav">
+        <a href="#" class="nav__trigger">
+            <div class="bars"></div>
+        </a>
+
+        <div class="nav__content">
+            <nav class="nav__list">
+                <ul>
+                    <li class="nav__item"><a href="#">Home</a></li>
+                    <li class="nav__item"><a href="#">About</a></li>
+                    <li class="nav__item"><a href="#">Team</a></li>
+                    <li class="nav__item"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="autor_name-title">{{ article.title }}</div>
+</div>
+
+<section class="container-about-the-artist">
+    <div class="autor-title">О художнике</div>
+    <p class="about-the-autor"> {{ article.thesis }} </p>
+</section>
+
+
+<section class="quote">
+    <p>dlckdlkcfld</p>
+</section>
+
+
+<section class="container-biography">
+    <div class="autor-title">Биография</div>
+
+    <div class="p-column">
+        <p class="artist-biography">{{ article.text }} </p>
+    </div>
+</section>
+
+
+
+{% endblock %}
