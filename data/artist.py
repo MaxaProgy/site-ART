@@ -12,15 +12,15 @@ class Artist(SqlAlchemyBase, SerializerMixin):
     main_image = sqlalchemy.Column(sqlalchemy.String)
     preview = sqlalchemy.Column(sqlalchemy.String)
 
-    thesis = sqlalchemy.Column(sqlalchemy.Text)
+    thesis = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
 
-    text_biography = sqlalchemy.Column(sqlalchemy.Text)
+    text_biography = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
     artist_image = sqlalchemy.Column(sqlalchemy.String)
 
     image_1 = sqlalchemy.Column(sqlalchemy.String)
     image_2 = sqlalchemy.Column(sqlalchemy.String)
 
-    text_5_facts = sqlalchemy.Column(sqlalchemy.Text)
+    text_5_facts = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
 
     video_1 = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     video_2 = sqlalchemy.Column(sqlalchemy.String, nullable=True)

@@ -19,7 +19,7 @@
 }
 
 .intro__title {
-    font-family: "News706 BT Bold", sans-serif;
+    font-family: "News706 BT", serif;
     display: block;
     line-height: 180px;
     text-align: center;
@@ -37,7 +37,7 @@
 }
 
 .about-the-site-main{
-    font-family: "News706 BT Bold", sans-serif;
+    font-family: "News706 BT", serif;
     text-align: center;
     font-weight: 700;
     font-size: 4.2rem;
@@ -159,6 +159,7 @@
     position: relative;
     overflow: hidden;
 }
+
 .search-input {
     width: 100%;
     height: 100%;
@@ -177,6 +178,7 @@
     transform: scaleX(0);
     font-family: 'PT Sans', sans-serif;
 }
+
 .search-button {
     position: absolute;
     right: 60px;
@@ -195,6 +197,7 @@
 .search-button::-moz-focus-inner {
     border: 0;
 }
+
 .search-label {
     position: absolute;
     top: 0;
@@ -274,4 +277,46 @@ input::-ms-clear {
     -webkit-box-pack: center;
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
+}
+
+.go-page {
+    color: white;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .9vh 1.5vw;
+    font-size: 1.7vw;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+}
+#go-page-1 {
+    text-decoration: none !important;
+    background-color: #1d7ebd;
+    color: white;
+}
+#go-page-2 {
+    text-decoration: none !important;
+    background-color: #ffa24c;
+    color: white;
+}
+#go-page-1:hover {
+    text-decoration: none !important;
+    background-color: #18679c;
+    color: white;
+}
+
+#go-page-2:hover {
+    text-decoration: none !important;
+    background-color: #ff9e2e;
+    color: white;
 }

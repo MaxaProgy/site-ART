@@ -39,6 +39,7 @@ def index():
     return render_template('main.html', title='Art.',
                            article_random=article_random, article_past=article_past)
 
+
 @app.route('/admin', methods=['GET', "POST"])
 def login():
     session = db_session.create_session()
@@ -102,10 +103,15 @@ def logout():
     logout_user()
     return redirect("/")
 
+
 @app.route('/search/artist', methods=['GET'])
 def search_artist():
     session = db_session.create_session()
-    artists = session.query(Artist).all()
+    q = request.args.get('q')
+    if q:
+        artists = session.query(Artist).filter(Artist.name.like(f'%{q}%')).all()
+    else:
+        artists = session.query(Artist).all()
     return render_template('search_artist.html', title='Художники', artists=artists)
 
 @app.route('/admin/article/new', methods=['GET', 'POST'])
@@ -162,6 +168,23 @@ def edit_article(id):
     else:
         abort(404)
     return render_template('ad_ed_article.html', title='Редактирование статей', form=form)
+
+@app.route('/search/article', methods=['GET'])
+def search_article():
+    session = db_session.create_session()
+    q = request.args.get('q')
+    if q:
+        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') | Articles.text.like(f'%{q}%')).all()
+    else:
+        articles = session.query(Articles).all()
+    return render_template('search_article.html', title='Художники', articles=articles)
+
+
+@app.route('/article/<int:article_id>', methods=['GET'])
+def article(article_id):
+    session = db_session.create_session()
+    article = session.query(Articles).filter(Articles.id == article_id).first()
+    return render_template('article.html', title='Художники', article=article)
 
 
 """session = db_session.create_session()
