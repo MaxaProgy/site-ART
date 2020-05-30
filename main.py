@@ -66,6 +66,13 @@ def search_article():
     return render_template('search_article.html', title='Художники', articles=articles)
 
 
+@app.route('/article/<int:article_id>', methods=['GET'])
+def article(article_id):
+    session = db_session.create_session()
+    article = session.query(Articles).filter(Articles.id == article_id).first()
+    return render_template('article.html', title='Художники', article=article)
+
+
 db_session.global_init("db/art_point_db.sqlite")
 session = db_session.create_session()
 user = session.query(User).first()
