@@ -36,22 +36,29 @@
 </div>
 
 <section class="container-about-the-artist">
-    <div class="autor-title">О художнике</div>
-    <p class="about-the-autor"> {{ article.thesis }} </p>
+    <div class="autor-title">Коротко о главном</div>
+    <p class="about-the-autor"> {{ article.preview }} </p>
 </section>
 
 
 <section class="quote">
-    <p>dlckdlkcfld</p>
 </section>
 
 
 <section class="container-biography">
-    <div class="autor-title">Биография</div>
+    <div class="autor-title">Самое главное!</div>
 
-    <div class="p-column">
-        <p class="artist-biography">{{ article.text }} </p>
-    </div>
+    <p class="artist-biography">
+        <img src="{{ article.image_1 }}" style="width: 50%;
+                                         height: auto;
+                                         float: left;
+                                         padding-right: 5%;
+                                         padding-bottom: 2%;
+                                         border-radius: 5%;
+object-fit: cover; overflow: hidden; -webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+" >
+        {{ article.text }} </p>
 </section>
 
 
