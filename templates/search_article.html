@@ -13,7 +13,7 @@
     {% if articles %}
         {% for article in articles %}
             <section style="background-image: url('/static/img/intro_biography.jpg'); position: relative;" id="block-article-in-search">
-                <a href="" id="a-article">
+                <a href="/article/{{ article.id }}" id="a-article">
                     <div>
                         <img src="{{ article.main_image }}">
                     </div>
@@ -21,7 +21,7 @@
                 <div style="margin-left: 3vw">
                     <h5 id="name-article-search">{{ article.title }}</h5>
                     <p id="text-article-search">{{ article.preview }}</p>
-                    <a href="/" id="go-page">Перейти</a>
+                    <a href="/article/article.id" id="go-page">Перейти</a>
                 </div>
             </section>
         {% endfor %}
