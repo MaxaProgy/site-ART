@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/style_ad_ed_article.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="m_5">
+    <form id="form" action="" method="post" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div  class="row p-bottom-15 p-top-15">
+            <div class="col-md-4 mt-15">
+                {{form.main_image(id="img", class="hidden")}}
+                <div id="main_image_click" class="photo" data-title="Изменить изображение">
+                    <img id="img_src" class="br" src="/static/img/{{file_name}}" width="100%">
+                </div>
+            </div>
+            <div class="col-md-8">
+
+                {{ form.title.label }}<br>
+                {{ form.title(class="form-control") }}
+                {% for error in form.title.errors %}
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+                {% endfor %}
+                <br>
+
+                {{ form.preview.label }}<br>
+                {{ form.preview(class="form-control") }}
+                {% for error in form.preview.errors %}
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+                {% endfor %}
+                <br>
+            </div>
+
+
+            {{ form.main_image.label }}<br>
+            {{ form.main_image(class="form-control") }}
+            {% for error in form.main_image.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            {{ form.text.label }}<br>
+            {{ form.text(class="form-control") }}
+            {% for error in form.text.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            {{ form.image_1.label }}<br>
+            {{ form.image_1(class="form-control") }}
+            {% for error in form.image_1.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            {{ form.image_2.label }}<br>
+            {{ form.image_2(class="form-control") }}
+            {% for error in form.image_2.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            {{ form.image_2.label }}<br>
+            {{ form.image_2(class="form-control") }}
+            {% for error in form.image_2.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            {{ form.video_1.label }}<br>
+            {{ form.video_1(class="form-control") }}
+            {% for error in form.video_1.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            {{ form.video_2.label }}<br>
+            {{ form.video_2(class="form-control") }}
+            {% for error in form.video_2.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            <br>
+
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+            {{message}}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

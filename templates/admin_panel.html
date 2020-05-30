@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/style_admin_panel.css">
+    <script src="/static/js/admin_panel.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="btn-group btn-group-toggle menu_btn" data-toggle="buttons">
+        <label id="users" class="btn btn-secondary">
+            <input type="radio" name="options" autocomplete="off"> Пользователи
+        </label>
+        <label id="autors" class="btn btn-secondary">
+            <input type="radio" name="options" autocomplete="off"> Авторы
+        </label>
+        <label id="articles" class="btn btn-secondary">
+        <input type="radio" name="options" autocomplete="off"> Статьи
+    </label>
+    </div>
+
+    <div id="div_users" class="m_5" style="display: none">
+        {% for user in users %}
+            <a href="/admin/user/{{ user.id }}">{{ user.login }} {{ user.name }} {{ user.email }}</a><br>
+        {% endfor %}
+    </div>
+    <div id="div_autors" class="m_5" style="display: none">
+        {% for autor in autors %}
+            <a href="/admin/autor/{{ autor.id }}">{{ autor.name }}</a><br>
+        {% endfor %}
+    </div>
+    <div id="div_articles" class="m_5"  style="display: none">
+        {% for article in articles %}
+            <a href="/admin/article/{{ article.id }}">{{ article.title }}</a><br>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
