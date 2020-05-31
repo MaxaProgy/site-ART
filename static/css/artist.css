@@ -1,0 +1,243 @@
+.artist_name-title {
+    background-color: #FFFFFF;
+    padding: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+.p-column {
+    column-count:2;
+    -moz-column-count:20;
+    -webkit-column-count:2;
+}
+
+.artist_name-title {
+    background-color: #FFFFFF;
+    padding: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+.container-about-the-artist {
+    margin-top: 5vw;
+    border: 100px;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+.artist-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #2b2b2b;
+    font-weight: bolder;
+    font-size: 2rem;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.about-the-artist {
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.9vmax;
+    font-weight: bolder;
+    font-size: 2.5vmin;
+    margin: 3vw 10% 5vw;
+    text-align: justify;
+    text-indent: 30px;
+}
+
+.quote {
+    margin-left: 10vw;
+    height: 25vmin;
+    width: 80vw;
+    background: url("/static/img/block.jpg") center;
+    margin-top: 5vw;
+}
+
+.container-biography {
+    background: url("/static/img/intro_biography.jpg");
+    background-size: contain;
+    margin-top: 8vw;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    bottom: 8vw;
+}
+
+.artist-biography {
+    margin-top: 3vw;
+    color: #2b2b2b;
+    font-family: "Montserrat", sans-serif;
+    line-height: 3.1vmax;
+    font-weight: bolder;
+    font-size: 2.5vmin;
+    text-align: justify;
+    text-indent: 50px;
+}
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    grid-auto-rows: 200px;
+    grid-auto-flow: row dense;
+    grid-gap: 23px;
+    justify-content: center;
+}
+
+.card-top, .card-right, .card-bottom, .card-left {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+    border-radius: 95.2380952381px;
+    box-shadow: 0px 3px 9px 1px rgba(0, 10, 20, 0.2);
+}
+
+.card-top {
+    flex-direction: column;
+    grid-column: auto / span 1;
+    grid-row: auto / span 2;
+}
+
+.card-right {
+    flex-direction: row-reverse;
+    grid-column: auto / span 2;
+    grid-row: auto / span 1;
+}
+
+.card-bottom {
+    flex-direction: column-reverse;
+    grid-column: auto / span 1;
+    grid-row: auto / span 2;
+}
+
+.card-left {
+    flex-direction: row;
+    grid-column: auto / span 2;
+    grid-row: auto / span 1;
+}
+
+.card-image {
+    display: flex;
+}
+
+.card-top .card-image, .card-bottom .card-image {
+    height: 50%;
+    width: 100%;
+}
+
+.card-left .card-image, .card-right .card-image {
+    height: 100%;
+    width: 50%;
+}
+
+.card-image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-top img {
+    border-radius: 95.2380952381px 95.2380952381px 0 0;
+}
+
+.card-right img {
+    border-radius: 0 95.2380952381px 95.2380952381px 0;
+}
+
+.card-bottom img {
+    border-radius: 0 0 95.2380952381px 95.2380952381px;
+}
+
+.card-left img {
+    border-radius: 95.2380952381px 0 0 95.2380952381px;
+}
+
+.card-text {
+    align-self: center;
+    padding: 30px;
+}
+
+.card-top .card-text {
+    height: auto;
+    width: auto;
+    padding-bottom: 50px;
+}
+
+.card-right .card-text {
+    height: auto;
+    width: 50%;
+    padding-left: 50px;
+}
+
+.card-bottom .card-text {
+    height: auto;
+    width: auto;
+    padding-top: 50px;
+}
+
+.card-left .card-text {
+    height: auto;
+    width: 50%;
+    padding-right: 50px;
+}
+
+.card-text p {
+    margin: 0;
+    line-height: 1.35em;
+    font-weight: bold;
+    font-size: 67%;
+    color: #334455;
+}
+
+@media (max-width: 500px) {
+    .card-top {
+        flex-direction: row;
+        grid-column: auto / span 2;
+        grid-row: auto / span 1;
+    }
+
+    .card-bottom {
+        flex-direction: row-reverse;
+        grid-column: auto / span 2;
+        grid-row: auto / span 1;
+    }
+
+    .card-top .card-image, .card-bottom .card-image {
+        height: 100%;
+        width: 50%;
+    }
+
+    .card-top img {
+        border-radius: 95.2380952381px 0 0 95.2380952381px;
+    }
+
+    .card-bottom img {
+        border-radius: 0 95.2380952381px 95.2380952381px 0;
+    }
+
+    .card-top .card-text {
+        height: auto;
+        width: 50%;
+        padding-right: 30px;
+    }
+
+    .card-bottom .card-text {
+        height: auto;
+        width: 50%;
+        padding-left: 30px;
+    }
+}
+@media (max-width: 400px) {
+    .card-image {
+        width: 38% !important;
+    }
+
+    .card-text {
+        width: 62% !important;
+    }
+}

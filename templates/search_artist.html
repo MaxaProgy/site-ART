@@ -11,7 +11,7 @@
     {% if artists %}
         {% for artist in artists %}
             <section style="background-image: url('/static/img/intro_biography.jpg'); position: relative;" id="block-artist-in-search">
-                <a href="" style="margin: 3vw" id="a-artist">
+                <a href="/artist/{{ artist.id }}" style="margin: 3vw" id="a-artist">
                     <div>
                         <img src="{{ artist.artist_image }}">
                     </div>
@@ -19,7 +19,7 @@
                 <div style="margin-left: 3vw">
                     <h5 id="name-artist-search">{{ artist.name }}</h5>
                     <p id="text-artist-search">{{ artist.preview }}</p>
-                    <a href="/" id="go-page">Перейти</a>
+                    <a href="/artist/{{ artist.id }}" id="go-page">Перейти</a>
                 </div>
             </section>
         {% endfor %}

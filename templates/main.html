@@ -47,14 +47,16 @@
 
     {% if article_random %}
         <section class="article-random" style="display: grid; grid-template-columns: 1fr 1fr;">
-            <div>
-                <a href="#" class="a-none-decor"><img id="image-article-random" src="{{ article_random.main_image }}"></a>
-            </div>
+            <a href="/article/{{ article_random.id }}" id="a-random">
+                <div>
+                    <img src="{{ article_random.main_image }}">
+                </div>
+            </a>
            <div>
                <a href="#" class="a-none-decor">
                    <h5 id="title-random">Вам должно понравится!</h5>
                    <p id="text-article-random">{{ article_random.preview }}</p>
-                   <a href="/" style="margin-left: 3%" id="go-page-1" class="go-page">Перейти</a></a>
+                   <a href="/article/{{ article_random.id }}" style="margin-left: 3%" id="go-page-1" class="go-page">Перейти</a></a>
             </div>
         </section>
     {% endif %}
@@ -65,11 +67,14 @@
                 <a href="#" class="a-none-decor">
                     <h5 id="title-past">Последний выпуск</h5>
                     <p id="text-article-past">{{ article_past.preview }}</p>
-                    <a href="/" style="margin-left: 10%" id="go-page-2" class="go-page">Перейти</a></a>
+                    <a href="/article/{{ article_past.id }}" style="margin-left: 10%" id="go-page-2" class="go-page">Перейти</a></a>
             </div>
-            <div>
-                <a href="#" class="a-none-decor"><img id="image-article-past" src="{{ article_past.main_image }}"></a>
-            </div>
+            <a href="/article/{{ article_past.id }}" id="a-past">
+                <div>
+                    <img src="{{ article_past.main_image }}">
+                </div>
+            </a>
+
         </section>
     {% endif %}
 

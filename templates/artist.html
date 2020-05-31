@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/artist.css">
+    <link rel="stylesheet" href="/static/css/KmvReR.css">
+    <script src="/static/js/artist.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div style="background-image: url('{{ artist.main_image }}');
+            flex-direction: column;
+            -webkit-filter: blur(0px);
+            width: 100%;
+            height: 87vh;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;display: flex;
+            justify-content: center;">
+        <div class="nav">
+            <a href="#" class="nav__trigger">
+                <div class="bars"></div>
+            </a>
+
+            <div class="nav__content">
+                <nav class="nav__list">
+                    <ul>
+                        <li class="nav__item"><a href="#">Home</a></li>
+                        <li class="nav__item"><a href="#">About</a></li>
+                        <li class="nav__item"><a href="#">Team</a></li>
+                        <li class="nav__item"><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="artist_name-title">{{ artist.name }}</div>
+    </div>
+
+    <section class="container-about-the-artist">
+        <div class="artist-title">Коротко о главном</div>
+        <p class="about-the-artist"> {{ artist.thesis }} </p>
+    </section>
+
+    <section class="quote">
+    </section>
+
+    <section class="container-biography">
+        <div class="artist-title">Самое главное!</div>
+        {% set list_text = artist.text_biography.split('\n') %}
+
+        <img src="{{ artist.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+                                         height: auto;
+                                         float: left;
+                                         padding-right: 5%;
+                                         padding-bottom: 2%;
+                                         margin-top: 3vw;" >
+        {% for text in list_text %}
+            <p class="artist-biography">{{ text }}</p>
+        {% endfor %}
+    </section>
+
+    {% set artist_img = [artist.image_1, artist.image_2] %}
+    {% set list_text_facts = artist.text_5_facts.split('\n') %}
+    {% set list_position = ['left', 'top', 'right', 'right', 'top', 'bottom', 'left', 'bottom', 'right', 'top'] %}
+    <div class='container'>
+        {% for i in range(list_text_facts|length) %}
+            <div class='card-{{ list_position[i] }}'>
+                <div class='card-image'>
+                    <img src='https://images.pexels.com/photos/220072/pexels-photo-220072.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260'>
+                </div>
+                <div class='card-text'>
+                    <p>{{ list_text_facts[i] }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

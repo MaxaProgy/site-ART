@@ -184,7 +184,14 @@ def search_article():
 def article(article_id):
     session = db_session.create_session()
     article = session.query(Articles).filter(Articles.id == article_id).first()
-    return render_template('article.html', title='Художники', article=article)
+    return render_template('article.html', title='Статья', article=article)
+
+
+@app.route('/artist/<int:artist_id>', methods=['GET'])
+def artist(artist_id):
+    session = db_session.create_session()
+    artist = session.query(Artist).filter(Artist.id == artist_id).first()
+    return render_template('artist.html', title='Художник', artist=artist)
 
 
 """session = db_session.create_session()
