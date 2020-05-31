@@ -32,7 +32,7 @@ header {
 
 .brand,
 #menu,
-ul {
+#ul-base {
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
@@ -76,11 +76,11 @@ ul {
     padding-top: 10px;
 }
 
-li {
+.li-base {
     margin-left: 20px;
     list-style-type: none;
 }
-li a {
+.li-base a {
     padding-right: 9px;
     font-family: "Montserrat", sans-serif;
     text-align: center;
@@ -91,7 +91,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+.li-base a:hover {
     color: #cac3c7;
     text-decoration: none;
 }
@@ -149,41 +149,47 @@ li a:hover {
         display: flex;
     }
 
-    ul {
+    #ul-base {
         display: inline-block;
         width: 100vw;
         height: 0;
-        background: #79edfc;
+        background: rgba(14, 65, 100, 0.61);
         position: absolute;
-        top: 160px;
+        right: 0;
+        padding-left: 0;
+        top: 75px;
         box-shadow: 0 5px 30px -4px rgba(0, 0, 0, 0.2);
         -webkit-transition: all 0.3s;
         transition: all 0.3s;
     }
-    ul.showMenu {
+    #ul-base.showMenu {
         height: 250px;
     }
-    ul.showMenu li {
+    #ul-base.showMenu .li-base {
         height: 80px;
         opacity: 1;
         visibility: visible;
     }
 
-    li {
+    .li-base {
         width: 50%;
         height: 80px;
         float: left;
-        padding-left: 40px;
+        padding-left: 30px;
+        padding-right: 30px;
         opacity: 0;
         visibility: hidden;
         margin-left: 0;
         -webkit-transition: all 0.3s 0.1s;
         transition: all 0.3s 0.1s;
     }
-    li:first-child, li:nth-child(2) {
-        margin-top: 80px;
+    .li-base:first-child, .li-base:nth-child(2) {
+        margin-top: 40px;
     }
 
+    .li-base a {
+        font-size: 1rem;
+    }
     #head-line {
         -webkit-transform: scale(0.8);
         transform: scale(0.8);

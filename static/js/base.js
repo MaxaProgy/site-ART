@@ -4,7 +4,7 @@ window.addEventListener("load", function() {
     $(window).scroll( () => {
         var windowTop = $(window).scrollTop();
         windowTop > 100 ? $('nav-base').addClass('navShadow') : $('nav-base').removeClass('navShadow');
-        windowTop > 100 ? $('ul').css('top','100px') : $('ul').css('top','160px');
+        windowTop > 100 ? $('#ul-base').css('top','75px') : $('#ul-base').css('top','75px');
     });
 
     //Click Logo To Scroll To Top
@@ -18,10 +18,10 @@ window.addEventListener("load", function() {
     $('#menu-toggle').on('click', () => {
 
         $('#menu-toggle').toggleClass('closeMenu');
-        $('ul').toggleClass('showMenu');
+        $('#ul-base').toggleClass('showMenu');
 
-        $('li').on('click', () => {
-            $('ul').removeClass('showMenu');
+        $('.li-base').on('click', () => {
+            $('#ul-base').removeClass('showMenu');
             $('#menu-toggle').removeClass('closeMenu');
         });
     });
