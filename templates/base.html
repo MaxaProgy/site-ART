@@ -29,15 +29,15 @@
                             <div class="bar"></div>
                         </div>
                     </div>
-                    <ul>
-                        <li><a href="/search/artist">Авторы</a></li>
-                        <li><a href="/search/article">Статьи</a></li>
-                        <li><a href="/about">О нас</a></li>
+                    <ul id="ul-base">
+                        <li class="li-base"><a href="/search/artist">Авторы</a></li>
+                        <li class="li-base"><a href="/search/article">Статьи</a></li>
+                        <li class="li-base"><a href="/about">О нас</a></li>
                         {% if current_user.is_authenticated %}
-                        <li><a href="/admin/panel">Панель управления</a></li>
-                        <li><a class="entrance-a" href="/logout">Выйти {{ current_user.name }}</a></li>
+                            <li class="li-base"><a href="/admin/panel">Панель управления</a></li>
+                            <li class="li-base"><a class="entrance-a" href="/logout">Выйти {{ current_user.name }}</a></li>
                         {% else %}
-                        <li><a class="entrance-a" href="/admin">Войти</a></li>
+                            <li class="li-base"><a class="entrance-a" href="/admin">Войти</a></li>
                         {% endif %}
                     </ul>
                 </div>
