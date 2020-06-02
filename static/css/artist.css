@@ -51,14 +51,6 @@
     text-indent: 30px;
 }
 
-.quote {
-    margin-left: 10vw;
-    height: 25vmin;
-    width: 80vw;
-    background: url("/static/img/block.jpg") center;
-    margin-top: 5vw;
-}
-
 .container-biography {
     background: url("/static/img/intro_biography.jpg");
     background-size: contain;

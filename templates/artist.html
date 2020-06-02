@@ -3,10 +3,16 @@
 {% block head %}
     <link rel="stylesheet" href="/static/css/artist.css">
     <link rel="stylesheet" href="/static/css/KmvReR.css">
+    <script src="/static/js/article.js"></script>
     <script src="/static/js/artist.js"></script>
 {% endblock %}
 
 {% block content %}
+
+    <!-- ####################### -->
+    <!-- Заставка и имя автора -->
+    <!-- ####################### -->
+
     <div style="background-image: url('{{ artist.main_image }}');
             flex-direction: column;
             -webkit-filter: blur(0px);
@@ -16,6 +22,8 @@
             -webkit-background-size: cover;
             background-size: cover;display: flex;
             justify-content: center;">
+
+        <!-- Навигация по странице -->
         <div class="nav">
             <a href="#" class="nav__trigger">
                 <div class="bars"></div>
@@ -32,22 +40,34 @@
                 </nav>
             </div>
         </div>
-        <div class="artist_name-title">{{ artist.name }}</div>
+        <div class="artist_name-title">{{ author.name }}</div>
     </div>
+
+    <!-- ############################################# -->
+    <!-- Коротко о главном (Краткий тезис о художнике -->
+    <!-- ############################################# -->
 
     <section class="container-about-the-artist">
         <div class="artist-title">Коротко о главном</div>
-        <p class="about-the-artist"> {{ artist.thesis }} </p>
+        <p class="about-the-artist"> {{ author.thesis }} </p>
     </section>
 
-    <section class="quote">
-    </section>
+    <!-- ############################### -->
+    <!-- Небольшая вставка для гармонии -->
+    <!-- ############################### -->
+
+    <canvas style="margin-left: 10vw; margin-top: 5vw; height: 25vmin;
+    width: 80vw;" id="ccc"></canvas>>
+
+    <!-- ########## -->
+    <!-- Биография -->
+    <!-- ########## -->
 
     <section class="container-biography">
         <div class="artist-title">Самое главное!</div>
-        {% set list_text = artist.text_biography.split('\n') %}
+        {% set list_text = author.text_biography.split('\n') %}
 
-        <img src="{{ artist.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+        <img src="{{ author.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
                                          height: auto;
                                          float: left;
                                          padding-right: 5%;
@@ -58,9 +78,13 @@
         {% endfor %}
     </section>
 
-    {% set artist_img = [artist.image_1, artist.image_2] %}
-    {% set list_text_facts = artist.text_5_facts.split('\n') %}
-    {% set list_position = ['left', 'top', 'right', 'right', 'top', 'bottom', 'left', 'bottom', 'right', 'top'] %}
+    <!-- ###################### -->
+    <!-- Блок фактов художника -->
+    <!-- ###################### -->
+
+    {% set author_img = [author.image_1, author.image_2] %}
+    {% set list_text_facts = author.text_5_facts.split('\n') %}
+    {% set list_position = ['left', 'top', 'right', 'right', 'top', 'bottom', 'left', 'bottom', 'right', 'left'] %}
     <div class='container'>
         {% for i in range(list_text_facts|length) %}
             <div class='card-{{ list_position[i] }}'>

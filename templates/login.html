@@ -10,6 +10,10 @@
             <h1>Авторизация</h1>
             <form action="" method="post">
                 {{ form.hidden_tag() }}
+
+                <!-- ########## -->
+                <!-- Логин -->
+                <!-- ########## -->
                 <p>
                     {{ form.login.label }}<br>
                     {{ form.login(class="form-control", type="login") }}<br>
@@ -19,6 +23,10 @@
                         </div>
                     {% endfor %}
                 </p>
+
+                <!-- ########## -->
+                <!-- Пароль -->
+                <!-- ########## -->
                 <p>
                     {{ form.password.label }}<br>
                     {{ form.password(class="form-control", type="password") }}<br>
@@ -28,6 +36,10 @@
                         </div>
                     {% endfor %}
                 </p>
+
+                <!-- ########## -->
+                <!-- Кнопка "Войти" -->
+                <!-- ########## -->
                 <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
                 <div>{{ message }}</div>
             </form>

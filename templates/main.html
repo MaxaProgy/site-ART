@@ -11,12 +11,21 @@
 
 
 {% block content %}
+
+    <!-- ##################################### -->
+    <!-- Заставка и название главной страницы -->
+    <!-- ##################################### -->
+
     <div class="intro">
         <div id="square_big_logo">
             <div class="intro__title">ART .</div>
         </div>
     </div>
     <div id="square"></div>
+
+    <!-- ############################## -->
+    <!-- Пара слов о цели и задачи сайта -->
+    <!-- ############################## -->
 
     <div class="row" style="margin: 10% 5%;">
        <div class="col-3 col-md about-the-site-main">
@@ -45,6 +54,10 @@
         </div>
     </div>
 
+    <!-- #################################################################### -->
+    <!-- Статья, которая могла бы понравится пользователю (случайная статья) -->
+    <!-- #################################################################### -->
+
     {% if article_random %}
         <section class="article-random" style="display: grid; grid-template-columns: 1fr 1fr;">
             <a href="/article/{{ article_random.id }}" id="a-random">
@@ -60,6 +73,10 @@
             </div>
         </section>
     {% endif %}
+
+    <!-- ###################################### -->
+    <!-- Последняя статья (последний выпуск) -->
+    <!-- ###################################### -->
 
     {% if article_past %}
         <section class="article-past" style="display: grid; grid-template-columns: 1fr 1fr;">
@@ -77,6 +94,10 @@
 
         </section>
     {% endif %}
+
+    <!-- ################## -->
+    <!-- Поисковая строка -->
+    <!-- ################## -->
 
     <section id="search-section">
         <form class="search">

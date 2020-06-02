@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
+
+    <!-- ########################### -->
+    <!-- Заставка и название статьи  -->
+    <!-- ########################### -->
+
     <div style="background-image: url('{{ article.main_image }}');
             flex-direction: column;
             -webkit-filter: blur(0px);
@@ -16,6 +21,8 @@
             -webkit-background-size: cover;
             background-size: cover;display: flex;
             justify-content: center;">
+
+        <!-- Навигация по странице -->
         <div class="nav">
             <a href="#" class="nav__trigger">
                 <div class="bars"></div>
@@ -35,19 +42,31 @@
         <div class="article_name-title">{{ article.title }}</div>
     </div>
 
+    <!-- ############################################# -->
+    <!-- Коротко о главном (Краткое превью о статье) -->
+    <!-- ############################################# -->
+
     <section class="container-about-the-article">
         <div class="article-title">Коротко о главном</div>
         <p class="about-the-article"> {{ article.preview }} </p>
     </section>
 
+    <!-- ############################### -->
+    <!-- Небольшая вставка для гармонии -->
+    <!-- ############################### -->
+
     <section class="quote">
     </section>
+
+    <!-- ############# -->
+    <!-- Текст статьи -->
+    <!-- ############# -->
 
     <section class="container-biography">
         <div class="article-title">Самое главное!</div>
         {% set list_text = article.text.split('\n') %}
 
-            <img src="{{ article.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+            <img src="{{ article.image_1 }}" vspace="5" hspace="5" style="width: 50%;
                                          height: auto;
                                          float: left;
                                          padding-right: 5%;
