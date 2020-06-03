@@ -13,15 +13,18 @@
     <!-- Заставка и имя автора -->
     <!-- ####################### -->
 
-    <div style="background-image: url('{{ artist.main_image }}');
-            flex-direction: column;
-            -webkit-filter: blur(0px);
-            width: 100%;
-            height: 87vh;
-            background-repeat: no-repeat;
-            -webkit-background-size: cover;
-            background-size: cover;display: flex;
-            justify-content: center;">
+    <div class="grid vertical">
+        <div class="column-xs-12 column-md-2">
+            <div class="intro">
+                <a>
+                    <h1 class="title"><span>{{ author.name }}</span></h1>
+                </a>
+            </div>
+        </div>
+        <div class="column-xs-12 column-md-10">
+            <div class="img-main-artist" style="background-image: url({{ author.main_image }})">
+            </div>
+        </div>
 
         <!-- Навигация по странице -->
         <div class="nav">
@@ -40,8 +43,8 @@
                 </nav>
             </div>
         </div>
-        <div class="artist_name-title">{{ author.name }}</div>
     </div>
+    <div id="square"></div>
 
     <!-- ############################################# -->
     <!-- Коротко о главном (Краткий тезис о художнике -->

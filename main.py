@@ -20,7 +20,7 @@ db_session.global_init("db/art_point_db.sqlite")
 
 @app.errorhandler(404)
 def not_found(error):
-    return make_response(jsonify({'error': error}), 404)
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @login_manager.user_loader
