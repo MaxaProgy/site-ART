@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/artist.css">
+    <link rel="stylesheet" href="/static/css/KmvReR.css">
+    <script src="/static/js/article.js"></script>
+    <script src="/static/js/artist.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    <!-- ####################### -->
+    <!-- Заставка и имя автора -->
+    <!-- ####################### -->
+
+    <div class="grid vertical">
+        <div class="column-xs-12 column-md-2">
+            <div class="intro">
+                <a>
+                    <h1 class="title"><span>{{ author.name }}</span></h1>
+                </a>
+            </div>
+        </div>
+        <div class="column-xs-12 column-md-10">
+            <div class="img-main-artist" style="background-image: url({{ author.main_image }})">
+            </div>
+        </div>
+
+        <!-- Навигация по странице -->
+        <div class="nav">
+            <a href="#" class="nav__trigger">
+                <div class="bars"></div>
+            </a>
+
+            <div class="nav__content">
+                <nav class="nav__list">
+                    <ul>
+                        <li class="nav__item"><a href="#">Home</a></li>
+                        <li class="nav__item"><a href="#">About</a></li>
+                        <li class="nav__item"><a href="#">Team</a></li>
+                        <li class="nav__item"><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div id="square"></div>
+
+    <!-- ############################################# -->
+    <!-- Коротко о главном (Краткий тезис о художнике -->
+    <!-- ############################################# -->
+
+    <section class="container-about-the-artist">
+        <div class="artist-title">Коротко о главном</div>
+        <p class="about-the-artist"> {{ author.thesis }} </p>
+    </section>
+
+    <!-- ############################### -->
+    <!-- Небольшая вставка для гармонии -->
+    <!-- ############################### -->
+
+    <canvas style="margin-left: 10vw; margin-top: 5vw; height: 25vmin;
+    width: 80vw;" id="ccc"></canvas>>
+
+    <!-- ########## -->
+    <!-- Биография -->
+    <!-- ########## -->
+
+    <section class="container-biography">
+        <div class="artist-title">Самое интересное!</div>
+        {% set list_text = author.text_biography.split('\n') %}
+
+        <img src="{{ author.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+                                         height: auto;
+                                         float: left;
+                                         padding-right: 5%;
+                                         padding-bottom: 2%;
+                                         margin-top: 3vw;" >
+        {% for text in list_text %}
+            <p class="card-text" class="artist-biography">{{ text }}</p>
+        {% endfor %}
+    </section>
+
+    <!-- ###################### -->
+    <!-- Блок фактов художника -->
+    <!-- ###################### -->
+
+
+    {% set author_img = [author.image_1, author.image_2] %}
+    {% set list_text_facts = author.text_5_facts.split('\n') %}
+    {% set list_position = ['left', 'top', 'right', 'right', 'top', 'bottom', 'left', 'bottom', 'right', 'left'] %}
+    <div class='container'>
+        <div class="artist-title">Знаменитые высказывания</div><br>
+        {% for i in range(list_text_facts|length) %}
+            <div class='card-{{ list_position[i] }}'>
+                <div class='card-image'>
+                    <img src='https://images.pexels.com/photos/220072/pexels-photo-220072.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260'>
+                </div>
+                <div class='card-text'>
+                    <p>{{ list_text_facts[i] }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="artist-title" style="margin-top: 10vw;
+                                    padding-left: 15vw;
+                                    padding-right: 15vw">Видео, обязательные к просмотру</div>
+    <section class="container-video">
+
+        {% set author_video = [author.video_1, author.video_2] %}
+        {% for i in range(author_video|length) %}
+            <iframe class="card-video"
+                    src="{{ author_video[i] }}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        {% endfor %}
+    </section>
+{% endblock %}

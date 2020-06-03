@@ -12,15 +12,23 @@
                 {{ form.hidden_tag() }}
                 {{ form.csrf_token }}
 
+                <!-- ########## -->
+                <!-- Логин -->
+                <!-- ########## -->
                 <p>
                     {{ form.login.label }}<br>
                     {{ form.login(class="form-control") }}<br>
                     {% for error in form.login.errors %}
-                <p class="alert alert-danger" role="alert">
-                    {{ error }}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
                 </p>
-                {% endfor %}
-                </p>
+
+
+                <!-- ########## -->
+                <!-- Имя -->
+                <!-- ########## -->
                 <p>
                     {{ form.name.label }}<br>
                     {{ form.name(class="form-control") }}<br>
@@ -30,6 +38,10 @@
                         </p>
                     {% endfor %}
                 </p>
+
+                <!-- ########## -->
+                <!-- Почта -->
+                <!-- ########## -->
 
                 <p>
                     {{ form.email.label }}<br>
@@ -41,6 +53,9 @@
                     {% endfor %}
                 </p>
 
+                <!-- ########## -->
+                <!-- Пароль -->
+                <!-- ########## -->
                 <p>
                     {{ form.password.label }}<br>
                     {{ form.password(class="form-control", type="password") }}<br>
@@ -51,6 +66,9 @@
                     {% endfor %}
                 </p>
 
+                <!-- ############# -->
+                <!-- Повтор пароля -->
+                <!-- ##############-->
                 <p>
                     {{ form.password_again.label }}<br>
                     {{ form.password_again(class="form-control", type="password") }}<br>
@@ -61,6 +79,9 @@
                     {% endfor %}
                 </p>
 
+                <!-- ########## -->
+                <!-- Кнопка "Зарегистрироваться" -->
+                <!-- ########## -->
                 <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
 
                 {{message}}

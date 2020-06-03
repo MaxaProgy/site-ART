@@ -67,12 +67,6 @@
     background-color: rgba(24, 160, 251, 0.53);
 }
 
-#image-article-random {
-    width: 90%;
-    margin: 10% 7% 7% 7%;
-    border-radius: 59px;
-}
-
 #text-article-random {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
@@ -93,10 +87,24 @@
     color: #191d19;
 }
 
-#image-article-past {
-    width: 90%;
-    margin: 10% 10% 7% 0;
+#a-random div{
+    margin: 10% 7% 7% 7%;
     border-radius: 59px;
+    background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
+    overflow: hidden;  /* Ограничиваем видиую область */
+}
+#a-random div img{
+    width: 100%;
+    border-radius: 59px;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+
+    display: block; /* Убираем полосу под картинкий */
+}
+#a-random:hover div img{
+    opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
+    transform: scale(1.05); /* Увеличение картинки */
 }
 
 #text-article-past {
@@ -117,6 +125,26 @@
     margin-left: 10%;
     text-align: left;
     color: #191d19;
+}
+
+#a-past div{
+    margin: 10% 10% 7% 0;
+    border-radius: 59px;
+    background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
+    overflow: hidden;  /* Ограничиваем видиую область */
+}
+#a-past div img{
+    width: 100%;
+    border-radius: 59px;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+
+    display: block; /* Убираем полосу под картинкий */
+}
+#a-past:hover div img{
+    opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
+    transform: scale(1.05); /* Увеличение картинки */
 }
 
 .a-article {

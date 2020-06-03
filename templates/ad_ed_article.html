@@ -18,89 +18,106 @@
             </div>
             <div class="col-md-8">
 
+                <!-- ################ -->
+                <!-- Название статьи -->
+                <!-- ################ -->
                 {{ form.title.label }}<br>
                 {{ form.title(class="form-control") }}
                 {% for error in form.title.errors %}
-                <p content="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
+                    <p content="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
                 {% endfor %}
                 <br>
 
+                <!-- ####### -->
+                <!-- Превью -->
+                <!-- ####### -->
                 {{ form.preview.label }}<br>
                 {{ form.preview(class="form-control") }}
                 {% for error in form.preview.errors %}
-                <p content="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
+                    <p content="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
                 {% endfor %}
                 <br>
             </div>
 
-
+            <!-- #################### -->
+            <!-- Главное изображени -->
+            <!-- #################### -->
             {{ form.main_image.label }}<br>
             {{ form.main_image(class="form-control") }}
             {% for error in form.main_image.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
             {% endfor %}
             <br>
 
+            <!-- ################### -->
+            <!-- Текст (содержание) -->
+            <!-- ################### -->
             {{ form.text.label }}<br>
             {{ form.text(class="form-control") }}
             {% for error in form.text.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
             {% endfor %}
             <br>
 
+            <!-- ################ -->
+            <!-- Изображение № 1 -->
+            <!-- ################ -->
             {{ form.image_1.label }}<br>
             {{ form.image_1(class="form-control") }}
             {% for error in form.image_1.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
             {% endfor %}
             <br>
 
+            <!-- ################ -->
+            <!-- Изображение № 2 -->
+            <!-- ################ -->
             {{ form.image_2.label }}<br>
             {{ form.image_2(class="form-control") }}
             {% for error in form.image_2.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
             {% endfor %}
             <br>
 
-            {{ form.image_2.label }}<br>
-            {{ form.image_2(class="form-control") }}
-            {% for error in form.image_2.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
-
+            <!-- ################ -->
+            <!-- Видео № 1 -->
+            <!-- ################ -->
             {{ form.video_1.label }}<br>
             {{ form.video_1(class="form-control") }}
             {% for error in form.video_1.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
             {% endfor %}
             <br>
 
+            <!-- ################ -->
+            <!-- Видео № 2 -->
+            <!-- ################ -->
             {{ form.video_2.label }}<br>
             {{ form.video_2(class="form-control") }}
             {% for error in form.video_2.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
             {% endfor %}
             <br>
 
+            <!-- ##################### -->
+            <!-- Кнопка "Опубликовать" -->
+            <!-- ##################### -->
             <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
             {{message}}
         </div>

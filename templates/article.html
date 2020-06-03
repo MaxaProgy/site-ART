@@ -7,15 +7,25 @@
 {% endblock %}
 
 {% block content %}
-    <div style="background-image: url('{{ article.main_image }}');
-            flex-direction: column;
-            -webkit-filter: blur(0px);
-            width: 100%;
-            height: 87vh;
-            background-repeat: no-repeat;
-            -webkit-background-size: cover;
-            background-size: cover;display: flex;
-            justify-content: center;">
+
+    <!-- ########################### -->
+    <!-- Заставка и название статьи  -->
+    <!-- ########################### -->
+
+    <div class="grid vertical">
+        <div class="column-xs-12 column-md-2">
+            <div class="intro">
+                <a>
+                    <h1 class="title"><span>{{ article.title }}</span></h1>
+                </a>
+            </div>
+        </div>
+        <div class="column-xs-12 column-md-10">
+            <div class="img-main-article" style="background-image: url({{ article.main_image }})">
+            </div>
+        </div>
+
+        <!-- Навигация по странице -->
         <div class="nav">
             <a href="#" class="nav__trigger">
                 <div class="bars"></div>
@@ -32,30 +42,45 @@
                 </nav>
             </div>
         </div>
-        <div class="autor_name-title">{{ article.title }}</div>
     </div>
+    <div id="square"></div>
 
-    <section class="container-about-the-artist">
-        <div class="autor-title">Коротко о главном</div>
-        <p class="about-the-autor"> {{ article.preview }} </p>
+    <!-- ############################################# -->
+    <!-- Коротко о главном (Краткое превью о статье) -->
+    <!-- ############################################# -->
+
+    <section class="container-about-the-article">
+        <div class="article-title">Коротко о главном</div>
+        <p class="about-the-article"> {{ article.preview }} </p>
     </section>
 
+    <!-- ############################### -->
+    <!-- Небольшая вставка для гармонии -->
+    <!-- ############################### -->
 
     <section class="quote">
     </section>
 
+    <!-- ############# -->
+    <!-- Текст статьи -->
+    <!-- ############# -->
 
     <section class="container-biography">
-        <div class="autor-title">Самое главное!</div>
+        <div class="article-title">Самое главное!</div>
+        {% set list_text = article.text.split('\n') %}
 
-        <p class="artist-biography">
-            <img src="{{ article.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+            <img src="{{ article.image_1 }}" vspace="5" hspace="5" style="width: 50%;
                                          height: auto;
                                          float: left;
                                          padding-right: 5%;
-                                         padding-bottom: 2%;" >
-            {{ article.text }}
+                                         padding-bottom: 2%;
+                                         margin-top: 3vw;" >
+            {% for text in list_text %}
+                <p class="article-biography">{{ text }}</p>
+            {% endfor %}
     </section>
+
+    {% set articles_img = [article.image_1, article.image_2] %}
 
 
 

@@ -57,7 +57,7 @@ window.addEventListener("load", function() {
                 }
             });
         }
-    }
+    };
 
     navigation.init();
 });
