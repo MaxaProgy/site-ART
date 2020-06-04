@@ -48,7 +48,8 @@
     height: 87vh;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
-    background-size: cover;display: flex;
+    background-size: cover;
+    display: flex;
     justify-content: center;
     object-fit: cover;
 }
