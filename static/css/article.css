@@ -84,6 +84,10 @@
         height: 70vh;
     }
 
+    .container-video {
+        grid-template-columns: repeat(2, minmax(200px, 200px));
+    }
+
     .intro .title {
         font-weight: 600;
         font-size: 2.25rem;
@@ -140,7 +144,7 @@
     margin-top: 5vw;
 }
 
-.container-biography {
+.container-text {
     background: url("/static/img/intro_biography.jpg");
     background-size: contain;
     margin-top: 8vw;
@@ -157,4 +161,127 @@
     font-size: 2.5vmin;
     text-align: justify;
     text-indent: 50px;
+}
+
+.container-video {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    grid-auto-rows: 200px;
+    grid-auto-flow: row dense;
+    grid-gap: 23px;
+    justify-content: center;
+    margin-bottom: 10vw;
+    margin-top: 5vw;
+    background-size: contain;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    bottom: 8vw;
+}
+
+.card-video {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 3px 9px 1px rgba(0, 10, 20, 0.2);
+    flex-direction: row;
+    grid-column: auto / span 2;
+    grid-row: auto / span 1;
+}
+
+#block-artist {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 0 10vh 5vw 5vh;
+}
+
+#go-page {
+    color: white;
+    background-color: #1d7ebd;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .9vh 1.5vw;
+    font-size: 1.7vw;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+}
+
+#go-page:hover {
+    text-decoration: none !important;
+    background-color: #18679c;
+    color: white;
+}
+
+#a-artist div{
+    border-radius: 100%;
+    background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
+    overflow: hidden;  /* Ограничиваем видиую область */
+}
+#a-artist div #img-artist{
+    object-fit: cover;
+    border-radius: 100%;
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+    width: 20vw;
+    height: 20vw;
+    display: block; /* Убираем полосу под картинкий */
+}
+#a-artist:hover div #img-artist{
+    opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
+    transform: scale(1.05); /* Увеличение картинки */
+}
+
+
+#text-artist {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 2.5vmin;
+    width: 80%;
+    float: left;
+    padding-top: 2vw;
+    text-align: left;
+    color: #191d19;
+    margin-right: 20%;
+}
+
+#name-artist{
+    margin-top: 6vw;
+    font-family: "Montserrat",
+    sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-align: left;
+    color: #191d19;
+}
+
+@media screen and (max-width: 767px) {
+    #text-artist-search {
+        font-size: 2vw;
+    }
+
+    #name-artist-search {
+        font-size: 3vw;
+    }
+
+    #go-page {
+        font-size: 2.8vw;
+    }
+
+    .img-main-article {
+        height: 70vh;
+    }
+
 }
