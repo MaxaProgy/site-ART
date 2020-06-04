@@ -34,10 +34,10 @@
                 <div class="nav__content">
                     <nav class="nav__list">
                         <ul>
-                            <li class="nav__item"><a href="#">Home</a></li>
-                            <li class="nav__item"><a href="#">About</a></li>
-                            <li class="nav__item"><a href="#">Team</a></li>
-                            <li class="nav__item"><a href="#">Contact</a></li>
+                            <li class="nav__item"><a href="#about-the-artist">Коротко о главном</a></li>
+                            <li class="nav__item"><a href="#biography">Биография</a></li>
+                            <li class="nav__item"><a href="#facts">Высказывания</a></li>
+                            <li class="nav__item"><a href="#video">Видео</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -50,6 +50,7 @@
     <!-- Коротко о главном (Краткий тезис о художнике -->
     <!-- ############################################# -->
 
+    <a name="about-the-artist"></a>
     <section class="container-about-the-artist">
         <div class="artist-title">Коротко о главном</div>
         <p class="about-the-artist"> {{ author.thesis }} </p>
@@ -66,6 +67,7 @@
     <!-- Биография -->
     <!-- ########## -->
 
+    <a name="biography"></a>
     <section class="container-biography">
         <div class="artist-title">Самое интересное!</div>
         {% set list_text = author.text_biography.split('\n') %}
@@ -85,7 +87,7 @@
     <!-- Блок фактов художника -->
     <!-- ###################### -->
 
-
+    <a name="facts"></a>
     {% set author_img = [author.image_1, author.image_2] %}
     {% set list_text_facts = author.text_5_facts.split('\n') %}
     {% set list_position = ['left', 'top', 'right', 'right', 'top', 'bottom', 'left', 'bottom', 'right', 'left'] %}
@@ -102,6 +104,12 @@
             </div>
         {% endfor %}
     </div>
+
+
+    <!-- ###################### -->
+    <!-- Блок видео -->
+    <!-- ###################### -->
+    <a name="video"></a>
     <div class="artist-title" style="margin-top: 10vw;
                                     padding-left: 15vw;
                                     padding-right: 15vw">Видео, обязательные к просмотру</div>

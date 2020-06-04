@@ -92,7 +92,8 @@ def search_article():
 def article(article_id):
     session = db_session.create_session()
     article = session.query(Articles).filter(Articles.id == article_id).first()  # Забираем все данные по уникальному id
-    return render_template('article.html', title='Статья', article=article)
+    artist = session.query(Artist).filter(Artist.id == article.artist_id).first()
+    return render_template('article.html', title='Статья', article=article, artist=artist)
 
 
 # ///////////////////////////////////////////////

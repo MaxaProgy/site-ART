@@ -22,7 +22,6 @@
     height: 30px;
     background: #145C8C;
 }
-
 #name-artist-search {
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
@@ -31,6 +30,7 @@
     text-align: left;
     color: #191d19;
 }
+
 
 #text-artist-search {
     font-family: "Montserrat", sans-serif;
