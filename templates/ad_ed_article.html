@@ -19,6 +19,21 @@
             </div>
             <div class="col-md-8">
 
+                <div>
+                    {{ form.artist.label(class="control-label") }}<br>
+                    <select id="artist_id" class="form-control" style="width: 100%" onchange="artist_sellect(this)">
+                        {% for artist in artists %}
+                            {% if artist.name == form.artist.data %}
+                                <option selected="selected"> {{ artist.name }}</option>
+                            {% else %}
+                                <option>{{ artist.name }} </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    {{form.artist(class="hidden")}}
+                    <br>
+                </div>
+
                 <!-- ################ -->
                 <!-- Название статьи -->
                 <!-- ################ -->
@@ -101,6 +116,9 @@
     var attach_image = $("#attach_image").val().split(" ")
     if ($("#attach_image").val() == "") {
         attach_image = []
+    }
+    if (!form.artist.value) {
+        form.artist.value = "{{ artists[0].name }}"
     }
 
 </script>

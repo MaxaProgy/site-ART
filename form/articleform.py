@@ -3,6 +3,7 @@ from wtforms import StringField, SubmitField, TextAreaField
 
 
 class ArticleForm(FlaskForm):
+    artist = StringField("Автор статьи")
     title = StringField("Заголовок статьи")
     preview = StringField("Краткое описание статьи")
     main_image = StringField("Главная картинка статьи")

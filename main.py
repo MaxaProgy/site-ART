@@ -227,7 +227,7 @@ def admin_panel():
         # Забираем все необходимые данные для админки
         users = session.query(User).all()
         authors = session.query(Artist).all()
-        articles = session.query(Articles).all()
+        articles = session.query(Articles).order_by(Articles.id.desc()).all()
 
     return render_template('admin_panel.html', title='Панель администратора', users=users,
                            authors=authors, articles=articles)
@@ -239,27 +239,8 @@ def admin_panel():
 @app.route('/admin/article/new', methods=['GET', 'POST'])
 @login_required
 def new_article():
-    form = ArticleForm()
-
-    if form.validate_on_submit():
-        # Если все поля проходят валидацию и пользователь нажал кнопку "Опубликовать",
-        # то мы записываем их значения в базу данных
-        session = db_session.create_session()
-
-        article = Articles()
-        article.title = form.title.data
-        article.preview = form.preview.data
-        article.main_image = form.main_image.data
-        article.text = form.text.data
-        article.image_1 = form.image_1.data
-        article.image_2 = form.image_2.data
-        article.video_1 = form.video_1.data
-        article.video_2 = form.video_2.data
-
-        session.commit()
-        return redirect('/admin/panel')
-
-    return render_template('ad_ed_article.html', title='Редактирование статей', form=form)
+    session = db_session.create_session()
+    return new_edit_article(Articles(), session)
 
 
 # ////////////////////////////////
@@ -268,12 +249,19 @@ def new_article():
 @app.route('/admin/article/<int:article_id>', methods=['GET', 'POST'])
 @login_required
 def edit_article(article_id):
-    form = ArticleForm()
     session = db_session.create_session()
     article = session.query(Articles).filter(Articles.id == article_id).first()  # Забираем все данные по уникальному id
-
     if article:
-        if request.method == "GET":
+        return new_edit_article(article, session)
+    else:
+        abort(404)
+
+
+def new_edit_article(article, session):
+    form = ArticleForm()
+    artists = session.query(Artist).all()
+    if request.method == "GET":
+        if article.title:
             # Забираем все значения из полей статьи
             form.title.data = article.title
             form.preview.data = article.preview
@@ -284,47 +272,55 @@ def edit_article(article_id):
             form.video_1.data = article.video_1
             form.video_2.data = article.video_2
             form.attach_image.data = article.attach_image
+            form.artist.data = article.artist.name
         else:
-            if form.validate_on_submit():
-                # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
-                # то мы записываем их значения в базу данных
-                article.title = form.title.data
-                article.preview = form.preview.data
-                article.text = form.text.data
-                if form.main_image.data != article.main_image:
-                    file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
-                                str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
-                    if article.main_image != "new_pic.jpg":
-                        os.remove(os.path.join('static/media/image/', article.main_image))
-                    article.main_image = file_name
-                    form.main_image.data.save(os.path.join('static/media/image/', file_name))
-                attach_image = []
-                if form.attach_image.data != "":
-                    attach_image = form.attach_image.data.split(" ")
-
-                # Сохраняем новые картинки
-                for file in request.files:
-                    if file != "main_image":
-                        request.files[file].save(os.path.join('static/media/image/', file))
-
-                # Удаляем удаленные картинки
-                if article.attach_image != "":
-                    for file in article.attach_image.split(" "):
-                        if not (file in attach_image):
-                            os.remove(os.path.join('static/media/image/', file))
-
-                article.attach_image = " ".join(attach_image)
-                article.image_1 = form.image_1.data
-                article.image_2 = form.image_2.data
-                article.video_1 = form.video_1.data
-                article.video_2 = form.video_2.data
-                session.commit()
-
-                return redirect('/admin/panel')
+            form.main_image.data = "new_pic.jpg"
     else:
-        abort(404)
-    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, id_article=article.id)
+        if form.validate_on_submit():
+            # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
+            # то мы записываем их значения в базу данных
+            article.title = form.title.data
+            article.preview = form.preview.data
+            article.text = form.text.data
+            if article.main_image is None:
+                article.main_image = "new_pic.jpg"
+            if form.main_image.data != article.main_image:
+                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
+                            str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                if article.main_image != "new_pic.jpg":
+                    os.remove(os.path.join('static/media/image/', article.main_image))
+                article.main_image = file_name
+                form.main_image.data.save(os.path.join('static/media/image/', file_name))
 
+            attach_image = []
+            if form.attach_image.data != "":
+                attach_image = form.attach_image.data.split(" ")
+
+            # Сохраняем новые картинки
+            for file in request.files:
+                if file != "main_image":
+                    request.files[file].save(os.path.join('static/media/image/', file))
+
+            # Удаляем удаленные картинки
+            if article.attach_image is not None and article.attach_image != "":
+                for file in article.attach_image.split(" "):
+                    if not (file in attach_image):
+                        os.remove(os.path.join('static/media/image/', file))
+
+            article.attach_image = " ".join(attach_image)
+            article.image_1 = form.image_1.data
+            article.image_2 = form.image_2.data
+            article.video_1 = form.video_1.data
+            article.video_2 = form.video_2.data
+            artist =  session.query(Artist).filter(Artist.name == form.artist.data).first()
+            article.artist_id = artist.id
+            session.add(article)
+
+            session.commit()
+
+            return redirect('/admin/panel')
+
+    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, artists=artists)
 
 @app.route('/admin/article/del/<int:id_article>', methods=['GET'])
 @login_required
@@ -475,14 +471,6 @@ def delete_artist(id_artist):
         return redirect('/admin/panel')
     return redirect('/')
 
-
-""" try:
-    list_attach_image = article.attach_image.split()
-    for img in list_attach_image:
-        if img != "new_pic.jpg":
-            os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
-except Exception:
-    pass"""
 
 """session = db_session.create_session()
 artist = Articles(
