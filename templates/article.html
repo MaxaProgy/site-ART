@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Получаю список всех фотографий -->
+    {% set articles_img = article.attach_image.split() %}
 
     <!-- ########################### -->
     <!-- Заставка и название статьи  -->
@@ -21,7 +23,7 @@
             </div>
         </div>
         <div class="column-xs-12 column-md-10">
-            <div class="img-main-article" style="background-image: url({{ article.main_image }})">
+            <div class="img-main-article" style="background-image: url('/static/media/image/{{ article.main_image }}')">
             </div>
             <!-- Навигация по странице -->
             <div class="nav">
@@ -70,7 +72,7 @@
         <div class="article-title">Самое главное!</div>
         {% set list_text = article.text.split('\n') %}
 
-            <img src="{{ article.image_1 }}" vspace="5" hspace="5" style="width: 50%;
+            <img src="/static/media/image/{{ articles_img[0] }}" vspace="5" hspace="5" style="width: 50%;
                                          height: auto;
                                          float: left;
                                          padding-right: 5%;
@@ -81,7 +83,7 @@
             {% endfor %}
     </section>
 
-    {% set articles_img = [article.image_1, article.image_2] %}
+
 
     <!-- ###################### -->
     <!-- Блок видео -->
@@ -94,7 +96,7 @@
         {% set article_video = [article.video_1, article.video_2] %}
         {% for i in range(article_video|length) %}
             <iframe class="card-video"
-                    src="{{ article_video[i] }}" frameborder="0"
+                    src="/static/media/video/{{ article_video[i] }}" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         {% endfor %}
@@ -111,7 +113,7 @@
         <div id="block-artist">
             <a href="/artist/{{ artist.id }}" style="margin-left: 14vw; margin-top: 4vw;" id="a-artist">
                 <div>
-                    <img id="img-artist" src="{{ artist.artist_image }}">
+                    <img id="img-artist" src="/static/media/image/{{ artist.artist_image }}">
                 </div>
             </a>
             <div style="margin-left: 5vw">

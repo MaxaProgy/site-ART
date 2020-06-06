@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="column-xs-12 column-md-10">
-            <div class="img-main-artist" style="background-image: url({{ author.main_image }})">
+            <div class="img-main-artist" style="background-image: url('/static/media/image/{{ author.main_image }}')">
 
             </div>
             <!-- Навигация по странице -->
@@ -74,7 +74,7 @@
         <div class="artist-title">Самое интересное!</div>
         {% set list_text = author.text_biography.split('\n') %}
 
-        <img src="{{ author.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
+        <img src="/static/media/image/{{ author.image_1 }}"  vspace="5" hspace="5" style="width: 50%;
                                          height: auto;
                                          float: left;
                                          padding-right: 5%;
@@ -120,7 +120,7 @@
         {% set author_video = [author.video_1, author.video_2] %}
         {% for i in range(author_video|length) %}
             <iframe class="card-video"
-                    src="{{ author_video[i] }}" frameborder="0"
+                    src="/static/media/video/{{ author_video[i] }}" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         {% endfor %}
@@ -138,7 +138,7 @@
             <div id="block-article">
                 <a href="/article/{{ article_past.id }}" style="margin-left: 10%" id="a-article">
                     <div>
-                        <img id="img-article" src="{{ article_past.main_image }}">
+                        <img id="img-article" src="/static/media/image/{{ article_past.main_image }}">
                     </div>
                 </a>
                 <div style="margin-left: 5vw">
