@@ -355,3 +355,85 @@
     grid-column: auto / span 2;
     grid-row: auto / span 1;
 }
+
+
+#block-article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 10vh 5vw 5vh;
+}
+
+#go-page {
+    color: white;
+    background-color: #1d7ebd;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .9vh 1.5vw;
+    font-size: 1.7vw;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+}
+
+#go-page:hover {
+    text-decoration: none !important;
+    background-color: #18679c;
+    color: white;
+}
+
+#a-article div{
+    margin: 10% 10% 7% 0;
+    border-radius: 59px;
+    background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
+    overflow: hidden;  /* Ограничиваем видиую область */
+}
+#a-article div #img-article{
+    width: 100%;
+    border-radius: 59px;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+
+    display: block; /* Убираем полосу под картинкий */
+}
+#a-article:hover div #img-article{
+    opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
+    transform: scale(1.05); /* Увеличение картинки */
+}
+
+
+#text-article {
+    margin: 5% 0 5% 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 2.5vmin;
+    float: left;
+    padding-top: 2vw;
+    text-align: left;
+    color: #191d19;
+}
+
+#title-article{
+    margin-top: 4vw;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-align: left;
+    color: #191d19;
+}
+
+@media screen and (max-width: 767px) {
+    #go-page {
+        font-size: 2.8vw;
+    }
+}

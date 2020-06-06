@@ -75,7 +75,11 @@ def search_artist():
 def artist(artist_id):
     session = db_session.create_session()
     author = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
-    return render_template('artist.html', title='Художник', author=author)
+    articles = session.query(Articles).all()
+    article_past = None
+    if articles:
+        article_past = articles[0]
+    return render_template('artist.html', title='Художник', author=author, article_past=article_past)
 
 
 # ////////////////////////////
