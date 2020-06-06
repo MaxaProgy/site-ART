@@ -75,7 +75,7 @@ window.onload = function() {
 
         if (($("#title").val().trim()) && ($("#preview").val().trim()) && (($("#text").val().trim()))) {
             document.getElementById("attach_image").value = attach_image.join(" ");
-            event.submit();
+            //event.submit();
         } else {
             event.preventDefault();
         }
@@ -114,7 +114,7 @@ window.onload = function() {
 // Удаление картинки по нажатию на крестик
 function image_click(elem) {
     let name = elem.parentNode.parentNode.childNodes[0].id;
-    index = attach_image.indexOf(name)
+    index = attach_image.indexOf(name);
     if (index != -1) {
         attach_image.splice(index, 1);
     }
@@ -123,3 +123,9 @@ function image_click(elem) {
     let el = document.getElementById(name);
     el.parentNode.removeChild(el);
 };
+
+// Выбор Автора
+function artist_sellect(obj) {
+    console.log(obj.options[obj.selectedIndex].value)
+    form.artist.value = obj.options[obj.selectedIndex].value;
+}
