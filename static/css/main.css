@@ -350,8 +350,3 @@ input::-ms-clear {
     background-color: #ff9e2e;
     color: white;
 }
-
-#canvas {
-    width: 100%;
-    height: 20%;
-}

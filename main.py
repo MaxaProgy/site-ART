@@ -54,6 +54,14 @@ def index():
                            article_random=article_random, article_past=article_past, articles=articles)
 
 
+# ////////////////
+# СТРАНИЦА О НАС
+# ///////////////
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html', title='О нас')
+
+
 # ///////////////////////////////
 # СТРАНИЦА ПОИСКА ПО ХУДОЖНИКАМ
 # //////////////////////////////
