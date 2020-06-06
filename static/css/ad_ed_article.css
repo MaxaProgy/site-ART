@@ -1,3 +1,78 @@
 .m_5 {
     margin: 5%;
 }
+
+.hidden {
+    display: none;
+}
+
+.photo {
+    display: inline-block; /* Строчно-блочный элемент */
+    position: relative; /* Относительное позиционирование */
+}
+
+.photo:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(177, 95, 15, 0.53); /* Полупрозрачный цвет фона */
+    color: #fff; /* Цвет текста */
+    text-align: center; /* Выравнивание текста по центру */
+    display: flex;
+    justify-content: center; /*Центрирование по горизонтали*/
+    align-items: center; /*Центрирование по вертикали */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 20px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+    border-radius: 10px;
+}
+
+.br {
+    border-radius: 10px;
+}
+
+.images {
+    position: relative;
+}
+
+.sel {
+    display: none;
+}
+.images:hover .sel {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    display: block;
+}
+
+.content-centering{
+    display: flex;
+    justify-content: center; /*центрируем элемент по горизонтали */
+    align-items: center; /* и вертикали */
+    width: 150px; /* задали размеры блоку-родителю */
+    height: 150px;
+    overflow: hidden; /* если элемент больше блока-родителя – обрезаем лишнее */
+}
+
+.block-decor{
+    background-color: #ccc;
+    margin: 8px;
+    float: left;
+}
+
+.content-centering_element{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.block-green:hover {
+    outline: 4px solid green;
+}

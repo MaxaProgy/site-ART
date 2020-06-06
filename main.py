@@ -1,7 +1,8 @@
+import datetime
+import os
 import random
 from flask import Flask, render_template, redirect, make_response, jsonify, abort, request
 import logging
-
 from data import db_session
 from data.article import Articles
 from data.users import User
@@ -280,14 +281,37 @@ def edit_article(article_id):
             form.image_2.data = article.image_2
             form.video_1.data = article.video_1
             form.video_2.data = article.video_2
+            form.attach_image.data = article.attach_image
         else:
             if form.validate_on_submit():
                 # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
                 # то мы записываем их значения в базу данных
                 article.title = form.title.data
                 article.preview = form.preview.data
-                article.main_image = form.main_image.data
                 article.text = form.text.data
+                if form.main_image.data != article.main_image:
+                    file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
+                                str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                    if article.main_image != "new_pic.jpg":
+                        os.remove(os.path.join('static/media/image/', article.main_image))
+                    article.main_image = file_name
+                    form.main_image.data.save(os.path.join('static/media/image/', file_name))
+                attach_image = []
+                if form.attach_image.data != "":
+                    attach_image = form.attach_image.data.split(" ")
+
+                # Сохраняем новые картинки
+                for file in request.files:
+                    if file != "main_image":
+                        request.files[file].save(os.path.join('static/media/image/', file))
+
+                # Удаляем удаленные картинки
+                if article.attach_image != "":
+                    for file in article.attach_image.split(" "):
+                        if not (file in attach_image):
+                            os.remove(os.path.join('static/media/image/', file))
+
+                article.attach_image = " ".join(attach_image)
                 article.image_1 = form.image_1.data
                 article.image_2 = form.image_2.data
                 article.video_1 = form.video_1.data
