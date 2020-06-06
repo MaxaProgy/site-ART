@@ -31,23 +31,47 @@
     <!-- ################### -->
 
     <!-- Отдел пользователей -->
-    <div id="div_users" class="m_5" style="display: none">
-        {% for user in users %}
-            <a href="/admin/user/{{ user.id }}">{{ user.login }} {{ user.name }} {{ user.email }}</a><br>
-        {% endfor %}
-    </div>
+    <section style="display: -webkit-box; -webkit-box-pack: center">
+        <div id="div_users" class="m_5" style="display: none">
+            <ul class="panel_ul">
+                {% for user in users %}
+                    <li class="panel_li">
+                        <a href="/admin/user/{{ user.id }}" style="text-decoration: none">
+                            {{ user.login }}---{{ user.name }}---{{ user.email }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
     <!-- Отдел авторов (художников) -->
-    <div id="div_autors" class="m_5" style="display: none">
-        {% for autor in autors %}
-            <a href="/admin/autor/{{ author.id }}">{{ author.name }}</a><br>
-        {% endfor %}
-    </div>
+    <section style="display: -webkit-box; -webkit-box-pack: center">
+        <div id="div_autors" class="m_5" style="display: none">
+            <ul class="panel_ul">
+                {% for author in authors %}
+                    <li class="panel_li">
+                        <a href="/admin/artist/{{ author.id }}" style="text-decoration: none !important;">
+                            {{ author.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
     <!-- Отдел статей -->
-    <div id="div_articles" class="m_5"  style="display: none">
-        {% for article in articles %}
-            <a href="/admin/article/{{ article.id }}">{{ article.title }}</a><br>
-        {% endfor %}
-    </div>
+    <section style="display: -webkit-box; -webkit-box-pack: center">
+        <div id="div_articles" class="m_5"  style="display: none">
+            <ul class="panel_ul">
+                {% for article in articles %}
+                    <li class="panel_li">
+                        <a href="/admin/article/{{ article.id }}" style="text-decoration: none !important;">
+                            {{ article.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>>
 
 {% endblock %}
 
