@@ -28,5 +28,4 @@ class Artist(SqlAlchemyBase, SerializerMixin):
     instagram = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     site = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
-
     articles = orm.relation("Articles", back_populates='artist')

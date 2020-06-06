@@ -9,6 +9,7 @@ from data.users import User
 from form.loginform import LoginForm
 from form.registerform import RegisterForm
 from form.articleform import ArticleForm
+from form.artistform import ArtistForm
 from flask_login import login_user, LoginManager, current_user, login_required, logout_user
 from data.artist import Artist
 
@@ -323,6 +324,76 @@ def edit_article(article_id):
         abort(404)
     return render_template('ad_ed_article.html', title='Редактирование статей', form=form)
 
+
+# //////////////////////////////////
+# СТРАНИЦА РЕДАКТИРОВАНИЯ ХУДОЖНИКА
+# //////////////////////////////////
+@app.route('/admin/artist/<int:artist_id>', methods=['GET', 'POST'])
+@login_required
+def edit_artist(artist_id):
+    form = ArtistForm()
+    session = db_session.create_session()
+    artist = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
+
+    if artist:
+        if request.method == "GET":
+            # Забираем все значения из полей статьи
+            form.name.data = artist.name
+            form.preview.data = artist.preview
+            form.main_image.data = artist.main_image
+            form.thesis.data = artist.thesis
+            form.text_biography.data = artist.text_biography
+            form.text_5_facts.data = artist.text_5_facts
+            form.artist_image.data = artist.artist_image
+            form.instagram.data = artist.instagram
+            form.site.data = artist.site
+            form.video_1.data = artist.video_1
+            form.video_2.data = artist.video_2
+            form.attach_image.data = artist.attach_image
+        else:
+            if form.validate_on_submit():
+                # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
+                # то мы записываем их значения в базу данных
+                artist.name = form.name.data
+                artist.preview = form.preview.data
+
+                if form.main_image.data != artist.main_image:
+                    file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
+                                str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                    if artist.main_image != "new_pic.jpg":
+                        os.remove(os.path.join('static/media/image/', artist.main_image))
+                    artist.main_image = file_name
+                    form.main_image.data.save(os.path.join('static/media/image/', file_name))
+                attach_image = []
+                if form.attach_image.data != "":
+                    attach_image = form.attach_image.data.split(" ")
+
+                # Сохраняем новые картинки
+                for file in request.files:
+                    if file != "main_image":
+                        request.files[file].save(os.path.join('static/media/image/', file))
+
+                # Удаляем удаленные картинки
+                if artist.attach_image != "":
+                    for file in artist.attach_image.split(" "):
+                        if not (file in attach_image):
+                            os.remove(os.path.join('static/media/image/', file))
+
+                artist.attach_image = " ".join(attach_image)
+                artist.thesis = form.thesis.data
+                artist.text_biography = form.text_biography.data
+                artist.text_5_facts = form.text_5_facts.data
+                #form.artist_image.data = artist.artist_image
+                artist.instagram = form.instagram.data
+                artist.site = form.site.data
+                artist.video_1 = form.video_1.data
+                artist.video_2 = form.video_2.data
+                session.commit()
+
+                return redirect('/admin/panel')
+    else:
+        abort(404)
+    return render_template('ad_ed_artist.html', title='Редактирование страницы хуожника', form=form)
 
 """session = db_session.create_session()
 artist = Articles(
