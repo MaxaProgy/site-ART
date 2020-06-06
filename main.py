@@ -52,12 +52,6 @@ def index():
         articles = articles[:4]
     return render_template('main.html', title='Art.',
                            article_random=article_random, article_past=article_past, articles=articles)
-        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') | Articles.text.like(f'%{q}%')).all()
-    else:
-        articles = []
-
-    return render_template('main.html', title='Art.',
-                           article_random=article_random, article_past=article_past, articles=articles)
 
 
 # ////////////////
@@ -76,9 +70,10 @@ def search_artist():
     session = db_session.create_session()
     q = request.args.get('q')
     if q:
-        artists = session.query(Artist).filter(Artist.name.like(f'%{q}%')).all()
+        artists = session.query(Artist).filter(Artist.name.like(f'%{q}%') |
+                                               Artist.preview.like(f'%{q}%')).all()
     else:
-        artists = []
+        artists = session.query(Artist).all()
     return render_template('search_artist.html', title='Художники', artists=artists)
 
 
@@ -104,10 +99,11 @@ def search_article():
     session = db_session.create_session()
     q = request.args.get('q')
     if q:
-        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') | Articles.text.like(f'%{q}%')).all()
+        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') |
+                                                  Articles.text.like(f'%{q}%')).all()
     else:
         articles = session.query(Articles).all()
-    return render_template('search_article.html', title='Художники', articles=articles)
+    return render_template('search_article.html', title='Статьи', articles=articles)
 
 
 # /////////////////

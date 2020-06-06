@@ -1,12 +1,139 @@
-#intro-search-article {
+.grid {
     display: flex;
     flex-direction: column;
+    flex-flow: row wrap;
     justify-content: center;
-    width: 100vw;
+    align-items: center;
+    margin-left: 8vw;
+}
+
+.column-xs-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+@supports (display: grid) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (min-width: 300px) {
+        .column-md-2 {
+            grid-column-start: span 2;
+            grid-column-end: span 2;
+        }
+
+        .column-md-9 {
+            grid-column-start: span 9;
+            grid-column-end: span 9;
+        }
+
+        .column-md-10 {
+            grid-column-start: span 10;
+            grid-column-end: span 10;
+        }
+    }
+
+}
+
+.img-main-artist {
+    flex-direction: column;
+    -webkit-filter: blur(0px);
+    width: 100%;
     height: 87vh;
-    background: url("/static/img/intro_search_autor.jpg") center no-repeat;
+    background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.intro {
+    animation: fadeInLeft 0.8s 0.4s ease forwards;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.intro .title {
+    font-size: 4.25rem;
+    padding: 2.5rem 2.5rem 3rem 2.5rem;
+    background: #fff;
+    display: inline-block;
+    font-weight: 100;
+    line-height: 1.1;
+    font-family: 'Montserrat', sans-serif;
+    color: #232323;
+}
+
+
+@keyframes fadeInLeft {
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@media (max-width: 767px) {
+    .img-main-artist {
+        height: 70vh;
+    }
+
+    .intro .title {
+        font-weight: 600;
+        font-size: 2.25rem;
+        padding: 2.5rem 2.5rem 3rem 2.5rem;
+    }
+}
+
+#search-article-form {
+    margin: 8vw 25vw 2vw;
+    position: relative;
+    width: 50vw;
+    height: 42px;
+}
+#search-article-input {
+    cursor: pointer;
+    height: 65px;
+    width: 0;
+    padding: 0 65px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    background: transparent;
+    transition: .4s cubic-bezier(0, 0.8, 0, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+#search-article-input:focus {
+    width: 50vw;
+    z-index: 1;
+    border-bottom: 2px solid #F9F0DA;
+}
+#search-article-button {
+    background: #12517c;
+    border: none;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+#search-article-button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
 }
 
 #block-article-in-search {

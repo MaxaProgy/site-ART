@@ -10,8 +10,29 @@
     <!-- Заставка и лозунг страницы -->
     <!-- ############################# -->
 
-    <div id="intro-search-artist"></div>
+    <div class="grid vertical">
+        <div class="column-xs-12 column-md-2">
+            <div class="intro">
+                <a>
+                    <h1 class="title"><span>Найди своего художника</span></h1>
+                </a>
+            </div>
+        </div>
+        <div class="column-xs-12 column-md-10">
+            <div class="img-main-artist"
+                 style="background-image: url('/static/img/intro_search_autor.jpg"></div>
+        </div>
+    </div>
     <div id="square"></div>
+
+    <!-- ################## -->
+    <!-- Поиск по странице -->
+    <!-- ################## -->
+
+    <form id="search-artist-form">
+        <input id="search-artist-input" type="text" name="q" placeholder="Искать здесь...">
+        <button id="search-artist-button" type="submit"></button>
+    </form>
 
     <!-- ################## -->
     <!-- Блоки художников -->
