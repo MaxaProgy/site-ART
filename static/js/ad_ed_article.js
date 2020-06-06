@@ -30,7 +30,7 @@ window.onload = function() {
         input.type = "file";
         // имя файла = d пользователя + число в UNIX дате + случайное число от 0 до 9
         input.name = current_user_id + "_" + Date.now() + randomInt(0, 9).toString();
-        //input.style.display = "none";
+        input.style.display = "none";
         input.accept = ".jpg, .jpeg, .png";
         input.onchange = e => {
             let file = e.target.files[0];
