@@ -321,8 +321,34 @@ def edit_article(article_id):
                 return redirect('/admin/panel')
     else:
         abort(404)
-    return render_template('ad_ed_article.html', title='Редактирование статей', form=form)
+    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, id_article=article.id)
 
+
+@app.route('/admin/article/del/<int:id_article>', methods=['GET'])
+@login_required
+def delete_article(id_article):
+    if current_user.is_authenticated:
+        session = db_session.create_session()
+        article = session.query(Articles).filter(Articles.id == id_article).first()
+        if article:
+            image = article.main_image
+            if image != "new_pic.jpg":
+                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
+            try:
+                list_attach_image = article.attach_image.split()
+                for img in list_attach_image:
+                    if img != "new_pic.jpg":
+                        os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
+            except Exception:
+                pass
+
+            session.delete(article)
+            session.commit()
+
+        else:
+            abort(404)
+        return redirect('/admin/panel')
+    return redirect('/')
 
 """session = db_session.create_session()
 artist = Articles(
