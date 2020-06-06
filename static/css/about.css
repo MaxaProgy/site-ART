@@ -1,0 +1,165 @@
+.grid {
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8vw;
+}
+
+.column-xs-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+@supports (display: grid) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (min-width: 300px) {
+        .column-md-2 {
+            grid-column-start: span 2;
+            grid-column-end: span 2;
+        }
+
+        .column-md-9 {
+            grid-column-start: span 9;
+            grid-column-end: span 9;
+        }
+
+        .column-md-10 {
+            grid-column-start: span 10;
+            grid-column-end: span 10;
+        }
+    }
+
+}
+
+.img-main-artist {
+    flex-direction: column;
+    -webkit-filter: blur(0px);
+    width: 100%;
+    height: 87vh;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.intro {
+    animation: fadeInLeft 0.8s 0.4s ease forwards;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.intro .title {
+    font-size: 4.25rem;
+    padding: 2.5rem 2.5rem 3rem 2.5rem;
+    background: #fff;
+    display: inline-block;
+    font-weight: 100;
+    line-height: 1.1;
+    font-family: 'Montserrat', sans-serif;
+    color: #232323;
+}
+
+
+@keyframes fadeInLeft {
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@media (max-width: 767px) {
+    .img-main-artist {
+        height: 70vh;
+    }
+
+    .intro .title {
+        font-weight: 600;
+        font-size: 2.25rem;
+        padding: 2.5rem 2.5rem 3rem 2.5rem;
+    }
+}
+
+
+#section-preface {
+    background: url("/static/img/Substance0059_2_download600.jpg");
+    background-size: contain;
+    margin-top: 8vw;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    bottom: 8vw;
+}
+
+
+.about-us{
+    font-family: "News706 BT", serif;
+    text-align: center;
+    font-weight: 700;
+    font-size: 4.2rem;
+    color: #141814;
+    line-height: 80px;
+}
+
+.about-us-p {
+    margin-top: 2vw;
+    font-family: "Montserrat", sans-serif;
+    line-height: 3.1vmax;
+    font-weight: 500;
+    font-size: 2.5vmin;
+    padding-top: 10px;
+    text-align: center;
+    color: #2d2d2d;
+}
+
+.p-fio {
+    margin-top: 3vw;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-family: "Montserrat", sans-serif;
+    line-height: 3.1vmax;
+    font-weight: 600;
+    font-size: 2.7vmin;
+    padding-top: 10px;
+    text-align: center;
+    color: #2d2d2d;
+}
+
+.about-us-img {
+    width: 76%;
+    border-radius: 100%;
+    object-fit: cover;
+    display: block; /* Убираем полосу под картинкий */
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+.about-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #2b2b2b;
+    font-weight: bolder;
+    font-size: 2rem;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+#text-preface {
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.9vmax;
+    font-weight: bolder;
+    font-size: 2.5vmin;
+    margin: 3vw 10% 5vw;
+    text-align: justify;
+    text-indent: 30px;
+}

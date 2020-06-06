@@ -52,6 +52,20 @@ def index():
         articles = articles[:4]
     return render_template('main.html', title='Art.',
                            article_random=article_random, article_past=article_past, articles=articles)
+        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') | Articles.text.like(f'%{q}%')).all()
+    else:
+        articles = []
+
+    return render_template('main.html', title='Art.',
+                           article_random=article_random, article_past=article_past, articles=articles)
+
+
+# ////////////////
+# СТРАНИЦА О НАС
+# ///////////////
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html', title='О нас')
 
 
 # ///////////////////////////////
@@ -75,7 +89,11 @@ def search_artist():
 def artist(artist_id):
     session = db_session.create_session()
     author = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
-    return render_template('artist.html', title='Художник', author=author)
+    articles = session.query(Articles).all()
+    article_past = None
+    if articles:
+        article_past = articles[0]
+    return render_template('artist.html', title='Художник', author=author, article_past=article_past)
 
 
 # ////////////////////////////

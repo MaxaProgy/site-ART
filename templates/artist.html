@@ -38,6 +38,8 @@
                             <li class="nav__item"><a href="#biography">Биография</a></li>
                             <li class="nav__item"><a href="#facts">Высказывания</a></li>
                             <li class="nav__item"><a href="#video">Видео</a></li>
+                            <li class="nav__item"><a href="#past_article">Последняя статья</a></li>
+
                         </ul>
                     </nav>
                 </div>
@@ -79,7 +81,7 @@
                                          padding-bottom: 2%;
                                          margin-top: 3vw;" >
         {% for text in list_text %}
-            <p class="card-text" class="artist-biography">{{ text }}</p>
+            <p class="artist-biography">{{ text }}</p>
         {% endfor %}
     </section>
 
@@ -122,5 +124,30 @@
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         {% endfor %}
+    </section>
+
+    <!-- ###################### -->
+    <!-- Блок последней статьи -->
+    <!-- ###################### -->
+    <a name="past_article"></a>
+    <section style="background-image: url('/static/img/Substance0059_2_download600.jpg'); position: relative;">
+        <div class="artist-title" style="margin-top: 10vw;
+                                    padding-left: 15vw;
+                                    padding-right: 15vw">Последняя статья</div>
+        {% if article_past %}
+            <div id="block-article">
+                <a href="/article/{{ article_past.id }}" style="margin-left: 10%" id="a-article">
+                    <div>
+                        <img id="img-article" src="{{ article_past.main_image }}">
+                    </div>
+                </a>
+                <div style="margin-left: 5vw">
+                    <h5 id="title-article">{{ article_past.title }}</h5>
+                    <p id="text-article">{{ article_past.preview }}</p>
+                    <a href="/article/{{ article_past.id }}" id="go-page">Перейти</a>
+                </div>
+            </div>
+        {% endif %}
+
     </section>
 {% endblock %}

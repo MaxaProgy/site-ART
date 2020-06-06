@@ -100,7 +100,7 @@
     <!-- ################## -->
 
     <section id="search-section">
-        <form class="search">
+        <form class="search" method="get">
             <input class="search-input" id="input" type="text" name="q"/>
             <label class="search-label" for="input"></label>
             <button class="search-button" type="reset"></button>
@@ -109,8 +109,11 @@
         </form>
     </section>
 
-    {% for a in articles %}
-        {{a}}
-    {% endfor %}
+    {% if articles %}
+        {% for i in articles %}
+            {{ i.title }}
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}
 
