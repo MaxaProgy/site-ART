@@ -10,6 +10,7 @@ from form.loginform import LoginForm
 from form.registerform import RegisterForm
 from form.articleform import ArticleForm
 from form.artistform import ArtistForm
+from form.userform import UserForm
 from flask_login import login_user, LoginManager, current_user, login_required, logout_user
 from data.artist import Artist
 
@@ -422,6 +423,38 @@ def edit_artist(artist_id):
         abort(404)
     return render_template('ad_ed_artist.html', title='Редактирование страницы хуожника',
                            form=form, id_artist=artist.id)
+
+
+# //////////////////////////////////
+# СТРАНИЦА РЕДАКТИРОВАНИЯ ХУДОЖНИКА
+# //////////////////////////////////
+@app.route('/admin/user/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def edit_user(user_id):
+    form = UserForm()
+    session = db_session.create_session()
+    user = session.query(User).filter(User.id == user_id).first()  # Забираем все данные по уникальному id
+
+    if user:
+        if request.method == "GET":
+            # Забираем все значения из полей статьи
+            form.login.data = user.login
+            form.name.data = user.name
+            form.email.data = user.email
+        else:
+            if form.validate_on_submit():
+                # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
+                # то мы записываем их значения в базу данных
+                user.login = form.login.data
+                user.name = form.name.data
+                user.email = form.email.data
+                session.commit()
+
+                return redirect('/admin/panel')
+    else:
+        abort(404)
+    return render_template('ad_ed_user.html', title='Редактирование пользователя',
+                           form=form, id_user=user.id)
 
 
 @app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
