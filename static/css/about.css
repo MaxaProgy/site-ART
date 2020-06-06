@@ -94,7 +94,12 @@
 
 
 #section-preface {
-
+    background: url("/static/img/Substance0059_2_download600.jpg");
+    background-size: contain;
+    margin-top: 8vw;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    bottom: 8vw;
 }
 
 
@@ -138,4 +143,23 @@
     display: block; /* Убираем полосу под картинкий */
     margin-left: 12%;
     margin-right: 12%;
+}
+
+.about-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #2b2b2b;
+    font-weight: bolder;
+    font-size: 2rem;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+#text-preface {
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.9vmax;
+    font-weight: bolder;
+    font-size: 2.5vmin;
+    margin: 3vw 10% 5vw;
+    text-align: justify;
+    text-indent: 30px;
 }
