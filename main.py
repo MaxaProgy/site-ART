@@ -226,7 +226,7 @@ def admin_panel():
     else:
         # Забираем все необходимые данные для админки
         users = session.query(User).all()
-        authors = session.query(Artist).all()
+        authors = session.query(Artist).order_by(Artist.name).all()
         articles = session.query(Articles).order_by(Articles.id.desc()).all()
 
     return render_template('admin_panel.html', title='Панель администратора', users=users,
@@ -267,8 +267,7 @@ def new_edit_article(article, session):
             form.preview.data = article.preview
             form.main_image.data = article.main_image
             form.text.data = article.text
-            form.image_1.data = article.image_1
-            form.image_2.data = article.image_2
+
             form.video_1.data = article.video_1
             form.video_2.data = article.video_2
             form.attach_image.data = article.attach_image
@@ -288,7 +287,10 @@ def new_edit_article(article, session):
                 file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
                             str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
                 if article.main_image != "new_pic.jpg":
-                    os.remove(os.path.join('static/media/image/', article.main_image))
+                    try:
+                        os.remove(os.path.join('static/media/image/', article.main_image))
+                    except:
+                        pass
                 article.main_image = file_name
                 form.main_image.data.save(os.path.join('static/media/image/', file_name))
 
@@ -308,20 +310,21 @@ def new_edit_article(article, session):
                         os.remove(os.path.join('static/media/image/', file))
 
             article.attach_image = " ".join(attach_image)
-            article.image_1 = form.image_1.data
-            article.image_2 = form.image_2.data
             article.video_1 = form.video_1.data
             article.video_2 = form.video_2.data
             artist =  session.query(Artist).filter(Artist.name == form.artist.data).first()
             article.artist_id = artist.id
             session.add(article)
-
             session.commit()
 
             return redirect('/admin/panel')
 
-    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, artists=artists)
+    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, artists=artists, id_article=article.id)
 
+
+# ////////////////////////////////
+# УДАЛЕНИЕ СТАТЬИ
+# ////////////////////////////////
 @app.route('/admin/article/del/<int:id_article>', methods=['GET'])
 @login_required
 def delete_article(id_article):
@@ -348,18 +351,36 @@ def delete_article(id_article):
         return redirect('/admin/panel')
     return redirect('/')
 
+
+# //////////////////////////////////
+# СТРАНИЦА СОЗДАНИЯ НОВОГО ХУДОЖНИКА
+# //////////////////////////////////
+@app.route('/admin/artist/new', methods=['GET', 'POST'])
+@login_required
+def new_artist():
+    session = db_session.create_session()
+    return new_edit_artist(Artist(), session)
+
+
 # //////////////////////////////////
 # СТРАНИЦА РЕДАКТИРОВАНИЯ ХУДОЖНИКА
 # //////////////////////////////////
 @app.route('/admin/artist/<int:artist_id>', methods=['GET', 'POST'])
 @login_required
 def edit_artist(artist_id):
-    form = ArtistForm()
     session = db_session.create_session()
     artist = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
+    if article:
+        return new_edit_artist(artist, session)
+    else:
+        abort(404)
 
-    if artist:
-        if request.method == "GET":
+
+def new_edit_artist(artist, session):
+    form = ArtistForm()
+
+    if request.method == "GET":
+        if artist.name:
             # Забираем все значения из полей статьи
             form.name.data = artist.name
             form.preview.data = artist.preview
@@ -374,55 +395,72 @@ def edit_artist(artist_id):
             form.video_2.data = artist.video_2
             # form.attach_image.data = artist.attach_image
         else:
-            if form.validate_on_submit():
-                # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
-                # то мы записываем их значения в базу данных
-                artist.name = form.name.data
-                artist.preview = form.preview.data
-
-                if form.main_image.data != artist.main_image:
-                    file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
-                                str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
-                    if artist.main_image != "new_pic.jpg":
-                        os.remove(os.path.join('static/media/image/', artist.main_image))
-                    artist.main_image = file_name
-                    form.main_image.data.save(os.path.join('static/media/image/', file_name))
-                # Сохраняем новые картинки
-                for file in request.files:
-                    if file != "main_image":
-                        request.files[file].save(os.path.join('static/media/image/', file))
-                ''' attach_image = []
-                if form.attach_image.data != "":
-                    attach_image = form.attach_image.data.split(" ")'''
-
-
-
-                '''# Удаляем удаленные картинки
-                if artist.attach_image != "":
-                    for file in artist.attach_image.split(" "):
-                        if not (file in attach_image):
-                            os.remove(os.path.join('static/media/image/', file))
-
-                artist.attach_image = " ".join(attach_image)'''
-                artist.thesis = form.thesis.data
-                artist.text_biography = form.text_biography.data
-                artist.text_5_facts = form.text_5_facts.data
-                #form.artist_image.data = artist.artist_image
-                artist.instagram = form.instagram.data
-                artist.site = form.site.data
-                artist.video_1 = form.video_1.data
-                artist.video_2 = form.video_2.data
-                session.commit()
-
-                return redirect('/admin/panel')
+            form.main_image.data = "new_pic.jpg"
     else:
-        abort(404)
+        if form.validate_on_submit():
+            # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
+            # то мы записываем их значения в базу данных
+            artist.name = form.name.data
+            artist.preview = form.preview.data
+
+            if artist.main_image is None:
+                artist.main_image = "new_pic.jpg"
+            if form.main_image.data != artist.main_image:
+                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
+                            str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                if artist.main_image != "new_pic.jpg":
+                    try:
+                        os.remove(os.path.join('static/media/image/', artist.main_image))
+                    except:
+                        pass
+                artist.main_image = file_name
+                form.main_image.data.save(os.path.join('static/media/image/', file_name))
+            # Сохраняем новые картинки
+            for file in request.files:
+                if file != "main_image":
+                    request.files[file].save(os.path.join('static/media/image/', file))
+
+            artist.thesis = form.thesis.data
+            artist.text_biography = form.text_biography.data
+            artist.text_5_facts = form.text_5_facts.data
+            #form.artist_image.data = artist.artist_image
+            artist.instagram = form.instagram.data
+            artist.site = form.site.data
+            artist.video_1 = form.video_1.data
+            artist.video_2 = form.video_2.data
+            session.add(artist)
+            session.commit()
+
+            return redirect('/admin/panel')
+
     return render_template('ad_ed_artist.html', title='Редактирование страницы хуожника',
                            form=form, id_artist=artist.id)
 
+# //////////////////////////////////
+# УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
+# //////////////////////////////////
+
+@app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
+@login_required
+def delete_artist(id_artist):
+    if current_user.is_authenticated:
+        session = db_session.create_session()
+        artist = session.query(Artist).filter(Artist.id == id_artist).first()
+        if article:
+            image = artist.main_image
+            if image != "new_pic.jpg":
+                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
+
+            session.delete(artist)
+            session.commit()
+        else:
+            abort(404)
+        return redirect('/admin/panel')
+    return redirect('/')
+
 
 # //////////////////////////////////
-# СТРАНИЦА РЕДАКТИРОВАНИЯ ХУДОЖНИКА
+# СТРАНИЦА РЕДАКТИРОВАНИЯ ПОЛЬЗОВАТЕЛЯ
 # //////////////////////////////////
 @app.route('/admin/user/<int:user_id>', methods=['GET', 'POST'])
 @login_required
@@ -452,34 +490,6 @@ def edit_user(user_id):
     return render_template('ad_ed_user.html', title='Редактирование пользователя',
                            form=form, id_user=user.id)
 
-
-@app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
-@login_required
-def delete_artist(id_artist):
-    if current_user.is_authenticated:
-        session = db_session.create_session()
-        artist = session.query(Artist).filter(Artist.id == id_artist).first()
-        if article:
-            image = artist.main_image
-            if image != "new_pic.jpg":
-                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
-
-            session.delete(artist)
-            session.commit()
-        else:
-            abort(404)
-        return redirect('/admin/panel')
-    return redirect('/')
-
-
-"""session = db_session.create_session()
-artist = Articles(
-    title = "sdfgbsdf", preview = "sdfgsdfg", main_image = "ghsdfgasa", text = "hjkl.hjk,", image_1 = "xfgxd",
-    image_2 = "xsdghdf", video_1 = "zxcfgbvsdf", video_2 = "xgvbghwsdf",
-    create_date = datetime.datetime.now(),
-    artist_id = 1)
-session.add(artist)
-session.commit()"""
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
