@@ -1,4 +1,5 @@
 import datetime
+import os
 import random
 from flask import Flask, render_template, redirect, make_response, jsonify, abort, request
 import logging
@@ -141,7 +142,6 @@ def edit_article(id):
     form = ArticleForm()
     session = db_session.create_session()
     article = session.query(Articles).filter(Articles.id == id).first()
-
     if article:
         if request.method == "GET":
             form.title.data = article.title
@@ -152,12 +152,26 @@ def edit_article(id):
             form.image_2.data = article.image_2
             form.video_1.data = article.video_1
             form.video_2.data = article.video_2
+            form.attach_image.data = "1_15910322211463.jpg 1_15910321877783.jpg"
         else:
             if form.validate_on_submit():
                 article.title = form.title.data
                 article.preview = form.preview.data
-                article.main_image = form.main_image.data
                 article.text = form.text.data
+                if form.main_image.data != article.main_image:
+                    file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
+                                str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                    if article.main_image != "new_pic.jpg":
+                        os.remove(os.path.join('static/media/image/', article.main_image))
+                    article.main_image = file_name
+                    form.main_image.data.save(os.path.join('static/media/image/', file_name))
+                print(request.files)
+                for file in  request.files:
+                    if file != "main_image":
+                        print(request.files[file].filename)
+                        request.files[file].save(os.path.join('static/media/image/',
+                                                          file + '.' + request.files[file].filename.split('.')[-1]))
+
                 article.image_1 = form.image_1.data
                 article.image_2 = form.image_2.data
                 article.video_1 = form.video_1.data

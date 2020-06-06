@@ -2,6 +2,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="/static/css/ad_ed_article.css">
+    <script src="/static/js/ad_ed_article.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -12,99 +13,78 @@
         <div  class="row p-bottom-15 p-top-15">
             <div class="col-md-4 mt-15">
                 {{form.main_image(id="img", class="hidden")}}
-                <div id="main_image_click" class="photo" data-title="Изменить изображение">
-                    <img id="img_src" class="br" src="/static/img/{{file_name}}" width="100%">
+                <div id="img_click" class="photo" data-title="Изменить изображение">
+                    <img id="img_src" class="br" src="/static/media/image/{{ form.main_image.data }}" width="100%">
                 </div>
             </div>
             <div class="col-md-8">
+                <div class="form-group has-feedback title_block">
+                    {{ form.title.label(class="control-label") }}<br>
+                    {{ form.title(class="form-control", id="title") }}
+                    <div id="invalid-title" style="color: red; width: 100%; display: none">
+                        * Поле не должно быть пустым!
+                    </div>
+                </div>
 
-                {{ form.title.label }}<br>
-                {{ form.title(class="form-control") }}
-                {% for error in form.title.errors %}
-                <p content="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
-                {% endfor %}
-                <br>
-
-                {{ form.preview.label }}<br>
-                {{ form.preview(class="form-control") }}
-                {% for error in form.preview.errors %}
-                <p content="alert alert-danger" role="alert">
-                    {{ error }}
-                </p>
-                {% endfor %}
+                <div class="form-group has-feedback title_block">
+                    {{ form.preview.label(class="control-label") }}<br>
+                    {{ form.preview(class="form-control", id="preview") }}
+                    <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                        * Поле не должно быть пустым!
+                    </div>
+                </div>
                 <br>
             </div>
+        </div>
+        <div style="margin-top: 15px">
+            {{ form.text.label(class="control-label") }}<br>
+            {{ form.text(class="form-control", id="text", rows='10') }}
+            <div id="invalid-text" style="color: red; width: 100%; display: none">
+                * Поле не должно быть пустым!
+            </div>
 
+            <div style="width: 100%; margin-top: 10px">
+                <div id="images_view"></div>
+                <div id="add_image" class="content-centering block-decor block-green">
+                    <img src="/static/img/plus.jpg" alt="" class="content-centering_element" style="border-radius: 50px">
+                </div>
+            </div>
 
-            {{ form.main_image.label }}<br>
-            {{ form.main_image(class="form-control") }}
-            {% for error in form.main_image.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
+            <div id="images" style="clear: both"></div>
 
-            {{ form.text.label }}<br>
-            {{ form.text(class="form-control") }}
-            {% for error in form.text.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
+            <div style="width: 100%; margin-top: 10px">
+                {{ form.image_1.label }}<br>
+                {{ form.image_1(class="form-control") }}
+            </div>
 
-            {{ form.image_1.label }}<br>
-            {{ form.image_1(class="form-control") }}
-            {% for error in form.image_1.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
+            <div style="width: 100%; margin-top: 10px">
+                {{ form.image_2.label }}<br>
+                {{ form.image_2(class="form-control") }}
+            </div>
 
-            {{ form.image_2.label }}<br>
-            {{ form.image_2(class="form-control") }}
-            {% for error in form.image_2.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
+            <div style="width: 100%; margin-top: 10px">
+                {{ form.attach_image.label }}<br>
+                {{ form.attach_image(class="form-control") }}
+            </div>
 
-            {{ form.image_2.label }}<br>
-            {{ form.image_2(class="form-control") }}
-            {% for error in form.image_2.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
+            <div style="width: 100%; margin-top: 10px">
+                {{ form.video_1.label }}<br>
+                {{ form.video_1(class="form-control") }}
+            </div>
 
-            {{ form.video_1.label }}<br>
-            {{ form.video_1(class="form-control") }}
-            {% for error in form.video_1.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
-
-            {{ form.video_2.label }}<br>
-            {{ form.video_2(class="form-control") }}
-            {% for error in form.video_2.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            <br>
-
-            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-            {{message}}
+            <div style="width: 100%; margin-top: 10px">
+                {{ form.video_2.label }}<br>
+                {{ form.video_2(class="form-control") }}
+            </div>
+            <div style="width: 100%; margin-top: 25px">
+                {{ form.submit(type="submit", class="btn btn-primary") }}
+            </div>
         </div>
     </form>
 </div>
+<script type="text/javascript">
+    var current_user_id = "{{ current_user.id }}";
+    var attach_image = $("#attach_image").val().split(" ")
+</script>
 
 {% endblock %}

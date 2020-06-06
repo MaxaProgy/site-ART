@@ -3,3 +3,6 @@
 !/logs/empty
 /db/art_point_db.sqlite
 /venv/
+/static/media/
+!/static/media/new_pic.jpg
+!/static/video/empty
