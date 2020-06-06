@@ -349,7 +349,7 @@ def edit_artist(artist_id):
             form.site.data = artist.site
             form.video_1.data = artist.video_1
             form.video_2.data = artist.video_2
-            form.attach_image.data = artist.attach_image
+            # form.attach_image.data = artist.attach_image
         else:
             if form.validate_on_submit():
                 # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
@@ -364,22 +364,23 @@ def edit_artist(artist_id):
                         os.remove(os.path.join('static/media/image/', artist.main_image))
                     artist.main_image = file_name
                     form.main_image.data.save(os.path.join('static/media/image/', file_name))
-                attach_image = []
-                if form.attach_image.data != "":
-                    attach_image = form.attach_image.data.split(" ")
-
                 # Сохраняем новые картинки
                 for file in request.files:
                     if file != "main_image":
                         request.files[file].save(os.path.join('static/media/image/', file))
+                ''' attach_image = []
+                if form.attach_image.data != "":
+                    attach_image = form.attach_image.data.split(" ")'''
 
-                # Удаляем удаленные картинки
+
+
+                '''# Удаляем удаленные картинки
                 if artist.attach_image != "":
                     for file in artist.attach_image.split(" "):
                         if not (file in attach_image):
                             os.remove(os.path.join('static/media/image/', file))
 
-                artist.attach_image = " ".join(attach_image)
+                artist.attach_image = " ".join(attach_image)'''
                 artist.thesis = form.thesis.data
                 artist.text_biography = form.text_biography.data
                 artist.text_5_facts = form.text_5_facts.data

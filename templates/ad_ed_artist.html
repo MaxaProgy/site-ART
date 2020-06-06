@@ -23,8 +23,8 @@
                     <!-- Название статьи -->
                     <!-- ################ -->
                     <div class="form-group has-feedback title_block">
-                        {{ form.title.label(class="control-label") }}<br>
-                        {{ form.title(class="form-control", id="title") }}
+                        {{ form.name.label(class="control-label") }}<br>
+                        {{ form.name(class="form-control", id="title") }}
                         <div id="invalid-title" style="color: red; width: 100%; display: none">
                             * Поле не должно быть пустым!
                         </div>
@@ -41,6 +41,14 @@
                         </div>
                     </div>
                     <br>
+                    <div class="form-group has-feedback title_block">
+                        {{ form.thesis.label(class="control-label") }}<br>
+                        {{ form.thesis(class="form-control", id="preview") }}
+                        <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                            * Поле не должно быть пустым!
+                        </div>
+                    </div>
+                    <br>
                 </div>
 
                 <div style="margin-top: 15px; width: 100%">
@@ -48,8 +56,14 @@
                     <!-- ################### -->
                     <!-- Текст (содержание) -->
                     <!-- ################### -->
-                    {{ form.text.label(class="control-label") }}<br>
-                    {{ form.text(class="form-control", id="text", rows='10') }}
+                    {{ form.text_biography.label(class="control-label") }}<br>
+                    {{ form.text_biography(class="form-control", id="text", rows='10') }}
+                    <div id="invalid-text" style="color: red; width: 100%; display: none">
+                        * Поле не должно быть пустым!
+                    </div>
+
+                    {{ form.text_5_facts.label(class="control-label") }}<br>
+                    {{ form.text_5_facts(class="form-control", id="text", rows='10') }}
                     <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
@@ -68,22 +82,18 @@
                     <!-- Изображение № 1 -->
                     <!-- ################ -->
                     <div style="width: 100%; margin-top: 10px">
-                        {{ form.image_1.label }}<br>
-                        {{ form.image_1(class="form-control") }}
-                    </div>
+                    {{ form.instagram.label }}<br>
+                    {{ form.instagram(class="form-control") }}
+                </div>
 
                     <!-- ################ -->
                     <!-- Изображение № 2 -->
                     <!-- ################ -->
                     <div style="width: 100%; margin-top: 10px">
-                        {{ form.image_2.label }}<br>
-                        {{ form.image_2(class="form-control") }}
+                        {{ form.site.label }}<br>
+                        {{ form.site(class="form-control") }}
                     </div>
 
-                    <div style="width: 100%; margin-top: 10px; display: none">
-                        {{ form.attach_image.label }}<br>
-                        {{ form.attach_image(class="form-control") }}
-                    </div>
 
                     <!-- ################ -->
                     <!-- Видео № 1 -->
