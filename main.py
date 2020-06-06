@@ -350,6 +350,34 @@ def delete_article(id_article):
         return redirect('/admin/panel')
     return redirect('/')
 
+
+@app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
+@login_required
+def delete_artist(id_artist):
+    if current_user.is_authenticated:
+        session = db_session.create_session()
+        artist = session.query(Artist).filter(Artist.id == id_artist).first()
+        if article:
+            image = artist.main_image
+            if image != "new_pic.jpg":
+                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
+
+            session.delete(artist)
+            session.commit()
+        else:
+            abort(404)
+        return redirect('/admin/panel')
+    return redirect('/')
+
+
+""" try:
+    list_attach_image = article.attach_image.split()
+    for img in list_attach_image:
+        if img != "new_pic.jpg":
+            os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
+except Exception:
+    pass"""
+
 """session = db_session.create_session()
 artist = Articles(
     title = "sdfgbsdf", preview = "sdfgsdfg", main_image = "ghsdfgasa", text = "hjkl.hjk,", image_1 = "xfgxd",
