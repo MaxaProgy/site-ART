@@ -85,6 +85,10 @@
 <script type="text/javascript">
     var current_user_id = "{{ current_user.id }}";
     var attach_image = $("#attach_image").val().split(" ")
+    if ($("#attach_image").val() == "") {
+        attach_image = []
+    }
+
 </script>
 
 {% endblock %}

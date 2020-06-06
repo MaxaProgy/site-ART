@@ -1,5 +1,4 @@
 window.onload = function() {
-
     for (var i = 0; i < attach_image.length; i++) {
         var elem = document.createElement("div");
         html = '<div class="content-centering block-decor images block-green"><img id = "' + attach_image[i] + '" src "#" class="content-centering_element" alt=""><div class="sel"><img src="/static/img/minus.jpg" class="sel" onclick="image_click(this)" alt=""></div>';
@@ -20,23 +19,30 @@ window.onload = function() {
         input.click();
     });
 
+    // Случайное число для последнего символа в названии файла. Для того чтобы в одну и ту же секунду времени не было два одинаковых файла
     function randomInt(min, max) {
         return min + Math.floor((max - min) * Math.random());
     }
 
+    // Добавление картинки для карусели
     $("#add_image").click(function() {
-        var input=document.createElement('input');
+        let input=document.createElement('input');
         input.type = "file";
-
+        // имя файла = d пользователя + число в UNIX дате + случайное число от 0 до 9
         input.name = current_user_id + "_" + Date.now() + randomInt(0, 9).toString();
-        input.style.display = "none";
+        //input.style.display = "none";
         input.accept = ".jpg, .jpeg, .png";
         input.onchange = e => {
-            var file = e.target.files[0];
+            let file = e.target.files[0];
             document.getElementById('images').appendChild(input);
 
-            var elem = document.createElement("div");
-            html = '<div class="content-centering block-decor images block-green"><img id = "' + input.name + '" src "#" class="content-centering_element" alt=""><div class="sel"><img src="/static/img/minus.jpg" class="sel" onclick="image_click(this)" alt=""></div>';
+            let filename_split =  file.name.split(".");
+            input.name = input.name + "."+ filename_split[filename_split.length - 1]
+            attach_image.push(input.name);
+            input.id = input.name;
+
+            let html = '<div class="content-centering block-decor images block-green"><img id = "' + input.name + '" src "#" class="content-centering_element" alt=""><div class="sel"><img src="/static/img/minus.jpg" class="sel" onclick="image_click(this)" alt=""></div>';
+            let elem = document.createElement("div");
             elem.innerHTML = html;
             document.getElementById('images_view').appendChild(elem);
             document.getElementById(input.name).src = window.URL.createObjectURL(file);
@@ -68,6 +74,7 @@ window.onload = function() {
         }
 
         if (($("#title").val().trim()) && ($("#preview").val().trim()) && (($("#text").val().trim()))) {
+            document.getElementById("attach_image").value = attach_image.join(" ");
             event.submit();
         } else {
             event.preventDefault();
@@ -104,13 +111,15 @@ window.onload = function() {
     });
 };
 
+// Удаление картинки по нажатию на крестик
 function image_click(elem) {
-    elem.parentNode.parentNode.parentNode.removeChild(elem.parentNode.parentNode);
-    console.log(attach_image)
-    index = attach_image.indexOf(elem.parentNode.parentNode.childNodes[0].id)
+    let name = elem.parentNode.parentNode.childNodes[0].id;
+    index = attach_image.indexOf(name)
     if (index != -1) {
         attach_image.splice(index, 1);
     }
-    console.log(attach_image)
+    elem.parentNode.parentNode.parentNode.removeChild(elem.parentNode.parentNode);
 
+    let el = document.getElementById(name);
+    el.parentNode.removeChild(el);
 };
