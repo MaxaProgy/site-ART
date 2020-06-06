@@ -43,8 +43,15 @@ def index():
     if articles:
         article_random = random.choice(articles)
         article_past = articles[0]
+
+    q = request.args.get('q')
+    if q:
+        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%') | Articles.text.like(f'%{q}%')).all()
+    else:
+        articles = []
+
     return render_template('main.html', title='Art.',
-                           article_random=article_random, article_past=article_past)
+                           article_random=article_random, article_past=article_past, articles=articles)
 
 
 # ///////////////////////////////

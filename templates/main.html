@@ -100,14 +100,22 @@
     <!-- ################## -->
 
     <section id="search-section">
-        <form class="search">
-            <input class="search-input" id="input" type="text" autocomplete="off" name="q"/>
+        <form class="search" method="get">
+            <input class="search-input" id="input" type="text" name="q"/>
             <label class="search-label" for="input"></label>
             <button class="search-button" type="reset"></button>
             <div class="search-border"></div>
             <div class="search-close">x</div>
         </form>
     </section>
+
+    {% if articles %}
+        {% for i in articles %}
+            {{ i.title }}
+        {% endfor %}
+    {% endif %}
+
+    <canvas id="canvas"></canvas>
 
 {% endblock %}
 
