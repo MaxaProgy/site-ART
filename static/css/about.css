@@ -94,55 +94,45 @@
 
 
 #section-preface {
-    background: url("/static/img/Substance0059_2_download600.jpg");
     background-size: contain;
     margin-top: 8vw;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-left: 7vw;
+    padding-right: 5vw;
     bottom: 8vw;
 }
 
 
-.about-us{
-    font-family: "News706 BT", serif;
-    text-align: center;
-    font-weight: 700;
-    font-size: 4.2rem;
-    color: #141814;
-    line-height: 80px;
-}
-
 .about-us-p {
-    margin-top: 2vw;
     font-family: "Montserrat", sans-serif;
-    line-height: 3.1vmax;
     font-weight: 500;
     font-size: 2.5vmin;
-    padding-top: 10px;
-    text-align: center;
-    color: #2d2d2d;
+    width: 100%;
+    float: left;
+    padding-top: 2vw;
+    text-align: left;
+    color: #191d19;
 }
 
 .p-fio {
-    margin-top: 3vw;
-    margin-right: 2%;
-    margin-left: 2%;
-    font-family: "Montserrat", sans-serif;
-    line-height: 3.1vmax;
-    font-weight: 600;
-    font-size: 2.7vmin;
-    padding-top: 10px;
-    text-align: center;
+    margin-top: 2.5vmin;
+    margin-bottom: 3vmin;
+    font-family: "Montserrat",
+    sans-serif;
+    font-weight: 900;
+    font-size: 5vmin;
+    text-align: left;
     color: #2d2d2d;
 }
 
 .about-us-img {
-    width: 76%;
-    border-radius: 100%;
+    margin: 4vw 7vw 6vw;
     object-fit: cover;
-    display: block; /* Убираем полосу под картинкий */
-    margin-left: 12%;
-    margin-right: 12%;
+    border-radius: 100%;
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+    width: 30vw;
+    height: 30vw;
+    display: block;
 }
 
 .about-title {
@@ -162,4 +152,10 @@
     margin: 3vw 10% 5vw;
     text-align: justify;
     text-indent: 30px;
+}
+
+.block-about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 10vh 4vw 5vh;
 }
