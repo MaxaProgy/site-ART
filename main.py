@@ -1,6 +1,7 @@
 import random
 from flask import Flask, render_template, redirect, make_response, jsonify, abort, request
 import logging
+
 from data import db_session
 from data.article import Articles
 from data.users import User
@@ -43,8 +44,14 @@ def index():
     if articles:
         article_random = random.choice(articles)
         article_past = articles[0]
+
+    q = request.args.get('q')
+    if q:
+        articles = session.query(Articles).filter(Articles.title.like(f'%{q}%')).all()
+    else:
+        articles = articles[:4]
     return render_template('main.html', title='Art.',
-                           article_random=article_random, article_past=article_past)
+                           article_random=article_random, article_past=article_past, articles=articles)
 
 
 # ///////////////////////////////
@@ -57,7 +64,7 @@ def search_artist():
     if q:
         artists = session.query(Artist).filter(Artist.name.like(f'%{q}%')).all()
     else:
-        artists = session.query(Artist).all()
+        artists = []
     return render_template('search_artist.html', title='Художники', artists=artists)
 
 
@@ -170,16 +177,41 @@ def logout():
 # /////////////////////////
 @app.route('/admin/panel', methods=['GET'])
 def admin_panel():
+    # По умолчанию делаем все списки None
+    users = None
+    authors = None
+    articles = None
     # Если пользователь попал на эту страницу не зарегистрированный / авторизированный,
     # то мы перекидываем его на страницу регистрации и авторизации
     if not current_user.is_authenticated:
         return redirect("/admin")
 
     session = db_session.create_session()
-    # Забираем все необходимые данные для админки
-    users = session.query(User).all()
-    authors = session.query(Artist).all()
-    articles = session.query(Articles).all()
+    cookie = request.cookies.get('active_button_menu')  # Забираем куки для поиска по q
+    q = request.args.get('q')
+
+    if q:
+        # Проверяем куки и достаем запросы из базы данных
+        if cookie == "articles":
+            articles = session.query(Articles).filter(Articles.title.like(f'%{q}%')).all()
+            users = session.query(User).all()
+            authors = session.query(Artist).all()
+        elif cookie == "users":
+            users = session.query(User).filter(User.name.like(f'%{q}%') |
+                                               User.email.like(f'%{q}%') |
+                                               User.login.like(f'%{q}%')).all()
+            authors = session.query(Artist).all()
+            articles = session.query(Articles).all()
+        elif cookie == "autors":
+            authors = session.query(Artist).filter(Artist.name.like(f'%{q}%')).all()
+            users = session.query(User).all()
+            articles = session.query(Articles).all()
+    else:
+        # Забираем все необходимые данные для админки
+        users = session.query(User).all()
+        authors = session.query(Artist).all()
+        articles = session.query(Articles).all()
+
     return render_template('admin_panel.html', title='Панель администратора', users=users,
                            authors=authors, articles=articles)
 

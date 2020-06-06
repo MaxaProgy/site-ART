@@ -101,7 +101,7 @@
 
     <section id="search-section">
         <form class="search">
-            <input class="search-input" id="input" type="text" autocomplete="off" name="q"/>
+            <input class="search-input" id="input" type="text" name="q"/>
             <label class="search-label" for="input"></label>
             <button class="search-button" type="reset"></button>
             <div class="search-border"></div>
@@ -109,5 +109,8 @@
         </form>
     </section>
 
+    {% for a in articles %}
+        {{a}}
+    {% endfor %}
 {% endblock %}
 
