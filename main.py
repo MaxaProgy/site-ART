@@ -227,7 +227,7 @@ def admin_panel():
         # Забираем все необходимые данные для админки
         users = session.query(User).all()
         authors = session.query(Artist).all()
-        articles = session.query(Articles).all()
+        articles = session.query(Articles).order_by(Articles.id.desc()).all()
 
     return render_template('admin_panel.html', title='Панель администратора', users=users,
                            authors=authors, articles=articles)
@@ -313,17 +313,18 @@ def edit_article(article_id):
                         if not (file in attach_image):
                             os.remove(os.path.join('static/media/image/', file))
 
-                article.attach_image = " ".join(attach_image)
-                article.image_1 = form.image_1.data
-                article.image_2 = form.image_2.data
-                article.video_1 = form.video_1.data
-                article.video_2 = form.video_2.data
-                session.commit()
+            article.attach_image = " ".join(attach_image)
+            article.video_1 = form.video_1.data
+            article.video_2 = form.video_2.data
+            artist = session.query(Artist).filter(Artist.name == form.artist.data).first()
+            article.artist_id = artist.id
+            session.add(article)
 
-                return redirect('/admin/panel')
+            session.commit()
+
+            return redirect('/admin/panel')
     else:
         abort(404)
-    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, id_article=article.id)
 
 
 @app.route('/admin/article/del/<int:id_article>', methods=['GET'])
@@ -341,7 +342,7 @@ def delete_article(id_article):
                 for img in list_attach_image:
                     if img != "new_pic.jpg":
                         os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
-            except Exception:
+            except:
                 pass
 
             session.delete(article)
@@ -351,6 +352,7 @@ def delete_article(id_article):
             abort(404)
         return redirect('/admin/panel')
     return redirect('/')
+
 
 # //////////////////////////////////
 # СТРАНИЦА РЕДАКТИРОВАНИЯ ХУДОЖНИКА
@@ -475,23 +477,6 @@ def delete_artist(id_artist):
         return redirect('/admin/panel')
     return redirect('/')
 
-
-""" try:
-    list_attach_image = article.attach_image.split()
-    for img in list_attach_image:
-        if img != "new_pic.jpg":
-            os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
-except Exception:
-    pass"""
-
-"""session = db_session.create_session()
-artist = Articles(
-    title = "sdfgbsdf", preview = "sdfgsdfg", main_image = "ghsdfgasa", text = "hjkl.hjk,", image_1 = "xfgxd",
-    image_2 = "xsdghdf", video_1 = "zxcfgbvsdf", video_2 = "xgvbghwsdf",
-    create_date = datetime.datetime.now(),
-    artist_id = 1)
-session.add(artist)
-session.commit()"""
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

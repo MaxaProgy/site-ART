@@ -69,6 +69,9 @@
     <!-- Отдел статей -->
     <section style="display: -webkit-box; -webkit-box-pack: center">
         <div id="div_articles" class="m_5"  style="display: none">
+            <a href="/admin/article/new" style="width: 45vw;
+            background: rgb(255,174,87); color: azure; margin: 10px auto 0;"
+               class="nav-link btn">Создать статью</a>
             <ul class="panel_ul">
                 {% for article in articles %}
                     <li class="panel_li">
@@ -79,7 +82,7 @@
                 {% endfor %}
             </ul>
         </div>
-    </section>>
+    </section>
 
 {% endblock %}
 
