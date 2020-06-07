@@ -312,7 +312,7 @@ def new_edit_article(article, session):
             article.attach_image = " ".join(attach_image)
             article.video_1 = form.video_1.data
             article.video_2 = form.video_2.data
-            artist =  session.query(Artist).filter(Artist.name == form.artist.data).first()
+            artist = session.query(Artist).filter(Artist.name == form.artist.data).first()
             article.artist_id = artist.id
             session.add(article)
             session.commit()
@@ -340,7 +340,7 @@ def delete_article(id_article):
                 for img in list_attach_image:
                     if img != "new_pic.jpg":
                         os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
-            except Exception:
+            except:
                 pass
 
             session.delete(article)
@@ -489,6 +489,25 @@ def edit_user(user_id):
         abort(404)
     return render_template('ad_ed_user.html', title='Редактирование пользователя',
                            form=form, id_user=user.id)
+
+
+@app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
+@login_required
+def delete_artist(id_artist):
+    if current_user.is_authenticated:
+        session = db_session.create_session()
+        artist = session.query(Artist).filter(Artist.id == id_artist).first()
+        if article:
+            image = artist.main_image
+            if image != "new_pic.jpg":
+                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
+
+            session.delete(artist)
+            session.commit()
+        else:
+            abort(404)
+        return redirect('/admin/panel')
+    return redirect('/')
 
 
 if __name__ == '__main__':

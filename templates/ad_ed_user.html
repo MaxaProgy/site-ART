@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/ad_ed_user.css">
+    <script src="/static/js/ad_ed_user.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="m_5">
+        <form id="form" action="" method="post" enctype="multipart/form-data" style="margin-top: 5%; margin-bottom: 5%">
+            {{ form.csrf_token }}
+            <div style="margin: 0 auto; width: 70%">
+
+                    <!-- ################ -->
+                    <!-- Название статьи -->
+                    <!-- ################ -->
+                    <div class="form-group has-feedback title_block">
+                        {{ form.login.label(class="control-label") }}<br>
+                        {{ form.login(class="form-control", id="title") }}
+                        <div id="invalid-title" style="color: red; width: 100%; display: none">
+                            * Поле не должно быть пустым!
+                        </div>
+                    </div>
+
+                    <!-- ####### -->
+                    <!-- Превью -->
+                    <!-- ####### -->
+                    <div class="form-group has-feedback title_block">
+                        {{ form.name.label(class="control-label") }}<br>
+                        {{ form.name(class="form-control", id="preview") }}
+                        <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                            * Поле не должно быть пустым!
+                        </div>
+                    </div>
+
+                    <!-- ################### -->
+                    <!-- Текст (содержание) -->
+                    <!-- ################### -->
+                    <div class="form-group has-feedback title_block">
+                        {{ form.email.label(class="control-label") }}<br>
+                        {{ form.email(class="form-control", id="preview") }}
+                        <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                            * Поле не должно быть пустым!
+                        </div>
+                    </div>
+
+                    <div class='center'>
+                            <div class='col-md-offset-3'>
+                                <span id='button' class='btn btn-lg btn-login' data-text-swap="Save" data-text-original="Change Password">Change Password</span>
+                            </div>
+
+                        <section class="hidden-section">
+                            <div class=' input-row'>
+                                <div class='col-md-offset-3'>
+                                    <input class='form-control input-lg input' placeholder='new password' type='password'>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- ##################### -->
+                    <!-- Кнопка "Опубликовать" -->
+                    <!-- ##################### -->
+                    <div style="width: 100%; margin-top: 25px">
+
+                        {{ form.submit(type="submit", class="btn btn-primary") }}
+                    </div>
+            </div>
+        </form>
+    </div>
+
+<script>
+
+    if (document.location.search.match(/type=embed/gi)) {
+        window.parent.postMessage("resize", "*");
+    }
+
+
+</script>
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+{% endblock %}

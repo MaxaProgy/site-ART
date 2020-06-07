@@ -1,0 +1,34 @@
+
+.center {
+    margin: 4% auto;
+    width: 50%;
+    height: 50%;
+}
+
+.btn-login {
+    background-color: #1bbc9b;
+    color: #FFF;
+    width: 100%;
+    text-transform: uppercase;
+}
+.btn-login:hover {
+    color: #FFF;
+}
+
+input[type=password] {
+    border-color: #1bbc9b;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.row {
+    margin-bottom: 15px;
+}
+
+input[type=password]:focus {
+    -moz-box-shadow: 0 0 5px #1bbc9b;
+    -webkit-box-shadow: 0 0 5px #1bbc9b;
+    box-shadow: 0 0 5px #1bbc9b;
+    border-color: #1bbc9b;
+}
+
