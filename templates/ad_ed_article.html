@@ -107,7 +107,10 @@
                     <!-- ##################### -->
                     <div style="width: 100%; margin-top: 25px">
                                 {{ form.submit(type="submit", class="btn btn-primary") }}
-                        <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a>
+                        {% if form.title.data  %}
+                            <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a><a href="/admin/artist/del/{{ id_artist }}" class="btn btn-danger">Удалить</a>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>

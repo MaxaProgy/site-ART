@@ -419,6 +419,7 @@ def new_edit_artist(artist, session):
             form.video_1.data = artist.video_1
             form.video_2.data = artist.video_2
         else:
+            form.artist_image.data = "new_pic.jpg"
             form.main_image.data = "new_pic.jpg"
     else:
         if form.validate_on_submit():
