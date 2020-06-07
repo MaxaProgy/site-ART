@@ -168,6 +168,23 @@
 
 
 /* ################# */
+/* Карусель фотографий */
+/* ################# */
+.carousel-nav-icon {
+    height: 48px;
+    width: 48px;
+}
+
+.carousel-item .col, .carousel-item .col-sm, .carousel-item .col-md {
+    margin: 8px;
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+}
+
+
+
+/* ################# */
 /* Высказывания */
 /* ################# */
 .container {

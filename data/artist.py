@@ -17,8 +17,7 @@ class Artist(SqlAlchemyBase, SerializerMixin):
     text_biography = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
     artist_image = sqlalchemy.Column(sqlalchemy.String)
 
-    image_1 = sqlalchemy.Column(sqlalchemy.String)
-    image_2 = sqlalchemy.Column(sqlalchemy.String)
+    attach_image = sqlalchemy.Column(sqlalchemy.String)
 
     text_5_facts = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
 

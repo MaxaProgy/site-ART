@@ -4,12 +4,14 @@
     <link rel="stylesheet" href="/static/css/article.css">
     <link rel="stylesheet" href="/static/css/KmvReR.css">
     <script src="/static/js/article.js"></script>
+    <script src="/static/js/artist.js"></script>
 {% endblock %}
 
 {% block content %}
     <!-- Получаю список всех фотографий -->
-    {% set articles_img = article.attach_image.split() %}
-
+    {% if article.attach_image %}
+        {% set articles_img = article.attach_image.split() %}
+    {% endif %}
     <!-- ########################### -->
     <!-- Заставка и название статьи  -->
     <!-- ########################### -->
@@ -60,8 +62,8 @@
     <!-- Небольшая вставка для гармонии -->
     <!-- ############################### -->
 
-    <section class="quote">
-    </section>
+    <canvas style="margin-left: 10vw; margin-top: 5vw; height: 25vmin;
+    width: 80vw;"></canvas>
 
     <!-- ############# -->
     <!-- Текст статьи -->
@@ -82,6 +84,72 @@
                 <p class="article-text">{{ text }}</p>
             {% endfor %}
     </section>
+
+    <!-- ###################### -->
+    <!-- Карусель фотографий -->
+    <!-- ###################### -->
+    <div class="my-5 text-center container">
+        <div class="row d-flex align-items-center">
+            <div class="col-1 d-flex align-items-center justify-content-center">
+                <a href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <div class="carousel-nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            <div class="col-10">
+                <!--Start carousel-->
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                </a>
+                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                </a>
+                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                </a>
+                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End carousel-->
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-center"><a href="#carouselExampleIndicators" data-slide="next">
+                <div class="carousel-nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2
+                         0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6
+                          5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+                    </svg>
+                </div>
+            </a>
+            </div>
+        </div>
+    </div>
 
 
 

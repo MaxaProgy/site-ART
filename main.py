@@ -412,12 +412,12 @@ def new_edit_artist(artist, session):
             form.thesis.data = artist.thesis
             form.text_biography.data = artist.text_biography
             form.text_5_facts.data = artist.text_5_facts
+            form.attach_image.data = article.attach_image
             form.artist_image.data = artist.artist_image
             form.instagram.data = artist.instagram
             form.site.data = artist.site
             form.video_1.data = artist.video_1
             form.video_2.data = artist.video_2
-            # form.attach_image.data = artist.attach_image
         else:
             form.main_image.data = "new_pic.jpg"
     else:
@@ -449,11 +449,24 @@ def new_edit_artist(artist, session):
                 artist.main_image = file_name
                 form.main_image.data.save(os.path.join('static/media/image/', file_name))
 
+            # Запись очереди фотографий
+            attach_image = []
+            if form.attach_image.data != "":  # Проверка на наличие названий
+                # (Примечание: Название файлов записаны через пробел)
+                attach_image = form.attach_image.data.split(" ")
+
             # Сохраняем новые картинки
             for file in request.files:
                 if file != "main_image":
                     request.files[file].save(os.path.join('static/media/image/', file))
 
+            # Удаляем удаленные из формы картинки
+            if artist.attach_image is not None and artist.attach_image != "":
+                for file in artist.attach_image.split(" "):
+                    if not (file in attach_image):
+                        os.remove(os.path.join('static/media/image/', file))
+
+            artist.attach_image = " ".join(attach_image)
             # Записываем все остальные поля
             artist.thesis = form.thesis.data
             artist.text_biography = form.text_biography.data
@@ -483,13 +496,19 @@ def delete_artist(id_artist):
         artist = session.query(Artist).filter(Artist.id == id_artist).first()
 
         # Если статья по таком id существует, то удаляем
-        if article:
+        if artist:
             image = artist.main_image
             if image != "new_pic.jpg":  # Изображение не должно быть равно new_pic.jpg,
                 # т.к. изображение по умолчанию не должно удалиться,
                 # иначе нам не чего будет вставлять при отсутствии выбранного изображения
                 os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
-
+            try:  # list_attach_image может быть равен пустой строке, поэтому мы ставим try except
+                list_attach_image = artist.attach_image.split()
+                for img in list_attach_image:  # Удаляем все изображения из очереди
+                    if img != "new_pic.jpg":
+                        os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
+            except:
+                pass
             session.delete(artist)
             session.commit()
         else:

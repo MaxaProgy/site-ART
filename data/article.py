@@ -17,9 +17,6 @@ class Articles(SqlAlchemyBase, SerializerMixin):
 
     attach_image = sqlalchemy.Column(sqlalchemy.String)
 
-    image_1 = sqlalchemy.Column(sqlalchemy.String)
-    image_2 = sqlalchemy.Column(sqlalchemy.String)
-
     video_1 = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     video_2 = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 

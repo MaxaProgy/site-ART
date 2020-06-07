@@ -146,19 +146,6 @@
 
 
 /* ################# */
-/* Вставка */
-/* ################# */
-.quote {
-    margin-left: 10vw;
-    height: 25vmin;
-    width: 80vw;
-    background: url("/static/img/block.jpg") center;
-    margin-top: 5vw;
-}
-
-
-
-/* ################# */
 /* Текст статьи */
 /* ################# */
 .container-text {
@@ -180,6 +167,22 @@
     text-indent: 50px;
 }
 
+
+
+/* ################# */
+/* Карусель фотографий */
+/* ################# */
+.carousel-nav-icon {
+    height: 48px;
+    width: 48px;
+}
+
+.carousel-item .col, .carousel-item .col-sm, .carousel-item .col-md {
+    margin: 8px;
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+}
 
 
 /* ################# */
