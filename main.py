@@ -491,24 +491,5 @@ def edit_user(user_id):
                            form=form, id_user=user.id)
 
 
-@app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
-@login_required
-def delete_artist(id_artist):
-    if current_user.is_authenticated:
-        session = db_session.create_session()
-        artist = session.query(Artist).filter(Artist.id == id_artist).first()
-        if article:
-            image = artist.main_image
-            if image != "new_pic.jpg":
-                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
-
-            session.delete(artist)
-            session.commit()
-        else:
-            abort(404)
-        return redirect('/admin/panel')
-    return redirect('/')
-
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
