@@ -1,18 +1,23 @@
 import datetime
 import os
 import random
+
 from flask import Flask, render_template, redirect, make_response, jsonify, abort, request
 import logging
+
 from data import db_session
 from data.article import Articles
 from data.users import User
+from data.artist import Artist
+
 from form.loginform import LoginForm
 from form.registerform import RegisterForm
 from form.articleform import ArticleForm
 from form.artistform import ArtistForm
 from form.userform import UserForm
+
 from flask_login import login_user, LoginManager, current_user, login_required, logout_user
-from data.artist import Artist
+
 
 logging.basicConfig(level=logging.ERROR)
 app = Flask(__name__)
@@ -257,6 +262,7 @@ def edit_article(article_id):
         abort(404)
 
 
+# Функция взятия и записывания данных статьи
 def new_edit_article(article, session):
     form = ArticleForm()
     artists = session.query(Artist).all()
@@ -281,21 +287,33 @@ def new_edit_article(article, session):
             article.title = form.title.data
             article.preview = form.preview.data
             article.text = form.text.data
+            # Главное изображение статьи
             if article.main_image is None:
+                # При отсутствии изображения заменяем на начальное изображение - new_pic.jpg
                 article.main_image = "new_pic.jpg"
+
             if form.main_image.data != article.main_image:
-                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
-                            str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                # Если админ вставил изображение не равное предыдущему,
+                # то мы изменяем имя файла и сохраняем в static/media/image/
+                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000))\
+                            + str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                # Имя фото делаем уникальным, чтобы при других сохранениях у нас не перезаписались изображения
+
                 if article.main_image != "new_pic.jpg":
+                    # Удаляем предыдущее изображение, только при условии, что оно не равно new_pic.jpg
                     try:
                         os.remove(os.path.join('static/media/image/', article.main_image))
                     except:
                         pass
+
+                # Записываем в базу данных и сохраняем
                 article.main_image = file_name
                 form.main_image.data.save(os.path.join('static/media/image/', file_name))
 
+            # Запись очереди фотографий
             attach_image = []
-            if form.attach_image.data != "":
+            if form.attach_image.data != "":  # Проверка на наличие названий
+                # (Примечание: Название файлов записаны через пробел)
                 attach_image = form.attach_image.data.split(" ")
 
             # Сохраняем новые картинки
@@ -303,7 +321,7 @@ def new_edit_article(article, session):
                 if file != "main_image":
                     request.files[file].save(os.path.join('static/media/image/', file))
 
-            # Удаляем удаленные картинки
+            # Удаляем удаленные из формы картинки
             if article.attach_image is not None and article.attach_image != "":
                 for file in article.attach_image.split(" "):
                     if not (file in attach_image):
@@ -319,25 +337,29 @@ def new_edit_article(article, session):
 
             return redirect('/admin/panel')
 
-    return render_template('ad_ed_article.html', title='Редактирование статей', form=form, artists=artists, id_article=article.id)
+    return render_template('ad_ed_article.html', title='Редактирование статей', form=form,
+                           artists=artists, id_article=article.id)
 
 
-# ////////////////////////////////
+# /////////////////
 # УДАЛЕНИЕ СТАТЬИ
-# ////////////////////////////////
+# ////////////////
 @app.route('/admin/article/del/<int:id_article>', methods=['GET'])
 @login_required
 def delete_article(id_article):
     if current_user.is_authenticated:
         session = db_session.create_session()
         article = session.query(Articles).filter(Articles.id == id_article).first()
+        # Если статья по таком id существует, то удаляем
         if article:
             image = article.main_image
-            if image != "new_pic.jpg":
+            if image != "new_pic.jpg":  # Изображение не должно быть равно new_pic.jpg,
+                # т.к. изображение по умолчанию не должно удалиться,
+                # иначе нам не чего будет вставлять при отсутствии выбранного изображения
                 os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
-            try:
+            try:  # list_attach_image может быть равен пустой строке, поэтому мы ставим try except
                 list_attach_image = article.attach_image.split()
-                for img in list_attach_image:
+                for img in list_attach_image:  # Удаляем все изображения из очереди
                     if img != "new_pic.jpg":
                         os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
             except:
@@ -347,6 +369,7 @@ def delete_article(id_article):
             session.commit()
 
         else:
+            # Иначе выбрасываем ошибку
             abort(404)
         return redirect('/admin/panel')
     return redirect('/')
@@ -376,6 +399,7 @@ def edit_artist(artist_id):
         abort(404)
 
 
+# Функция взятия и записывания данных художника
 def new_edit_artist(artist, session):
     form = ArtistForm()
 
@@ -403,27 +427,38 @@ def new_edit_artist(artist, session):
             artist.name = form.name.data
             artist.preview = form.preview.data
 
+            # Главное изображение страницы художника
             if artist.main_image is None:
+                # При отсутствии изображения заменяем на начальное изображение - new_pic.jpg
                 artist.main_image = "new_pic.jpg"
             if form.main_image.data != artist.main_image:
-                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) + \
-                            str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                # Если админ вставил изображение не равное предыдущему,
+                # то мы изменяем имя файла и сохраняем в static/media/image/
+                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000))\
+                            + str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                # Имя фото делаем уникальным, чтобы при других сохранениях у нас не перезаписались изображения
+
                 if artist.main_image != "new_pic.jpg":
+                    # Удаляем предыдущее изображение, только при условии, что оно не равно new_pic.jpg
                     try:
                         os.remove(os.path.join('static/media/image/', artist.main_image))
                     except:
                         pass
+
+                # Записываем в базу данных и сохраняем
                 artist.main_image = file_name
                 form.main_image.data.save(os.path.join('static/media/image/', file_name))
+
             # Сохраняем новые картинки
             for file in request.files:
                 if file != "main_image":
                     request.files[file].save(os.path.join('static/media/image/', file))
 
+            # Записываем все остальные поля
             artist.thesis = form.thesis.data
             artist.text_biography = form.text_biography.data
             artist.text_5_facts = form.text_5_facts.data
-            #form.artist_image.data = artist.artist_image
+            # form.artist_image.data = artist.artist_image
             artist.instagram = form.instagram.data
             artist.site = form.site.data
             artist.video_1 = form.video_1.data
@@ -436,32 +471,37 @@ def new_edit_artist(artist, session):
     return render_template('ad_ed_artist.html', title='Редактирование страницы хуожника',
                            form=form, id_artist=artist.id)
 
-# //////////////////////////////////
-# УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
-# //////////////////////////////////
 
+# ////////////////////
+# УДАЛЕНИЕ ХУДОЖНИКА
+# ///////////////////
 @app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
 @login_required
 def delete_artist(id_artist):
     if current_user.is_authenticated:
         session = db_session.create_session()
         artist = session.query(Artist).filter(Artist.id == id_artist).first()
+
+        # Если статья по таком id существует, то удаляем
         if article:
             image = artist.main_image
-            if image != "new_pic.jpg":
+            if image != "new_pic.jpg":  # Изображение не должно быть равно new_pic.jpg,
+                # т.к. изображение по умолчанию не должно удалиться,
+                # иначе нам не чего будет вставлять при отсутствии выбранного изображения
                 os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
 
             session.delete(artist)
             session.commit()
         else:
+            # Иначе выбрасываем ошибку
             abort(404)
         return redirect('/admin/panel')
     return redirect('/')
 
 
-# //////////////////////////////////
+# /////////////////////////////////////
 # СТРАНИЦА РЕДАКТИРОВАНИЯ ПОЛЬЗОВАТЕЛЯ
-# //////////////////////////////////
+# /////////////////////////////////////
 @app.route('/admin/user/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def edit_user(user_id):
