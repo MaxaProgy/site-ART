@@ -69,14 +69,17 @@
                     * Поле не должно быть пустым!
                 </div>
 
-                <div style="width: 100%; margin-top: 10px">
-                    <div id="images_view"></div>
-                    <div id="add_image" class="content-centering block-decor block-green">
-                        <img src="/static/img/plus.jpg" alt="" class="content-centering_element" style="border-radius: 50px">
+                    <!-- ################### -->
+                    <!-- Очередь фотографий -->
+                    <!-- ################### -->
+                    <div style="width: 100%; margin-top: 10px">
+                        <div id="images_view"></div>
+                        <div id="add_image" class="content-centering block-decor block-green">
+                            <img src="/static/img/plus.jpg" alt="" class="content-centering_element" style="border-radius: 50px">
+                        </div>
                     </div>
-                </div>
 
-                <div id="images" style="clear: both"></div>
+                    <div id="images" style="clear: both"></div>
 
                 <div style="width: 100%; margin-top: 10px; display: none">
                     {{ form.attach_image.label }}<br>

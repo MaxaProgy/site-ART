@@ -8,7 +8,7 @@
 }
 
 .btn-login {
-    background-color: #1bbc9b;
+    background-color: #2181c6;
     color: #FFF;
     width: 100%;
     text-transform: uppercase;
@@ -28,9 +28,9 @@ input[type=password] {
 }
 
 input[type=password]:focus {
-    -moz-box-shadow: 0 0 5px #1bbc9b;
-    -webkit-box-shadow: 0 0 5px #1bbc9b;
-    box-shadow: 0 0 5px #1bbc9b;
-    border-color: #1bbc9b;
+    -moz-box-shadow: 0 0 5px #2181c6;
+    -webkit-box-shadow: 0 0 5px #2181c6;
+    box-shadow: 0 0 5px #2181c6;
+    border-color: #2181c6;
 }
 

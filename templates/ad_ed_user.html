@@ -53,14 +53,20 @@
                     <!-- ################### -->
                     <div class='center'>
                             <div class='col-md-offset-3'>
-                                <span id='button' class='btn btn-lg btn-login' data-text-swap="Save"
-                                      data-text-original="Change Password">Сменить пароль</span>
+                                <button type="submit" name="new_password"
+                                        id='button' class='btn btn-lg btn-login'
+                                        data-text-original="Change Password">Сменить пароль</button>
                             </div>
 
                         <section class="hidden-section">
-                            <div class=' input-row'>
+                            <div class='input-row'>
                                 <div class='col-md-offset-3'>
-                                    <input class='form-control input-lg input' placeholder='new password' type='password'>
+                                    <form>
+                                    <input class='form-control input-lg input' placeholder='new password'
+                                           name="new_password" type='password'>
+                                    <button style="margin-top: 10px" type="submit"
+                                            class='btn btn-lg btn-login'>Save</button>
+                                    </form>
                                 </div>
                             </div>
                         </section>
