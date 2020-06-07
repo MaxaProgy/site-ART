@@ -1,8 +1,14 @@
+/* ################# */
+/* Тело сайта */
+/* ################# */
 body {
     width: 100%;
     overflow-x: hidden;
 }
 
+/* ################# */
+/* Навигация */
+/* ################# */
 header {
     width: 100vw;
     height: 70px;
@@ -10,7 +16,7 @@ header {
     display: flex;
 }
 
-/*** Navigation Styles ***/
+/*** тексты навигации (ссылки) ***/
 #nav-base {
     display: grid;
     width: 100vw;
@@ -68,7 +74,7 @@ header {
     transition: all 0.3s;
 }
 
-/*** Menu Styles ***/
+/*** Бургер (появляется когда экран меньше 767px) ***/
 #menu {
     -webkit-box-pack: end;
     justify-content: flex-end;
@@ -142,7 +148,7 @@ header {
 }
 
 
-/*** Responsive Menu For Smaller Device ***/
+/*** Адаптивное меню для небольших устройств ***/
 @media screen and (max-width: 767px) {
     #menu-toggle {
         display: -webkit-box;
@@ -209,6 +215,11 @@ header {
     color: #c04b35;
 }
 
+
+
+/* ################# */
+/* Концовка сайта */
+/* ################# */
 #square {
     margin-left: auto;
     margin-right: auto;

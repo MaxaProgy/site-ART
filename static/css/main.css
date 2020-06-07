@@ -1,3 +1,10 @@
+.a-none-decor {
+    text-decoration: none !important;
+}
+
+/* ################# */
+/* Интро */
+/* ################# */
 .intro {
     display: flex;
     flex-direction: column;
@@ -36,6 +43,11 @@
     background: #145C8C;
 }
 
+
+
+/* ################# */
+/* Блок о сайте */
+/* ################# */
 .about-the-site-main{
     font-family: "News706 BT", serif;
     text-align: center;
@@ -56,16 +68,22 @@
     color: #2d2d2d;
 }
 
+@media screen and (max-width: 767px) {
+    .about-the-site-main-p {
+        line-height: 20px;
+        font-size: 2.5vw
+    }
+}
+
+
+
+/* ###################### */
+/* Блок случайной статьи */
+/* ###################### */
 .article-random {
     margin-top: 40px;
     width: 100vw;
     background-color: rgba(255, 145, 16, 0.54);
-}
-
-.article-past {
-    margin-top: 40px;
-    width: 100vw;
-    background-color: rgba(24, 160, 251, 0.53);
 }
 
 #text-article-random {
@@ -106,6 +124,59 @@
 #a-random:hover div img{
     opacity: 0.8; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
     transform: scale(1.05); /* Увеличение картинки */
+}
+
+.go-page {
+    color: white;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .9vh 1.5vw;
+    font-size: 1.7vw;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+}
+
+#go-page-1 {
+    text-decoration: none !important;
+    background-color: #1d7ebd;
+    color: white;
+}
+
+#go-page-1:hover {
+    text-decoration: none !important;
+    background-color: #18679c;
+    color: white;
+}
+
+@media screen and (max-width: 767px) {
+    #text-article-random {
+        font-size: 2vw;
+    }
+
+    #title-random {
+        font-size: 3vw;
+    }
+
+}
+
+/* ###################### */
+/* Блок последней статьи */
+/* ###################### */
+.article-past {
+    margin-top: 40px;
+    width: 100vw;
+    background-color: rgba(24, 160, 251, 0.53);
 }
 
 #text-article-past {
@@ -149,84 +220,9 @@
     transform: scale(1.05); /* Увеличение картинки */
 }
 
-.a-article {
-    float: right;
-    color: #145C8C;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 900;
-    font-size: 1vw;
-    margin-right: 15%;
-    margin-top: -2%;
-}
-
-.a-none-decor {
-    text-decoration: none !important;
-}
-
-@media screen and (max-width: 767px) {
-    #text-article-random {
-        font-size: 2vw;
-    }
-    .about-the-site-main-p {
-        line-height: 20px;
-        font-size: 2.5vw
-    }
-    #text-article-past {
-        font-size: 2vw;
-
-    }
-    #title-random {
-        font-size: 3vw;
-    }
-    #title-past {
-        font-size: 3vw;
-    }
-}
-
-#search-section {
-    margin-top: 10%;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.go-page {
-    color: white;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .9vh 1.5vw;
-    font-size: 1.7vw;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    margin-top: 2vw;
-    margin-bottom: 3vw;
-}
-#go-page-1 {
-    text-decoration: none !important;
-    background-color: #1d7ebd;
-    color: white;
-}
 #go-page-2 {
     text-decoration: none !important;
     background-color: #ffa24c;
-    color: white;
-}
-#go-page-1:hover {
-    text-decoration: none !important;
-    background-color: #18679c;
     color: white;
 }
 
@@ -234,4 +230,14 @@
     text-decoration: none !important;
     background-color: #ff9e2e;
     color: white;
+}
+
+@media screen and (max-width: 767px) {
+    #text-article-past {
+        font-size: 2vw;
+    }
+
+    #title-past {
+         font-size: 3vw;
+     }
 }

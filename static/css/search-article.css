@@ -1,3 +1,6 @@
+/* ####### */
+/* Интро */
+/* ####### */
 .grid {
     display: flex;
     flex-direction: column;
@@ -91,7 +94,19 @@
         padding: 2.5rem 2.5rem 3rem 2.5rem;
     }
 }
+#square {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: 30px;
+    background: #145C8C;
+}
 
+
+
+/* ####### */
+/* Поиск */
+/* ####### */
 #search-article-form {
     margin: 8vw 25vw 2vw;
     position: relative;
@@ -136,18 +151,15 @@
     color: #F9F0DA;
 }
 
+
+
+/* ############# */
+/* Блок статьи */
+/* ############# */
 #block-article-in-search {
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin: 10vh 10vw 5vh;
-}
-
-#square {
-    margin-left: auto;
-    margin-right: auto;
-    width: 92%;
-    height: 30px;
-    background: #145C8C;
 }
 
 #name-article-search {

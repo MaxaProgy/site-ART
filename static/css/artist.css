@@ -1,3 +1,6 @@
+/* ################# */
+/* Интро */
+/* ################# */
 .grid {
     display: flex;
     flex-direction: column;
@@ -92,20 +95,19 @@
     }
 }
 
-.p-column {
-    column-count:2;
-    -moz-column-count:20;
-    -webkit-column-count:2;
+#square {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: 30px;
+    background: #145C8C;
 }
 
-.container-about-the-artist {
-    margin-top: 5vw;
-    border: 100px;
-    padding-left: 10%;
-    padding-right: 10%;
 
-}
 
+/* ################# */
+/* Заголовки страницы */
+/* ################# */
 .artist-title {
     font-family: 'Montserrat', sans-serif;
     color: #2b2b2b;
@@ -113,6 +115,19 @@
     font-size: 2rem;
     padding-top: 30px;
     padding-bottom: 10px;
+}
+
+
+
+/* ################# */
+/* Превью */
+/* ################# */
+.container-about-the-artist {
+    margin-top: 5vw;
+    border: 100px;
+    padding-left: 10%;
+    padding-right: 10%;
+
 }
 
 .about-the-artist {
@@ -125,6 +140,11 @@
     text-indent: 30px;
 }
 
+
+
+/* ################# */
+/* Текст биографии */
+/* ################# */
 .container-biography {
     background: url("/static/img/intro_biography.jpg");
     background-size: contain;
@@ -145,6 +165,11 @@
     text-indent: 50px;
 }
 
+
+
+/* ################# */
+/* Высказывания */
+/* ################# */
 .container {
     width: 100%;
     display: grid;
@@ -262,24 +287,6 @@
     color: #334455;
 }
 
-#square {
-    margin-left: auto;
-    margin-right: auto;
-    width: 92%;
-    height: 30px;
-    background: #145C8C;
-}
-
-@media (max-width: 767px) {
-    .artist_name-title {
-        font-size: 8vw;
-    }
-
-    .container-video {
-        grid-template-columns: repeat(2, minmax(200px, 200px));
-    }
-
-}
 @media (max-width: 500px) {
     .card-top {
         flex-direction: row;
@@ -328,6 +335,10 @@
     }
 }
 
+
+/* ################# */
+/* Видео */
+/* ################# */
 .container-video {
     width: 100%;
     display: grid;
@@ -355,8 +366,17 @@
     grid-column: auto / span 2;
     grid-row: auto / span 1;
 }
+@media (max-width: 767px) {
+    .container-video {
+        grid-template-columns: repeat(2, minmax(200px, 200px));
+    }
+}
 
 
+
+/* ################# */
+/* Последняя статья */
+/* ################# */
 #block-article {
     display: grid;
     grid-template-columns: 1fr 1fr;
