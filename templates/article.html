@@ -36,11 +36,21 @@
                 <div class="nav__content">
                     <nav class="nav__list">
                         <ul>
-                            <li class="nav__item"><a href="#about-the-article">Коротко о главном</a></li>
-                            <li class="nav__item"><a href="#text">Текст статьи</a></li>
-                            <li class="nav__item"><a href="#">Фотографии</a></li>
-                            <li class="nav__item"><a href="#video">Видео</a></li>
-                            <li class="nav__item"><a href="#artist">Автор</a></li>
+                            {% if article.preview %}
+                                <li class="nav__item"><a href="#about-the-article">Коротко о главном</a></li>
+                            {% endif %}
+                            {% if article.text %}
+                                <li class="nav__item"><a href="#text">Текст статьи</a></li>
+                            {% endif %}
+                            {% if articles_img %}
+                                <li class="nav__item"><a href="#image">Фотографии</a></li>
+                            {% endif %}
+                            {% if article.video_1 or article.video_2 %}
+                                <li class="nav__item"><a href="#video">Видео</a></li>
+                            {% endif %}
+                            {% if artist %}
+                                <li class="nav__item"><a href="#artist">Автор</a></li>
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>
@@ -52,12 +62,13 @@
     <!-- ############################################# -->
     <!-- Коротко о главном (Краткое превью о статье) -->
     <!-- ############################################# -->
-    <a name="about-the-article"></a>
-    <section class="container-about-the-article">
-        <div class="article-title">Коротко о главном</div>
-    <p class="about-the-article"> {{ article.preview }} </p>
-    </section>
-
+    {% if article.preview %}
+        <a name="about-the-article"></a>
+        <section class="container-about-the-article">
+            <div class="article-title">Коротко о главном</div>
+        <p class="about-the-article"> {{ article.preview }} </p>
+        </section>
+    {% endif %}
     <!-- ############################### -->
     <!-- Небольшая вставка для гармонии -->
     <!-- ############################### -->
@@ -69,127 +80,136 @@
     <!-- Текст статьи -->
     <!-- ############# -->
 
-    <a name="text"></a>
-    <section class="container-text">
-        <div class="article-title">Самое главное!</div>
-        {% set list_text = article.text.split('\n') %}
+    {% if articles_img and article.text %}
+        <a name="text"></a>
+        <section class="container-text">
+            <div class="article-title">Самое главное!</div>
+            {% set list_text = article.text.split('\n') %}
 
-            <img src="/static/media/image/{{ articles_img[0] }}" vspace="5" hspace="5" style="width: 50%;
-                                         height: auto;
-                                         float: left;
-                                         padding-right: 5%;
-                                         padding-bottom: 2%;
-                                         margin-top: 3vw;" >
-            {% for text in list_text %}
-                <p class="article-text">{{ text }}</p>
-            {% endfor %}
-    </section>
+                <img src="/static/media/image/{{ articles_img[0] }}" vspace="5" hspace="5" style="width: 50%;
+                                             height: auto;
+                                             float: left;
+                                             padding-right: 5%;
+                                             padding-bottom: 2%;
+                                             margin-top: 3vw;" >
+                {% for text in list_text %}
+                    <p class="article-text">{{ text }}</p>
+                {% endfor %}
+        </section>
+    {% endif %}
 
     <!-- ###################### -->
     <!-- Карусель фотографий -->
     <!-- ###################### -->
-    <div class="my-5 text-center container">
-        <div class="row d-flex align-items-center">
-            <div class="col-1 d-flex align-items-center justify-content-center">
-                <a href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <a name="image"></a>
+    {% if articles_img %}
+        <div class="my-5 text-center container">
+            <div class="row d-flex align-items-center">
+                <div class="col-1 d-flex align-items-center justify-content-center">
+                    <a href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <div class="carousel-nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-10">
+                    <!--Start carousel-->
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End carousel-->
+                </div>
+                <div class="col-1 d-flex align-items-center justify-content-center"><a href="#carouselExampleIndicators" data-slide="next">
                     <div class="carousel-nav-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+                            <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2
+                             0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6
+                              5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
                         </svg>
                     </div>
                 </a>
-            </div>
-            <div class="col-10">
-                <!--Start carousel-->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row">
-                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                </a>
-                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                </a>
-                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                </a>
-                                <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                   class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!--End carousel-->
-            </div>
-            <div class="col-1 d-flex align-items-center justify-content-center"><a href="#carouselExampleIndicators" data-slide="next">
-                <div class="carousel-nav-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2
-                         0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6
-                          5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
-                    </svg>
-                </div>
-            </a>
             </div>
         </div>
-    </div>
-
+    {% endif %}
 
 
     <!-- ###################### -->
     <!-- Блок видео -->
     <!-- ###################### -->
-    <a name="video"></a>
-    <div class="article-title" style="margin-top: 10vw;
-                                    padding-left: 15vw;
-                                    padding-right: 15vw">Видео, обязательные к просмотру</div>
-    <section class="container-video">
-        {% set article_video = [article.video_1, article.video_2] %}
-        {% for i in range(article_video|length) %}
-            <iframe class="card-video"
-                    src="/static/media/video/{{ article_video[i] }}" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-        {% endfor %}
-    </section>
-
+    {% if article.video_1 or article.video_2 %}
+        <a name="video"></a>
+        <div class="article-title" style="margin-top: 10vw;
+                                        padding-left: 15vw;
+                                        padding-right: 15vw">Видео, обязательные к просмотру</div>
+        <section class="container-video">
+            {% set article_video = [article.video_1, article.video_2] %}
+            {% for i in range(article_video|length) %}
+                {% if i %}
+                    <iframe class="card-video"
+                            src="/static/media/video/{{ article_video[i] }}" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                {% endif %}
+            {% endfor %}
+        </section>
+    {% endif %}
     <!-- ############################################## -->
     <!-- Блок художника (ссылка на страницу художника) -->
     <!-- ############################################## -->
-    <a name="artist"></a>
-    <section style="background-image: url('/static/img/Substance0059_2_download600.jpg'); position: relative;">
-        <div class="article-title" style="margin-top: 10vw;
-                                    padding-left: 15vw;
-                                    padding-right: 15vw">Страница художника</div>
-        <div id="block-artist">
-            <a href="/artist/{{ artist.id }}" style="margin-left: 14vw; margin-top: 4vw;" id="a-artist">
-                <div>
-                    <img id="img-artist" src="/static/media/image/{{ artist.artist_image }}">
+    {% if artist %}
+        <a name="artist"></a>
+        <section style="background-image: url('/static/img/Substance0059_2_download600.jpg'); position: relative;">
+            <div class="article-title" style="margin-top: 10vw;
+                                        padding-left: 15vw;
+                                        padding-right: 15vw">Страница художника</div>
+            <div id="block-artist">
+                <a href="/artist/{{ artist.id }}" style="margin-left: 14vw; margin-top: 4vw;" id="a-artist">
+                    <div>
+                        <img id="img-artist" src="/static/media/image/{{ artist.artist_image }}">
+                    </div>
+                </a>
+                <div style="margin-left: 5vw">
+                    <h5 id="name-artist">{{ artist.name }}</h5>
+                    <p id="text-artist">{{ artist.preview }}</p>
+                    <a href="/artist/{{ artist.id }}" id="go-page">Перейти</a>
                 </div>
-            </a>
-            <div style="margin-left: 5vw">
-                <h5 id="name-artist">{{ artist.name }}</h5>
-                <p id="text-artist">{{ artist.preview }}</p>
-                <a href="/artist/{{ artist.id }}" id="go-page">Перейти</a>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 {% endblock %}
