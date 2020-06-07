@@ -51,7 +51,7 @@ def index():
     article_past = None
     if articles:
         article_random = random.choice(articles)
-        article_past = articles[0]
+        article_past = articles[-1]
 
     q = request.args.get('q')
     if q:
@@ -92,10 +92,7 @@ def search_artist():
 def artist(artist_id):
     session = db_session.create_session()
     author = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
-    articles = session.query(Articles).all()
-    article_past = None
-    if articles:
-        article_past = articles[0]
+    article_past = session.query(Articles).filter(Articles.artist_id == artist_id).order_by(Articles.id.desc()).first()
     return render_template('artist.html', title='Художник', author=author, article_past=article_past)
 
 
@@ -158,6 +155,8 @@ def login():
             user.set_password(form.password.data)
             session.add(user)
             session.commit()
+
+            login_user(user, remember=form.password.data)
             res = make_response(redirect("/admin/panel"))
             # В куки записываем articles, чтобы в следующий раз, когда мы открываем страницу, нам были видны статьи
             # Еще есть пользователи и художники
@@ -274,8 +273,6 @@ def new_edit_article(article, session):
             form.main_image.data = article.main_image
             form.text.data = article.text
 
-            form.video_1.data = article.video_1
-            form.video_2.data = article.video_2
             form.attach_image.data = article.attach_image
             form.artist.data = article.artist.name
         else:
@@ -331,8 +328,6 @@ def new_edit_article(article, session):
                             pass
 
             article.attach_image = " ".join(attach_image)
-            article.video_1 = form.video_1.data
-            article.video_2 = form.video_2.data
             artist = session.query(Artist).filter(Artist.name == form.artist.data).first()
             article.artist_id = artist.id
             session.add(article)
@@ -421,10 +416,6 @@ def new_edit_artist(artist, session):
             form.text_5_facts.data = artist.text_5_facts
             form.attach_image.data = artist.attach_image
             form.artist_image.data = artist.artist_image
-            form.instagram.data = artist.instagram
-            form.site.data = artist.site
-            form.video_1.data = artist.video_1
-            form.video_2.data = artist.video_2
         else:
             form.artist_image.data = "new_pic.jpg"
             form.main_image.data = "new_pic.jpg"
@@ -501,11 +492,6 @@ def new_edit_artist(artist, session):
             artist.thesis = form.thesis.data
             artist.text_biography = form.text_biography.data
             artist.text_5_facts = form.text_5_facts.data
-            # form.artist_image.data = artist.artist_image
-            artist.instagram = form.instagram.data
-            artist.site = form.site.data
-            artist.video_1 = form.video_1.data
-            artist.video_2 = form.video_2.data
             session.add(artist)
             session.commit()
 

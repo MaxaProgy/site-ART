@@ -45,9 +45,6 @@
                             {% if articles_img %}
                                 <li class="nav__item"><a href="#image">Фотографии</a></li>
                             {% endif %}
-                            {% if article.video_1 or article.video_2 %}
-                                <li class="nav__item"><a href="#video">Видео</a></li>
-                            {% endif %}
                             {% if artist %}
                                 <li class="nav__item"><a href="#artist">Автор</a></li>
                             {% endif %}
@@ -85,7 +82,7 @@
         <a name="text"></a>
         <section class="container-text">
             <div class="article-title">Самое главное!</div>
-            {% set list_text = article.text.split('\n') %}
+            {% set list_text = article.text.split('\n') %} <!-- Помогает создать абзацы-->
 
                 <img src="/static/media/image/{{ articles_img[0] }}" vspace="5" hspace="5" style="width: 50%;
                                              height: auto;
@@ -169,26 +166,6 @@
     {% endif %}
 
 
-    <!-- ###################### -->
-    <!-- Блок видео -->
-    <!-- ###################### -->
-    {% if article.video_1 or article.video_2 %}
-        <a name="video"></a>
-        <div class="article-title" style="margin-top: 10vw;
-                                        padding-left: 15vw;
-                                        padding-right: 15vw">Видео, обязательные к просмотру</div>
-        <section class="container-video">
-            {% set article_video = [article.video_1, article.video_2] %}
-            {% for i in range(article_video|length) %}
-                {% if i %}
-                    <iframe class="card-video"
-                            src="/static/media/video/{{ article_video[i] }}" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                {% endif %}
-            {% endfor %}
-        </section>
-    {% endif %}
     <!-- ############################################## -->
     <!-- Блок художника (ссылка на страницу художника) -->
     <!-- ############################################## -->

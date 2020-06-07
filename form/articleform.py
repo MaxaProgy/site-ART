@@ -12,7 +12,4 @@ class ArticleForm(FlaskForm):
 
     attach_image = StringField("Прикрепленные картинки")
 
-    video_1 = StringField("Видео 1")
-    video_2 = StringField("Видео 2")
-
     submit = SubmitField('Опубликовать')
