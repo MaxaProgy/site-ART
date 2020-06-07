@@ -12,9 +12,13 @@
             {{ form.csrf_token }}
             <div  class="row p-bottom-15 p-top-15">
                 <div class="col-md-4 mt-15">
-                    {{form.main_image(id="img", class="hidden")}}
-                    <div id="img_click" class="photo" data-title="Изменить изображение">
-                        <img id="img_src" class="br" src="/static/media/image/{{ form.main_image.data }}" width="100%">
+                    {{form.main_image(id="img_main", class="hidden")}}
+                    <div id="img_click_main" class="photo" data-title="Главное изображение" style="margin-bottom: 50px">
+                        <img id="img_src_main" class="br" src="/static/media/image/{{ form.main_image.data }}" width="100%">
+                    </div>
+                    {{form.artist_image(id="img_artist", class="hidden")}}
+                    <div id="img_click_artist" class="photo" data-title="Портрет автора" style="margin-bottom: 100px">
+                        <img id="img_src_artist" class="br" src="/static/media/image/{{ form.artist_image.data }}" width="100%">
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -49,9 +53,6 @@
                         </div>
                     </div>
                     <br>
-                </div>
-
-                <div style="margin-top: 15px; width: 100%">
 
                     <!-- ################### -->
                     <!-- Текст биографии -->
@@ -61,6 +62,7 @@
                     <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
+                    <br>
 
                     <!-- ################### -->
                     <!-- Высказывания -->
@@ -70,6 +72,11 @@
                     <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
+                </div>
+
+                <div style="margin-top: 15px; width: 100%">
+
+
 
                     <!-- ################### -->
                     <!-- Очередь фотографий -->
@@ -127,7 +134,9 @@
                     <!-- ##################### -->
                     <div style="width: 100%; margin-top: 25px">
                         {{ form.submit(type="submit", class="btn btn-primary") }}
-                        <a href="/admin/artist/del/{{ id_artist }}" class="btn btn-danger">Удалить</a>
+                        {% if form.name.data  %}
+                            <a href="/admin/artist/del/{{ id_artist }}" class="btn btn-danger">Удалить</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
