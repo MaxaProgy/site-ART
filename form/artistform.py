@@ -14,5 +14,5 @@ class ArtistForm(FlaskForm):
     site = StringField("Ссылка на сайт художника")
     video_1 = StringField("Видео 1")
     video_2 = StringField("Видео 2")
-    # attach_image = StringField("Прикрепленные картинки")
+    attach_image = StringField("Прикрепленные картинки")
     submit = SubmitField('Опубликовать')

@@ -412,7 +412,7 @@ def new_edit_artist(artist, session):
             form.thesis.data = artist.thesis
             form.text_biography.data = artist.text_biography
             form.text_5_facts.data = artist.text_5_facts
-            form.attach_image.data = article.attach_image
+            form.attach_image.data = artist.attach_image
             form.artist_image.data = artist.artist_image
             form.instagram.data = artist.instagram
             form.site.data = artist.site
@@ -435,6 +435,28 @@ def new_edit_artist(artist, session):
                 # Если админ вставил изображение не равное предыдущему,
                 # то мы изменяем имя файла и сохраняем в static/media/image/
                 file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000))\
+                            + str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                # Имя фото делаем уникальным, чтобы при других сохранениях у нас не перезаписались изображения
+
+                if artist.main_image != "new_pic.jpg":
+                    # Удаляем предыдущее изображение, только при условии, что оно не равно new_pic.jpg
+                    try:
+                        os.remove(os.path.join('static/media/image/', artist.main_image))
+                    except:
+                        pass
+
+                # Записываем в базу данных и сохраняем
+                artist.main_image = file_name
+                form.main_image.data.save(os.path.join('static/media/image/', file_name))
+
+            # Главное изображение страницы художника
+            if artist.main_image is None:
+                # При отсутствии изображения заменяем на начальное изображение - new_pic.jpg
+                artist.main_image = "new_pic.jpg"
+            if form.main_image.data != artist.main_image:
+                # Если админ вставил изображение не равное предыдущему,
+                # то мы изменяем имя файла и сохраняем в static/media/image/
+                file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) \
                             + str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
                 # Имя фото делаем уникальным, чтобы при других сохранениях у нас не перезаписались изображения
 
@@ -541,6 +563,9 @@ def edit_user(user_id):
                 user.login = form.login.data
                 user.name = form.name.data
                 user.email = form.email.data
+                new_password = request.args.get('new_password')
+                if new_password:
+                    user.hashed_password = User.set_password(new_password)
                 session.commit()
 
                 return redirect('/admin/panel')

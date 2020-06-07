@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    <div class="m_5">
+    <div style="margin: 5%;">
         <form id="form" action="" method="post" enctype="multipart/form-data">
             {{ form.csrf_token }}
             <div  class="row p-bottom-15 p-top-15">
@@ -83,6 +83,11 @@
 
                     <div id="images" style="clear: both"></div>
 
+                    <div style="width: 100%; margin-top: 10px; display: none">
+                        {{ form.attach_image.label }}<br>
+                        {{ form.attach_image(class="form-control") }}
+                    </div>
+
 
                     <!-- #################### -->
                     <!-- Ссылка на инстаграм -->
@@ -131,6 +136,10 @@
 
     <script type="text/javascript">
         var current_user_id = "{{ current_user.id }}";
-    </script>
+        var attach_image = $("#attach_image").val().split(" ")
+        if ($("#attach_image").val() == "") {
+            attach_image = []
+        }
 
+    </script>
 {% endblock %}

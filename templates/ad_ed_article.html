@@ -2,125 +2,128 @@
 
 {% block head %}
     <link rel="stylesheet" href="/static/css/ad_ed_article.css">
-    <script src="/static/js/ad_ed_article.js"></script>
+    <script src="/static/js/ad_ed_artist.js"></script>
 {% endblock %}
 
 {% block content %}
 
-<div style="margin: 5%;">
-    <form id="form" action="" method="post" enctype="multipart/form-data">
-        {{ form.csrf_token }}
-        <div  class="row p-bottom-15 p-top-15">
-            <div class="col-md-4 mt-15">
-                {{form.main_image(id="img", class="hidden")}}
-                <div id="img_click" class="photo" data-title="Изменить изображение">
-                    <img id="img_src" class="br" src="/static/media/image/{{ form.main_image.data }}" width="100%">
+    <div style="margin: 5%;">
+        <form id="form" action="" method="post" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <div  class="row p-bottom-15 p-top-15">
+                <div class="col-md-4 mt-15">
+                    {{form.main_image(id="img", class="hidden")}}
+                    <div id="img_click" class="photo" data-title="Изменить изображение">
+                        <img id="img_src" class="br" src="/static/media/image/{{ form.main_image.data }}" width="100%">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-8">
+                <div class="col-md-8">
 
-                <div>
-                    {{ form.artist.label(class="control-label") }}<br>
-                    <select id="artist_id" class="form-control" style="width: 100%" onchange="artist_sellect(this)">
-                        {% for artist in artists %}
-                            {% if artist.name == form.artist.data %}
-                                <option selected="selected"> {{ artist.name }}</option>
-                            {% else %}
-                                <option>{{ artist.name }} </option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                    {{form.artist(class="hidden")}}
+                    <div>
+                        {{ form.artist.label(class="control-label") }}<br>
+                        <select id="artist_id" class="form-control" style="width: 100%" onchange="artist_sellect(this)">
+                            {% for artist in artists %}
+                                {% if artist.name == form.artist.data %}
+                                    <option selected="selected"> {{ artist.name }}</option>
+                                {% else %}
+                                    <option>{{ artist.name }} </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        {{form.artist(class="hidden")}}
+                        <br>
+                    </div>
+
+                    <!-- ################ -->
+                    <!-- Название статьи -->
+                    <!-- ################ -->
+                    <div class="form-group has-feedback title_block">
+                        {{ form.title.label(class="control-label") }}<br>
+                        {{ form.title(class="form-control", id="title") }}
+                        <div id="invalid-title" style="color: red; width: 100%; display: none">
+                            * Поле не должно быть пустым!
+                        </div>
+                    </div>
+
+                    <!-- ####### -->
+                    <!-- Превью -->
+                    <!-- ####### -->
+                    <div class="form-group has-feedback title_block">
+                        {{ form.preview.label(class="control-label") }}<br>
+                        {{ form.preview(class="form-control", id="preview") }}
+                        <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                            * Поле не должно быть пустым!
+                        </div>
+                    </div>
                     <br>
                 </div>
 
-                <!-- ################ -->
-                <!-- Название статьи -->
-                <!-- ################ -->
-                <div class="form-group has-feedback title_block">
-                    {{ form.title.label(class="control-label") }}<br>
-                    {{ form.title(class="form-control", id="title") }}
-                    <div id="invalid-title" style="color: red; width: 100%; display: none">
+                <div style="margin-top: 15px; width: 100%">
+
+                    <!-- ################### -->
+                    <!-- Текст (содержание) -->
+                    <!-- ################### -->
+                    {{ form.text.label(class="control-label") }}<br>
+                    {{ form.text(class="form-control", id="text", rows='10') }}
+                    <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
-                </div>
 
-                <!-- ####### -->
-                <!-- Превью -->
-                <!-- ####### -->
-                <div class="form-group has-feedback title_block">
-                    {{ form.preview.label(class="control-label") }}<br>
-                    {{ form.preview(class="form-control", id="preview") }}
-                    <div id="invalid-preview" style="color: red; width: 100%; display: none">
-                        * Поле не должно быть пустым!
+                    <!-- ################### -->
+                    <!-- Очередь фотографий -->
+                    <!-- ################### -->
+                    <div style="width: 100%; margin-top: 10px">
+                        <div id="images_view"></div>
+                        <div id="add_image" class="content-centering block-decor block-green">
+                            <img src="/static/img/plus.jpg" alt="" class="content-centering_element" style="border-radius: 50px">
+                        </div>
+                    </div>
+
+                    <div id="images" style="clear: both"></div>
+
+                    <div style="width: 100%; margin-top: 10px; display: none">
+                        {{ form.attach_image.label }}<br>
+                        {{ form.attach_image(class="form-control") }}
+                    </div>
+
+                    <!-- ################ -->
+                    <!-- Видео № 1 -->
+                    <!-- ################ -->
+                    <div style="width: 100%; margin-top: 10px">
+                        {{ form.video_1.label }}<br>
+                        {{ form.video_1(class="form-control") }}
+                    </div>
+
+                    <!-- ################ -->
+                    <!-- Видео № 2 -->
+                    <!-- ################ -->
+                    <div style="width: 100%; margin-top: 10px">
+                        {{ form.video_2.label }}<br>
+                        {{ form.video_2(class="form-control") }}
+                    </div>
+
+                    <!-- ##################### -->
+                    <!-- Кнопка "Опубликовать" -->
+                    <!-- ##################### -->
+                    <div style="width: 100%; margin-top: 25px">
+                                {{ form.submit(type="submit", class="btn btn-primary") }}
+                        <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a>
                     </div>
                 </div>
-                <br>
             </div>
+        </form>
+    </div>
 
-            <div style="margin-top: 15px; width: 100%">
+    <script type="text/javascript">
+        var current_user_id = "{{ current_user.id }}";
+        var attach_image = $("#attach_image").val().split(" ")
+        if ($("#attach_image").val() == "") {
+            attach_image = []
+        }
+        if (!form.artist.value) {
+            form.artist.value = "{{ artists[0].name }}"
+        }
 
-                <!-- ################### -->
-                <!-- Текст (содержание) -->
-                <!-- ################### -->
-                {{ form.text.label(class="control-label") }}<br>
-                {{ form.text(class="form-control", id="text", rows='10') }}
-                <div id="invalid-text" style="color: red; width: 100%; display: none">
-                    * Поле не должно быть пустым!
-                </div>
-
-                <div style="width: 100%; margin-top: 10px">
-                    <div id="images_view"></div>
-                    <div id="add_image" class="content-centering block-decor block-green">
-                        <img src="/static/img/plus.jpg" alt="" class="content-centering_element" style="border-radius: 50px">
-                    </div>
-                </div>
-
-                <div id="images" style="clear: both"></div>
-
-                <div style="width: 100%; margin-top: 10px; display: none">
-                    {{ form.attach_image.label }}<br>
-                    {{ form.attach_image(class="form-control") }}
-                </div>
-
-                <!-- ################ -->
-                <!-- Видео № 1 -->
-                <!-- ################ -->
-                <div style="width: 100%; margin-top: 10px">
-                    {{ form.video_1.label }}<br>
-                    {{ form.video_1(class="form-control") }}
-                </div>
-
-                <!-- ################ -->
-                <!-- Видео № 2 -->
-                <!-- ################ -->
-                <div style="width: 100%; margin-top: 10px">
-                    {{ form.video_2.label }}<br>
-                    {{ form.video_2(class="form-control") }}
-                </div>
-
-                <!-- ##################### -->
-                <!-- Кнопка "Опубликовать" -->
-                <!-- ##################### -->
-                <div style="width: 100%; margin-top: 25px">
-                            {{ form.submit(type="submit", class="btn btn-primary") }}
-                    <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-<script type="text/javascript">
-    var current_user_id = "{{ current_user.id }}";
-    var attach_image = $("#attach_image").val().split(" ")
-    if ($("#attach_image").val() == "") {
-        attach_image = []
-    }
-    if (!form.artist.value) {
-        form.artist.value = "{{ artists[0].name }}"
-    }
-
-</script>
+    </script>
 
 {% endblock %}
