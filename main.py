@@ -576,9 +576,8 @@ def edit_user(user_id):
                 user.login = form.login.data
                 user.name = form.name.data
                 user.email = form.email.data
-                new_password = request.args.get('new_password')
-                if new_password:
-                    user.hashed_password = User.set_password(new_password)
+                if not user.check_password(form.password.data):
+                    user.set_password(form.password.data)
                 session.commit()
 
                 return redirect('/admin/panel')

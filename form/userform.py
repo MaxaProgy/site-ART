@@ -6,5 +6,5 @@ class UserForm(FlaskForm):
     login = StringField("Логин пользователя")
     name = StringField("Имя пользователя")
     email = StringField("Почта")
-    hashed_password = StringField("Пароль")
+    password = StringField("Пароль")
     submit = SubmitField('Опубликовать')

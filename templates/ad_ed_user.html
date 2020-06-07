@@ -15,82 +15,64 @@
         <form id="form" action="" method="post" enctype="multipart/form-data" style="margin-top: 5%; margin-bottom: 5%">
             {{ form.csrf_token }}
             <div style="margin: 0 auto; width: 70%">
-
-                    <!-- ################ -->
-                    <!-- Логин -->
-                    <!-- ################ -->
-                    <div class="form-group has-feedback title_block">
-                        {{ form.login.label(class="control-label") }}<br>
-                        {{ form.login(class="form-control", id="title") }}
-                        <div id="invalid-title" style="color: red; width: 100%; display: none">
-                            * Поле не должно быть пустым!
-                        </div>
+                <!-- ################ -->
+                <!-- Логин -->
+                <!-- ################ -->
+                <div class="form-group has-feedback title_block">
+                    {{ form.login.label(class="control-label") }}<br>
+                    {{ form.login(class="form-control", id="login") }}
+                    <div id="invalid-title" style="color: red; width: 100%; display: none">
+                        * Поле не должно быть пустым!
                     </div>
+                </div>
 
-                    <!-- ####### -->
-                    <!-- Имя  -->
-                    <!-- ####### -->
-                    <div class="form-group has-feedback title_block">
-                        {{ form.name.label(class="control-label") }}<br>
-                        {{ form.name(class="form-control", id="preview") }}
-                        <div id="invalid-preview" style="color: red; width: 100%; display: none">
-                            * Поле не должно быть пустым!
-                        </div>
+                <!-- ####### -->
+                <!-- Имя  -->
+                <!-- ####### -->
+                <div class="form-group has-feedback title_block">
+                    {{ form.name.label(class="control-label") }}<br>
+                    {{ form.name(class="form-control", id="name") }}
+                    <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                        * Поле не должно быть пустым!
                     </div>
+                </div>
 
-                    <!-- ################### -->
-                    <!-- Почта -->
-                    <!-- ################### -->
-                    <div class="form-group has-feedback title_block">
-                        {{ form.email.label(class="control-label") }}<br>
-                        {{ form.email(class="form-control", id="preview") }}
-                        <div id="invalid-preview" style="color: red; width: 100%; display: none">
-                            * Поле не должно быть пустым!
+                <!-- ################### -->
+                <!-- Почта -->
+                <!-- ################### -->
+                <div class="form-group has-feedback title_block">
+                    {{ form.email.label(class="control-label") }}<br>
+                    {{ form.email(class="form-control", id="email") }}
+                    <div id="invalid-preview" style="color: red; width: 100%; display: none">
+                        * Поле не должно быть пустым!
+                    </div>
+                </div>
+
+                <!-- ################### -->
+                <!-- Смена пароля -->
+                <!-- ################### -->
+                <div class='center'>
+                        <div class='col-md-offset-3'>
+                            <input type="button" class='btn btn-lg btn-login' value="Сменить пароль" onclick="click_password(this)">
                         </div>
 
-                    <!-- ################### -->
-                    <!-- Смена пароля -->
-                    <!-- ################### -->
-                    <div class='center'>
+                    <section class="hidden-section">
+                        <div class='input-row'>
                             <div class='col-md-offset-3'>
-                                <button type="submit" name="new_password"
-                                        id='button' class='btn btn-lg btn-login'
-                                        data-text-original="Change Password">Сменить пароль</button>
+                                {{ form.password(class="form-control input-lg input", id="new_password",  placeholder='new password', type='password') }}
+                                <input id="repeat_password" class='form-control input-lg input' placeholder='repeat password' name="repeat_password" type='password'>
                             </div>
-
-                        <section class="hidden-section">
-                            <div class='input-row'>
-                                <div class='col-md-offset-3'>
-                                    <form>
-                                    <input class='form-control input-lg input' placeholder='new password'
-                                           name="new_password" type='password'>
-                                    <button style="margin-top: 10px" type="submit"
-                                            class='btn btn-lg btn-login'>Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <!-- ##################### -->
-                    <!-- Кнопка "Опубликовать" -->
-                    <!-- ##################### -->
-                    <div style="width: 100%; margin-top: 25px">
-
-                        {{ form.submit(type="submit", class="btn btn-primary") }}
-                    </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- ##################### -->
+                <!-- Кнопка "Опубликовать" -->
+                <!-- ##################### -->
+                <div style="width: 100%; margin-top: 25px">
+                    {{ form.submit(type="submit", class="btn btn-primary") }}
+                </div>
             </div>
         </form>
     </div>
 
-<script>
-
-    if (document.location.search.match(/type=embed/gi)) {
-        window.parent.postMessage("resize", "*");
-    }
-
-
-</script>
-    <script>
-        window.console = window.console || function(t) {};
-    </script>
 {% endblock %}
