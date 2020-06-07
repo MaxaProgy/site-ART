@@ -74,7 +74,7 @@ window.onload = function() {
             $("#name").removeClass("is-invalid").removeClass("is-valid");
         } else {
             $("#name").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-title").style.display = "block";
+            document.getElementById("invalid-name").style.display = "block";
         }
 
         if ($("#preview").val().trim()) {
@@ -88,22 +88,23 @@ window.onload = function() {
             $("#thesis").removeClass("is-invalid").removeClass("is-valid");
         } else {
             $("#thesis").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-text").style.display = "block";
+            document.getElementById("invalid-thesis").style.display = "block";
         }
 
         if ($("#text_biography").val().trim()) {
             $("#text_biography").removeClass("is-invalid").removeClass("is-valid");
         } else {
             $("#text_biography").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-text").style.display = "block";
+            document.getElementById("invalid-text_biography").style.display = "block";
         }
 
         if ($("#text_5_facts").val().trim()) {
             $("#text_5_facts").removeClass("is-invalid").removeClass("is-valid");
         } else {
             $("#text_5_facts").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-text").style.display = "block";
+            document.getElementById("invalid-text_5_facts").style.display = "block";
         }
+
         if (($("#name").val().trim()) && ($("#preview").val().trim()) && ($("#thesis").val().trim()) && ($("#text_biography").val().trim())  && ($("#text_5_facts").val().trim())) {
             document.getElementById("attach_image").value = attach_image.join(" ");
 
@@ -115,10 +116,10 @@ window.onload = function() {
     $("#name").keyup(function() {
         if ($("#name").val().trim()) {
             $("#name").removeClass("is-invalid").addClass("is-valid");
-            document.getElementById("invalid-title").style.display = "none";
+            document.getElementById("invalid-name").style.display = "none";
         } else {
             $("#name").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-title").style.display = "block";
+            document.getElementById("invalid-name").style.display = "block";
         }
     });
     $("#preview").keyup(function() {
@@ -134,30 +135,30 @@ window.onload = function() {
     $("#thesis").keyup(function() {
         if ($("#thesis").val().trim()) {
             $("#thesis").removeClass("is-invalid").addClass("is-valid");
-            document.getElementById("invalid-text").style.display = "none";
+            document.getElementById("invalid-thesis").style.display = "none";
         } else {
             $("#thesis").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-text").style.display = "block";
+            document.getElementById("invalid-thesis").style.display = "block";
         }
     });
 
     $("#text_biography").keyup(function() {
         if ($("#text_biography").val().trim()) {
             $("#text_biography").removeClass("is-invalid").addClass("is-valid");
-            document.getElementById("invalid-text").style.display = "none";
+            document.getElementById("invalid-text_biography").style.display = "none";
         } else {
             $("#text_biography").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-text").style.display = "block";
+            document.getElementById("invalid-text_biography").style.display = "block";
         }
     });
 
     $("#text_5_facts").keyup(function() {
         if ($("#text_5_facts").val().trim()) {
             $("#text_5_facts").removeClass("is-invalid").addClass("is-valid");
-            document.getElementById("invalid-text").style.display = "none";
+            document.getElementById("invalid-text_5_facts").style.display = "none";
         } else {
             $("#text_5_facts").removeClass("is-valid").addClass("is-invalid");
-            document.getElementById("invalid-text").style.display = "block";
+            document.getElementById("invalid-text_5_facts").style.display = "block";
         }
     });
 };
