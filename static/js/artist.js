@@ -140,7 +140,6 @@ function update(time) {
     hueBase += 0.4;
     zoff += Configs.zInc;
 
-    // Code to fade in the view
     if (fadeTimeStart === undefined) {
         fadeTimeStart = time;
     }
@@ -184,6 +183,6 @@ function Particle(x, y, color) {
 }
 
 
-// Run
+// Нашла красивую вставку для гармаонии =)
 
 init();

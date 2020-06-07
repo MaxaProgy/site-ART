@@ -20,7 +20,7 @@
                 <div class="col-md-8">
 
                     <!-- ################ -->
-                    <!-- Название статьи -->
+                    <!-- Имя художника -->
                     <!-- ################ -->
                     <div class="form-group has-feedback title_block">
                         {{ form.name.label(class="control-label") }}<br>
@@ -54,7 +54,7 @@
                 <div style="margin-top: 15px; width: 100%">
 
                     <!-- ################### -->
-                    <!-- Текст (содержание) -->
+                    <!-- Текст биографии -->
                     <!-- ################### -->
                     {{ form.text_biography.label(class="control-label") }}<br>
                     {{ form.text_biography(class="form-control", id="text", rows='10') }}
@@ -62,12 +62,18 @@
                         * Поле не должно быть пустым!
                     </div>
 
+                    <!-- ################### -->
+                    <!-- Высказывания -->
+                    <!-- ################### -->
                     {{ form.text_5_facts.label(class="control-label") }}<br>
                     {{ form.text_5_facts(class="form-control", id="text", rows='10') }}
                     <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
 
+                    <!-- ################### -->
+                    <!-- Очередь фотографий -->
+                    <!-- ################### -->
                     <div style="width: 100%; margin-top: 10px">
                         <div id="images_view"></div>
                         <div id="add_image" class="content-centering block-decor block-green">
@@ -78,16 +84,16 @@
                     <div id="images" style="clear: both"></div>
 
 
-                    <!-- ################ -->
-                    <!-- Изображение № 1 -->
-                    <!-- ################ -->
+                    <!-- #################### -->
+                    <!-- Ссылка на инстаграм -->
+                    <!-- #################### -->
                     <div style="width: 100%; margin-top: 10px">
                     {{ form.instagram.label }}<br>
                     {{ form.instagram(class="form-control") }}
                 </div>
 
                     <!-- ################ -->
-                    <!-- Изображение № 2 -->
+                    <!-- Ссылка на сайт -->
                     <!-- ################ -->
                     <div style="width: 100%; margin-top: 10px">
                         {{ form.site.label }}<br>

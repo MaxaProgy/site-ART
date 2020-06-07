@@ -7,6 +7,7 @@ window.onload = function() {
         document.getElementById(attach_image[i]).src = "/static/media/image/" + attach_image[i];
     }
 
+    // Выбор файла
     document.getElementById('img_click').addEventListener('click', function (e) {
         var input = document.getElementById("img");
 
@@ -19,7 +20,8 @@ window.onload = function() {
         input.click();
     });
 
-    // Случайное число для последнего символа в названии файла. Для того чтобы в одну и ту же секунду времени не было два одинаковых файла
+    // Случайное число для последнего символа в названии файла. Для того чтобы в одну
+    // и ту же секунду времени не было два одинаковых файла
     function randomInt(min, max) {
         return min + Math.floor((max - min) * Math.random());
     }
@@ -37,7 +39,7 @@ window.onload = function() {
             document.getElementById('images').appendChild(input);
 
             let filename_split =  file.name.split(".");
-            input.name = input.name + "."+ filename_split[filename_split.length - 1]
+            input.name = input.name + "."+ filename_split[filename_split.length - 1];
             attach_image.push(input.name);
             input.id = input.name;
 
@@ -50,6 +52,7 @@ window.onload = function() {
         input.click();
     });
 
+    // Отправка и валидация
     $("form").submit(function (event) {
 
         if ($("#title").val().trim()) {
@@ -79,7 +82,7 @@ window.onload = function() {
         } else {
             event.preventDefault();
         }
-    })
+    });
 
     $("#title").keyup(function() {
         if ($("#title").val().trim()) {
@@ -122,10 +125,10 @@ function image_click(elem) {
 
     let el = document.getElementById(name);
     el.parentNode.removeChild(el);
-};
+}
 
 // Выбор Автора
 function artist_sellect(obj) {
-    console.log(obj.options[obj.selectedIndex].value)
+    console.log(obj.options[obj.selectedIndex].value);
     form.artist.value = obj.options[obj.selectedIndex].value;
 }

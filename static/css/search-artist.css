@@ -1,3 +1,6 @@
+/* ####### */
+/* Интро */
+/* ####### */
 .grid {
     display: flex;
     flex-direction: column;
@@ -91,13 +94,26 @@
         padding: 2.5rem 2.5rem 3rem 2.5rem;
     }
 }
+#square {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    height: 30px;
+    background: #145C8C;
+}
 
+
+
+/* ####### */
+/* Поиск */
+/* ####### */
 #search-artist-form {
     margin: 8vw 25vw 2vw;
     position: relative;
     width: 50vw;
     height: 42px;
 }
+
 #search-artist-input {
     cursor: pointer;
     height: 65px;
@@ -136,19 +152,17 @@
     color: #F9F0DA;
 }
 
+
+
+/* ############# */
+/* Блок автора */
+/* ############# */
 #block-artist-in-search {
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin: 10vh 10vw 5vh;
 }
 
-#square {
-    margin-left: auto;
-    margin-right: auto;
-    width: 92%;
-    height: 30px;
-    background: #145C8C;
-}
 #name-artist-search {
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
@@ -157,7 +171,6 @@
     text-align: left;
     color: #191d19;
 }
-
 
 #text-artist-search {
     font-family: "Montserrat", sans-serif;

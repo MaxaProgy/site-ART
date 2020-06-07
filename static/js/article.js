@@ -1,6 +1,5 @@
 window.addEventListener("load", function() {
     var navigation = {
-        // Variables
         $nav: document.querySelector('.nav'),
         $navTrigger: document.querySelector('.nav__trigger'),
         $navContent: document.querySelector('.nav__content'),
@@ -10,7 +9,7 @@ window.addEventListener("load", function() {
         init() {
             var self = this;
 
-            // Handle the transitions
+            // Обрабатываем переходы
             self.$navTrigger.addEventListener('click', function() {
                 if (!self.$navTrigger.classList.contains('is-active')) {
                     // .nav--trigger active
@@ -29,7 +28,7 @@ window.addEventListener("load", function() {
                         self.$navContent.classList.add('is-active');
                     }
 
-                    // no-csstransitions fallback
+                    // Запасной вариант без переходов
                     if (document.documentElement.classList.contains('no-csstransitions')) {
                         self.$navContent.classList.add('is-active');
                     }
@@ -50,7 +49,7 @@ window.addEventListener("load", function() {
                         self.$nav.classList.remove('is-active');
                     }
 
-                    // no-csstransitions fallback
+                    // Запасной вариант без переходов
                     if (document.documentElement.classList.contains('no-csstransitions')) {
                         self.$nav.classList.remove('is-active');
                     }

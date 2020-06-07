@@ -6,6 +6,7 @@ $(document).ready(function() {
         $(par).slideToggle('fast');
         e.preventDefault();
     });
+    // Выплывание поля ввода пароля
     $("#button").on("click", function() {
         var el = $(this);
         el.text() == el.data("text-swap") ? el.text(el.data("text-original")) : el.text(el.data("text-swap"));

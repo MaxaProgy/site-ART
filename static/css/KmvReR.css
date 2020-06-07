@@ -1,49 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300,700);
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: "Raleway", "Open Sans", sans-serif;
-  background-color: #ebf4ee;
-  min-height: 100%;
-}
-
-h1, h2, h3,
-h4, h5, h6 {
-  font-family: "Raleway", "Open Sans", sans-serif;
-  margin: 0;
-}
-
-a {
-  color: #222222;
-  text-decoration: none;
-}
-
-.content {
-  position: absolute;
-  top: 50%;
-  left: 2rem;
-  width: 70%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-.content h1,
-.content h4 {
-  color: #1f2822;
-}
-.content h1 {
-  font-size: 6vmin;
-}
-.content h4 {
-  font-size: 3vmin;
-}
-.content a {
-  color: #1f2822;
-}
-
+/* ######################################### */
+/* Навигация по странице статьи и автора */
+/* ######################################### */
 .nav {
   flex-basis: 100%;
   max-width: 100%;
