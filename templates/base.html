@@ -16,11 +16,17 @@
     </head>
     <body>
         <header>
+            <!-- ###################### -->
+            <!-- Навигация по сайту -->
+            <!-- ###################### -->
             <nav id="nav-base">
+                <!-- Логотип -->
                 <a href="/" class="a-none-decor"><div class="brand">
                     <div class="logo"></div>
                     <div class="word-mark">ART.</div>
                 </div></a>
+
+                <!-- Навигация по сайту (Когда экран меньше 767px)-->
                 <div id="menu">
                     <div id="menu-toggle">
                         <div id="menu-icon">
@@ -29,6 +35,8 @@
                             <div class="bar"></div>
                         </div>
                     </div>
+
+                    <!-- Навигация по сайту (Когда экран больше 767px) -->
                     <ul id="ul-base">
                         <li class="li-base"><a href="/search/artist">Авторы</a></li>
                         <li class="li-base"><a href="/search/article">Статьи</a></li>
@@ -46,8 +54,13 @@
         <div class="body_center">
             {% block content %}{% endblock %}
         </div>
+
+        <!-- ###################### -->
+        <!-- Концовка сайта -->
+        <!-- ###################### -->
         <div id="square"></div>
         <div id="end-base">
+            <!-- Логотип -->
             <div class="brand" style="justify-content: center; padding-top: 3%">
                 <div class="logo"></div>
                 <div class="word-mark">ART.</div>
@@ -60,6 +73,7 @@
                 <a href="http://xudozhka72.ru/" class="a-none-decor a-base" style="color: white">Художественная школа</a>
             </div>
 
+            <!-- Ссылки на соц.сети -->
             <div id="a-end-base">
                 <a href="#" class="a-none-decor" style="font-size: 1.5em;
                                                         color:white;
@@ -76,6 +90,7 @@
                                                         color:white;
                                                         padding-left: 10px;"><i class="fa fa-phone"></i></a>
             </div>
+            <!-- От авторов -->
             <div style="font-family: 'Montserrat', sans-serif;
                         color: aliceblue;
                         font-size: .8vw;
