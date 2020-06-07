@@ -1,4 +1,5 @@
 window.onload = function() {
+    // Выбор файла
     document.getElementById('img_click').addEventListener('click', function (e) {
         var input = document.getElementById("img");
 

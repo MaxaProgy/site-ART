@@ -9,17 +9,17 @@ function getCookie(name) {
 
 window.onload = function() {
 
-    let users = document.getElementById("div_users")
-    let autors = document.getElementById("div_autors")
-    let articles = document.getElementById("div_articles")
-    let active_button_menu = getCookie("active_button_menu")
+    let users = document.getElementById("div_users");
+    let autors = document.getElementById("div_autors");
+    let articles = document.getElementById("div_articles");
+    let active_button_menu = getCookie("active_button_menu");
 
-    document.getElementById(active_button_menu).className +=" active"
-    document.getElementById("div_" + active_button_menu).style.display = "block"
+    document.getElementById(active_button_menu).className +=" active";
+    document.getElementById("div_" + active_button_menu).style.display = "block";
 
-    document.getElementById("users").style.display = "block"
-    document.getElementById("autors").style.display = "block"
-    document.getElementById("articles").style.display = "block"
+    document.getElementById("users").style.display = "block";
+    document.getElementById("autors").style.display = "block";
+    document.getElementById("articles").style.display = "block";
 
     document.getElementById('users').addEventListener('click', function (e) {
         users.style.display = "block";
