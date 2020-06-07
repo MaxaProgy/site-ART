@@ -92,10 +92,8 @@ def search_artist():
 def artist(artist_id):
     session = db_session.create_session()
     author = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
-    articles = session.query(Articles).all()
-    article_past = None
-    if articles:
-        article_past = articles[0]
+    article_past = session.query(Articles).filter(Articles.artist_id == artist_id).order_by(Articles.id.desc()).first()
+
     return render_template('artist.html', title='Художник', author=author, article_past=article_past)
 
 
@@ -158,6 +156,7 @@ def login():
             user.set_password(form.password.data)
             session.add(user)
             session.commit()
+            login_user(user, remember=form.password.data)
             res = make_response(redirect("/admin/panel"))
             # В куки записываем articles, чтобы в следующий раз, когда мы открываем страницу, нам были видны статьи
             # Еще есть пользователи и художники
@@ -284,9 +283,9 @@ def new_edit_article(article, session):
         if form.validate_on_submit():
             # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
             # то мы записываем их значения в базу данных
-            article.title = form.title.data
-            article.preview = form.preview.data
-            article.text = form.text.data
+            article.title = form.title.data.strip()
+            article.preview = form.preview.data.strip()
+            article.text = form.text.data.strip()
             # Главное изображение статьи
             if article.main_image is None:
                 # При отсутствии изображения заменяем на начальное изображение - new_pic.jpg
@@ -432,8 +431,8 @@ def new_edit_artist(artist, session):
         if form.validate_on_submit():
             # Если все поля прошли валидацию и пользователь нажал кнопку "Опубликовать",
             # то мы записываем их значения в базу данных
-            artist.name = form.name.data
-            artist.preview = form.preview.data
+            artist.name = form.name.data.strip()
+            artist.preview = form.preview.data.strip()
 
             # Главное изображение страницы художника
             if artist.main_image is None:
@@ -457,7 +456,7 @@ def new_edit_artist(artist, session):
                 artist.main_image = file_name
                 form.main_image.data.save(os.path.join('static/media/image/', file_name))
 
-            # Главное изображение страницы художника
+            # Портрет художника
             if artist.artist_image is None:
                 # При отсутствии изображения заменяем на начальное изображение - new_pic.jpg
                 artist.artist_image = "new_pic.jpg"
@@ -498,12 +497,12 @@ def new_edit_artist(artist, session):
 
             artist.attach_image = " ".join(attach_image)
             # Записываем все остальные поля
-            artist.thesis = form.thesis.data
-            artist.text_biography = form.text_biography.data
-            artist.text_5_facts = form.text_5_facts.data
+            artist.thesis = form.thesis.data.strip()
+            artist.text_biography = form.text_biography.data.strip()
+            artist.text_5_facts = form.text_5_facts.data.strip()
             # form.artist_image.data = artist.artist_image
-            artist.instagram = form.instagram.data
-            artist.site = form.site.data
+            artist.instagram = form.instagram.data.strip()
+            artist.site = form.site.data.strip()
             artist.video_1 = form.video_1.data
             artist.video_2 = form.video_2.data
             session.add(artist)
@@ -576,7 +575,7 @@ def edit_user(user_id):
                 user.login = form.login.data
                 user.name = form.name.data
                 user.email = form.email.data
-                if not user.check_password(form.password.data):
+                if form.password.data != "" and (not user.check_password(form.password.data)):
                     user.set_password(form.password.data)
                 session.commit()
 
