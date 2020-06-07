@@ -325,7 +325,10 @@ def new_edit_article(article, session):
             if article.attach_image is not None and article.attach_image != "":
                 for file in article.attach_image.split(" "):
                     if not (file in attach_image):
-                        os.remove(os.path.join('static/media/image/', file))
+                        try:
+                            os.remove(os.path.join('static/media/image/', file))
+                        except:
+                            pass
 
             article.attach_image = " ".join(attach_image)
             article.video_1 = form.video_1.data
@@ -356,14 +359,18 @@ def delete_article(id_article):
             if image != "new_pic.jpg":  # Изображение не должно быть равно new_pic.jpg,
                 # т.к. изображение по умолчанию не должно удалиться,
                 # иначе нам не чего будет вставлять при отсутствии выбранного изображения
-                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
-            try:  # list_attach_image может быть равен пустой строке, поэтому мы ставим try except
+                try:
+                    os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
+                except:
+                    pass
+            if article.attach_image != "":  # list_attach_image может быть равен пустой строке
                 list_attach_image = article.attach_image.split()
                 for img in list_attach_image:  # Удаляем все изображения из очереди
                     if img != "new_pic.jpg":
-                        os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
-            except:
-                pass
+                        try:
+                            os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
+                        except:
+                            pass
 
             session.delete(article)
             session.commit()
@@ -412,7 +419,7 @@ def new_edit_artist(artist, session):
             form.thesis.data = artist.thesis
             form.text_biography.data = artist.text_biography
             form.text_5_facts.data = artist.text_5_facts
-            form.attach_image.data = article.attach_image
+            form.attach_image.data = artist.attach_image
             form.artist_image.data = artist.artist_image
             form.instagram.data = artist.instagram
             form.site.data = artist.site
@@ -501,14 +508,19 @@ def delete_artist(id_artist):
             if image != "new_pic.jpg":  # Изображение не должно быть равно new_pic.jpg,
                 # т.к. изображение по умолчанию не должно удалиться,
                 # иначе нам не чего будет вставлять при отсутствии выбранного изображения
-                os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
-            try:  # list_attach_image может быть равен пустой строке, поэтому мы ставим try except
+                try:
+                    os.remove(os.path.abspath(os.curdir + '/static/media/image/' + image))
+                except:
+                    pass
+            if artist.attach_image != "":  # list_attach_image может быть равен пустой строке
                 list_attach_image = artist.attach_image.split()
                 for img in list_attach_image:  # Удаляем все изображения из очереди
                     if img != "new_pic.jpg":
-                        os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
-            except:
-                pass
+                        try:
+                            os.remove(os.path.abspath(os.curdir + '/static/media/image/' + img))
+                        except:
+                            pass
+
             session.delete(artist)
             session.commit()
         else:

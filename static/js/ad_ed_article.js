@@ -1,4 +1,5 @@
 window.onload = function() {
+    // Показываем ранее сохраненные картинки для карусели при открытии формы
     for (var i = 0; i < attach_image.length; i++) {
         var elem = document.createElement("div");
         html = '<div class="content-centering block-decor images block-green"><img id = "' + attach_image[i] + '" src "#" class="content-centering_element" alt=""><div class="sel"><img src="/static/img/minus.jpg" class="sel" onclick="image_click(this)" alt=""></div>';
@@ -7,7 +8,7 @@ window.onload = function() {
         document.getElementById(attach_image[i]).src = "/static/media/image/" + attach_image[i];
     }
 
-    // Выбор файла
+    // Выбор файла для main_image
     document.getElementById('img_click').addEventListener('click', function (e) {
         var input = document.getElementById("img");
 

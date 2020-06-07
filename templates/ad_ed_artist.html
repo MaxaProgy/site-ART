@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/css/ad_ed_article.css">
+    <link rel="stylesheet" href="/static/css/ad_ed_artist.css">
     <script src="/static/js/ad_ed_artist.js"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="m_5">
+    <div style="margin: 5%;">
         <form id="form" action="" method="post" enctype="multipart/form-data">
             {{ form.csrf_token }}
             <div  class="row p-bottom-15 p-top-15">
@@ -24,7 +24,7 @@
                     <!-- ################ -->
                     <div class="form-group has-feedback title_block">
                         {{ form.name.label(class="control-label") }}<br>
-                        {{ form.name(class="form-control", id="title") }}
+                        {{ form.name(class="form-control", id="name") }}
                         <div id="invalid-title" style="color: red; width: 100%; display: none">
                             * Поле не должно быть пустым!
                         </div>
@@ -43,7 +43,7 @@
                     <br>
                     <div class="form-group has-feedback title_block">
                         {{ form.thesis.label(class="control-label") }}<br>
-                        {{ form.thesis(class="form-control", id="preview") }}
+                        {{ form.thesis(class="form-control", id="thesis") }}
                         <div id="invalid-preview" style="color: red; width: 100%; display: none">
                             * Поле не должно быть пустым!
                         </div>
@@ -57,7 +57,7 @@
                     <!-- Текст биографии -->
                     <!-- ################### -->
                     {{ form.text_biography.label(class="control-label") }}<br>
-                    {{ form.text_biography(class="form-control", id="text", rows='10') }}
+                    {{ form.text_biography(class="form-control", id="text_biography", rows='10') }}
                     <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
@@ -66,7 +66,7 @@
                     <!-- Высказывания -->
                     <!-- ################### -->
                     {{ form.text_5_facts.label(class="control-label") }}<br>
-                    {{ form.text_5_facts(class="form-control", id="text", rows='10') }}
+                    {{ form.text_5_facts(class="form-control", id="text_5_facts", rows='10') }}
                     <div id="invalid-text" style="color: red; width: 100%; display: none">
                         * Поле не должно быть пустым!
                     </div>
@@ -83,6 +83,10 @@
 
                     <div id="images" style="clear: both"></div>
 
+                    <div style="width: 100%; margin-top: 10px; display: none">
+                        {{ form.attach_image.label }}<br>
+                        {{ form.attach_image(class="form-control") }}
+                    </div>
 
                     <!-- #################### -->
                     <!-- Ссылка на инстаграм -->
@@ -122,7 +126,9 @@
                     <!-- ##################### -->
                     <div style="width: 100%; margin-top: 25px">
                         {{ form.submit(type="submit", class="btn btn-primary") }}
-                        <a href="/admin/artist/del/{{ id_artist }}" class="btn btn-danger">Удалить</a>
+                        {% if form.name.data  %}
+                            <a href="/admin/artist/del/{{ id_artist }}" class="btn btn-danger">Удалить</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -131,6 +137,11 @@
 
     <script type="text/javascript">
         var current_user_id = "{{ current_user.id }}";
+        var attach_image = $("#attach_image").val().split(" ");
+        if ($("#attach_image").val() == "") {
+            attach_image = [];
+        }
     </script>
+
 
 {% endblock %}

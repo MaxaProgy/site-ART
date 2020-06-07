@@ -103,8 +103,10 @@
                 <!-- Кнопка "Опубликовать" -->
                 <!-- ##################### -->
                 <div style="width: 100%; margin-top: 25px">
-                            {{ form.submit(type="submit", class="btn btn-primary") }}
-                    <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a>
+                    {{ form.submit(type="submit", class="btn btn-primary") }}
+                    {% if form.title.data  %}
+                        <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -113,14 +115,13 @@
 
 <script type="text/javascript">
     var current_user_id = "{{ current_user.id }}";
-    var attach_image = $("#attach_image").val().split(" ")
+    var attach_image = $("#attach_image").val().split(" ");
     if ($("#attach_image").val() == "") {
-        attach_image = []
+        attach_image = [];
     }
     if (!form.artist.value) {
-        form.artist.value = "{{ artists[0].name }}"
+        form.artist.value = "{{ artists[0].name }}";
     }
-
 </script>
 
 {% endblock %}

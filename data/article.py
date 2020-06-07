@@ -9,20 +9,21 @@ class Articles(SqlAlchemyBase, SerializerMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
 
-    title = sqlalchemy.Column(sqlalchemy.String)
-    preview = sqlalchemy.Column(sqlalchemy.String)
     main_image = sqlalchemy.Column(sqlalchemy.String)
 
+    artist_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("artist.id"))
+
+    title = sqlalchemy.Column(sqlalchemy.String)
+    preview = sqlalchemy.Column(sqlalchemy.String)
     text = sqlalchemy.Column(sqlalchemy.Text)
 
-    attach_image = sqlalchemy.Column(sqlalchemy.String)
+    attach_image = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
     video_1 = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     video_2 = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
     create_date = sqlalchemy.Column(sqlalchemy.DateTime)
 
-    artist_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("artist.id"))
     artist = orm.relation('Artist')
 
     #articles = orm.relation("Comment", back_populates='articles')
