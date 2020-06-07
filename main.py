@@ -426,6 +426,7 @@ def new_edit_artist(artist, session):
             form.video_1.data = artist.video_1
             form.video_2.data = artist.video_2
         else:
+            form.artist_image.data = "new_pic.jpg"
             form.main_image.data = "new_pic.jpg"
     else:
         if form.validate_on_submit():
@@ -457,26 +458,26 @@ def new_edit_artist(artist, session):
                 form.main_image.data.save(os.path.join('static/media/image/', file_name))
 
             # Главное изображение страницы художника
-            if artist.main_image is None:
+            if artist.artist_image is None:
                 # При отсутствии изображения заменяем на начальное изображение - new_pic.jpg
-                artist.main_image = "new_pic.jpg"
-            if form.main_image.data != artist.main_image:
+                artist.artist_image = "new_pic.jpg"
+            if form.artist_image.data != artist.artist_image:
                 # Если админ вставил изображение не равное предыдущему,
                 # то мы изменяем имя файла и сохраняем в static/media/image/
                 file_name = str(current_user.id) + "_" + str(int(datetime.datetime.now().replace().timestamp() * 1000)) \
-                            + str(random.randint(0, 9)) + "." + form.main_image.data.filename.split('.')[-1]
+                            + str(random.randint(0, 9)) + "." + form.artist_image.data.filename.split('.')[-1]
                 # Имя фото делаем уникальным, чтобы при других сохранениях у нас не перезаписались изображения
 
-                if artist.main_image != "new_pic.jpg":
+                if artist.artist_image != "new_pic.jpg":
                     # Удаляем предыдущее изображение, только при условии, что оно не равно new_pic.jpg
                     try:
-                        os.remove(os.path.join('static/media/image/', artist.main_image))
+                        os.remove(os.path.join('static/media/image/', artist.artist_image))
                     except:
                         pass
 
                 # Записываем в базу данных и сохраняем
-                artist.main_image = file_name
-                form.main_image.data.save(os.path.join('static/media/image/', file_name))
+                artist.artist_image = file_name
+                form.artist_image.data.save(os.path.join('static/media/image/', file_name))
 
             # Запись очереди фотографий
             attach_image = []

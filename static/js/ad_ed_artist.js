@@ -8,21 +8,34 @@ window.onload = function() {
         document.getElementById(attach_image[i]).src = "/static/media/image/" + attach_image[i];
     }
 
-    // Выбор файла для main_image
-    document.getElementById('img_click').addEventListener('click', function (e) {
-        var input = document.getElementById("img");
+    // Выбор файла (главное изображение)
+    document.getElementById('img_click_main').addEventListener('click', function (e) {
+        var input = document.getElementById("img_main");
 
         input.type = 'file';
         input.accept=".jpg, .jpeg, .png";
         input.onchange = e => {
             var file = e.target.files[0];
-            document.getElementById("img_src").src = window.URL.createObjectURL(file);
+            document.getElementById("img_src_main").src = window.URL.createObjectURL(file);
         };
         input.click();
     });
 
-    // Случайное число для последнего символа в названии файла. Для того чтобы в одну
-    // и ту же секунду времени не было два одинаковых файла
+    // Выбор файла (главное изображение)
+    document.getElementById('img_click_artist').addEventListener('click', function (e) {
+        var input = document.getElementById("img_artist");
+
+        input.type = 'file';
+        input.accept=".jpg, .jpeg, .png";
+        input.onchange = e => {
+            var file = e.target.files[0];
+            document.getElementById("img_src_artist").src = window.URL.createObjectURL(file);
+        };
+        input.click();
+    });
+
+    // Случайное число для последнего символа в названии файла.
+    // Для того чтобы в одну и ту же секунду времени не было два одинаковых файла
     function randomInt(min, max) {
         return min + Math.floor((max - min) * Math.random());
     }
