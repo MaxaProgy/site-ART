@@ -69,12 +69,13 @@
         <p class="about-the-article"> {{ article.preview }} </p>
         </section>
     {% endif %}
+
+
     <!-- ############################### -->
     <!-- Небольшая вставка для гармонии -->
     <!-- ############################### -->
 
-    <canvas style="margin-left: 10vw; margin-top: 5vw; height: 25vmin;
-    width: 80vw;"></canvas>
+    <div id="quote"></div>
 
     <!-- ############# -->
     <!-- Текст статьи -->
@@ -121,30 +122,30 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
-                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                    <a style="background-image:url('/static/media/image/{{ articles_img|random }}');"
                                        class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
                                     </a>
-                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
-                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                    </a>
-                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                    <a style="background-image:url('/static/media/image/{{ articles_img|random }}');"
                                        class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
                                     </a>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="row">
-                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                    <a style="background-image:url('/static/media/image/{{ articles_img|random  }}');"
                                        class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
                                     </a>
-                                    <a style="background-image:url('/static/media/image/{{ articles_img[0] }}');"
+                                    <a style="background-image:url('/static/media/image/{{ articles_img|random  }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <a style="background-image:url('/static/media/image/{{ articles_img|random  }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                    <a style="background-image:url('/static/media/image/{{ articles_img|random  }}');"
                                        class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
                                     </a>
                                 </div>

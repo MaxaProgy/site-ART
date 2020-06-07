@@ -146,6 +146,16 @@
 
 
 /* ################# */
+/* Вставка для гармонии */
+/* ################# */
+#quote {
+    margin: 0 auto;
+    height: 25vmin;
+    width: 80%;
+    background: url("/static/img/block.jpg") center;
+}
+
+/* ################# */
 /* Текст статьи */
 /* ################# */
 .container-text {

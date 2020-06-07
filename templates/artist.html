@@ -52,7 +52,6 @@
                             {% if author.video_1 or author.video_2 %}
                                 <li class="nav__item"><a href="#video">Видео</a></li>
                             {% endif %}
-
                             {% if article_past %}
                                 <li class="nav__item"><a href="#past_article">Последняя статья</a></li>
                             {% endif %}
@@ -79,8 +78,7 @@
     <!-- Небольшая вставка для гармонии -->
     <!-- ############################### -->
 
-    <canvas style="margin-left: 10vw; margin-top: 5vw; height: 25vmin;
-    width: 80vw;"></canvas>
+    <div id="quote"></div>
 
     <!-- ########## -->
     <!-- Биография -->
@@ -92,7 +90,7 @@
             <div class="artist-title">Самое интересное!</div>
             {% set list_text = author.text_biography.split('\n') %}
 
-            <img src="/static/media/image/{{ authors_img[0] }}"  vspace="5" hspace="5" style="width: 50%;
+            <img src="/static/media/image/{{ authors_img|random }}"  vspace="5" hspace="5" style="width: 50%;
                                              height: auto;
                                              float: left;
                                              padding-right: 5%;
@@ -127,7 +125,17 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
-                                    <a style="background-image:url('/static/media/image/{{ authors_img[0] }}');"
+                                    <a style="background-image:url('/static/media/image/{{ authors_img|random }}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                    <a style="background-image:url('/static/media/image/{{ authors_img|random}}');"
+                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <a style="background-image:url('/static/media/image/{{ authors_img|random }}');"
                                        class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
                                     </a>
                                     <a style="background-image:url('/static/media/image/{{ authors_img[0] }}');"
@@ -137,17 +145,7 @@
                             </div>
                             <div class="carousel-item">
                                 <div class="row">
-                                    <a style="background-image:url('/static/media/image/{{ authors_img[0] }}');"
-                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                    </a>
-                                    <a style="background-image:url('/static/media/image/{{ authors_img[0] }}');"
-                                       class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <a style="background-image:url('/static/media/image/{{ authors_img[0] }}');"
+                                    <a style="background-image:url('/static/media/image/{{ authors_img|random }}');"
                                        class="img_wow col-12 col-md d-flex align-items-center justify-content-center">
                                     </a>
                                     <a style="background-image:url('/static/media/image/{{ authors_img[0] }}');"
@@ -186,7 +184,7 @@
             {% for i in range(list_text_facts|length) %}
                 <div class='card-{{ list_position[i] }}'>
                     <div class='card-image'>
-                        <img src='/static/media/image/{{ authors_img[0] }}'>
+                        <img src='/static/media/image/{{ authors_img|random }}'>
                     </div>
                     <div class='card-text'>
                         <p>{{ list_text_facts[i] }}</p>
