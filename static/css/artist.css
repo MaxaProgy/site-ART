@@ -197,7 +197,7 @@
 /* ################# */
 /* Высказывания */
 /* ################# */
-.container {
+.container-facts {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
@@ -361,44 +361,6 @@
         width: 62% !important;
     }
 }
-
-
-/* ################# */
-/* Видео */
-/* ################# */
-.container-video {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
-    grid-auto-rows: 200px;
-    grid-auto-flow: row dense;
-    grid-gap: 23px;
-    justify-content: center;
-    margin-bottom: 10vw;
-    margin-top: 5vw;
-    background-size: contain;
-    padding-left: 15vw;
-    padding-right: 15vw;
-    bottom: 8vw;
-}
-
-.card-video {
-    display: flex;
-    flex-wrap: nowrap;
-    height: 100%;
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 3px 9px 1px rgba(0, 10, 20, 0.2);
-    flex-direction: row;
-    grid-column: auto / span 2;
-    grid-row: auto / span 1;
-}
-@media (max-width: 767px) {
-    .container-video {
-        grid-template-columns: repeat(2, minmax(200px, 200px));
-    }
-}
-
 
 
 /* ################# */

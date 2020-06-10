@@ -51,7 +51,7 @@ def index():
     article_past = None
     if articles:
         article_random = random.choice(articles)
-        article_past = articles[0]
+        article_past = articles[-1]
 
     q = request.args.get('q')
     if q:
@@ -156,6 +156,7 @@ def login():
             user.set_password(form.password.data)
             session.add(user)
             session.commit()
+
             login_user(user, remember=form.password.data)
             res = make_response(redirect("/admin/panel"))
             # В куки записываем articles, чтобы в следующий раз, когда мы открываем страницу, нам были видны статьи
@@ -273,8 +274,6 @@ def new_edit_article(article, session):
             form.main_image.data = article.main_image
             form.text.data = article.text
 
-            form.video_1.data = article.video_1
-            form.video_2.data = article.video_2
             form.attach_image.data = article.attach_image
             form.artist.data = article.artist.name
         else:
@@ -330,8 +329,6 @@ def new_edit_article(article, session):
                             pass
 
             article.attach_image = " ".join(attach_image)
-            article.video_1 = form.video_1.data
-            article.video_2 = form.video_2.data
             artist = session.query(Artist).filter(Artist.name == form.artist.data).first()
             article.artist_id = artist.id
             session.add(article)
@@ -420,10 +417,6 @@ def new_edit_artist(artist, session):
             form.text_5_facts.data = artist.text_5_facts
             form.attach_image.data = artist.attach_image
             form.artist_image.data = artist.artist_image
-            form.instagram.data = artist.instagram
-            form.site.data = artist.site
-            form.video_1.data = artist.video_1
-            form.video_2.data = artist.video_2
         else:
             form.artist_image.data = "new_pic.jpg"
             form.main_image.data = "new_pic.jpg"
@@ -497,14 +490,9 @@ def new_edit_artist(artist, session):
 
             artist.attach_image = " ".join(attach_image)
             # Записываем все остальные поля
-            artist.thesis = form.thesis.data.strip()
-            artist.text_biography = form.text_biography.data.strip()
-            artist.text_5_facts = form.text_5_facts.data.strip()
-            # form.artist_image.data = artist.artist_image
-            artist.instagram = form.instagram.data.strip()
-            artist.site = form.site.data.strip()
-            artist.video_1 = form.video_1.data
-            artist.video_2 = form.video_2.data
+            artist.thesis = form.thesis.data
+            artist.text_biography = form.text_biography.data
+            artist.text_5_facts = form.text_5_facts.data
             session.add(artist)
             session.commit()
 

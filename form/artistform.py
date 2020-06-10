@@ -14,10 +14,4 @@ class ArtistForm(FlaskForm):
     artist_image = StringField("Портрет художника")
     attach_image = StringField("Прикрепленные картинки")
 
-    instagram = StringField("Ссылка на инстаграмм художника")
-    site = StringField("Ссылка на сайт художника")
-
-    video_1 = StringField("Видео 1")
-    video_2 = StringField("Видео 2")
-
     submit = SubmitField('Опубликовать')

@@ -86,28 +86,13 @@
                     {{ form.attach_image(class="form-control") }}
                 </div>
 
-                <!-- ################ -->
-                <!-- Видео № 1 -->
-                <!-- ################ -->
-                <div style="width: 100%; margin-top: 10px">
-                    {{ form.video_1.label }}<br>
-                    {{ form.video_1(class="form-control") }}
-                </div>
-
-                <!-- ################ -->
-                <!-- Видео № 2 -->
-                <!-- ################ -->
-                <div style="width: 100%; margin-top: 10px">
-                    {{ form.video_2.label }}<br>
-                    {{ form.video_2(class="form-control") }}
-                </div>
-
                 <!-- ##################### -->
                 <!-- Кнопка "Опубликовать" -->
                 <!-- ##################### -->
                 <div style="width: 100%; margin-top: 25px">
                     {{ form.submit(type="submit", class="btn btn-primary") }}
-                    {% if form.title.data  %}
+                    {% if form.title.data  %}  <!-- Помогает избежать ошибки,
+                     когда удаляют еще не существующую статью -->
                         <a href="/admin/article/del/{{ id_article }}" class="btn btn-danger">Удалить</a>
                     {% endif %}
                 </div>

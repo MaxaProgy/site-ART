@@ -49,9 +49,6 @@
                             {% if author.text_5_facts and authors_img %}
                                 <li class="nav__item"><a href="#facts">Высказывания</a></li>
                             {% endif %}
-                            {% if author.video_1 or author.video_2 %}
-                                <li class="nav__item"><a href="#video">Видео</a></li>
-                            {% endif %}
                             {% if article_past %}
                                 <li class="nav__item"><a href="#past_article">Последняя статья</a></li>
                             {% endif %}
@@ -88,7 +85,7 @@
     {% if author.text_biography and authors_img %}
         <section class="container-biography">
             <div class="artist-title">Самое интересное!</div>
-            {% set list_text = author.text_biography.split('\n') %}
+            {% set list_text = author.text_biography.split('\n') %}  <!-- Помогает создать абзацы-->
 
             <img src="/static/media/image/{{ authors_img|random }}"  vspace="5" hspace="5" style="width: 50%;
                                              height: auto;
@@ -179,7 +176,7 @@
     {% if author.text_5_facts and authors_img %}
         {% set list_text_facts = author.text_5_facts.split('\n') %}
         {% set list_position = ['left', 'top', 'right', 'right', 'top', 'bottom', 'left', 'bottom', 'right', 'left'] %}
-        <div class='container'>
+        <div class='container-facts'>
             <div class="artist-title">Знаменитые высказывания</div><br>
             {% for i in range(list_text_facts|length) %}
                 <div class='card-{{ list_position[i] }}'>
@@ -194,27 +191,6 @@
         </div>
     {% endif %}
 
-    <!-- ###################### -->
-    <!-- Блок видео -->
-    <!-- ###################### -->
-    {% if author.video_1 or author.video_2 %}
-        <a name="video"></a>
-        <div class="artist-title" style="margin-top: 10vw;
-                                        padding-left: 15vw;
-                                        padding-right: 15vw">Видео, обязательные к просмотру</div>
-        <section class="container-video">
-
-            {% set author_video = [author.video_1, author.video_2] %}
-            {% for i in range(author_video|length) %}
-                {% if i %}
-                    <iframe class="card-video"
-                            src="/static/media/video/{{ author_video[i] }}" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                {% endif %}
-            {% endfor %}
-        </section>
-    {% endif %}
 
     <!-- ###################### -->
     <!-- Блок последней статьи -->
