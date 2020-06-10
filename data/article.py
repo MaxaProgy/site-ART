@@ -26,5 +26,5 @@ class Articles(SqlAlchemyBase, SerializerMixin):
 
     artist = orm.relation('Artist')
 
-    #articles = orm.relation("Comment", back_populates='articles')
-    #artist = orm.relation("User")
+    # articles = orm.relation("Comment", back_populates='articles')
+    # artist = orm.relation("User")
