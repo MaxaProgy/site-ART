@@ -7,7 +7,7 @@ window.addEventListener("load", function() {
 
     document.getElementById("copyright").innerHTML = "© 2020 "+ year + " by M@x@_progy(Зырянова Мария) и Змановская Полина.<br>\n" +
         "                                                Дипломная работа по окончанию 4 курса Детской художественной школы им. А.П. Митинского, г.Тюмень.<br>\n" +
-        "                We love our users! =)"
+        "                We love our users! =)";
 
     // Функциональность прокрутки
     $(window).scroll( () => {

@@ -65,7 +65,7 @@ def index():
 # ////////////////
 # СТРАНИЦА О НАС
 # ///////////////
-@app.route('/about', methods=['GET'])
+@app.route('/about/', methods=['GET'])
 def about():
     return render_template('about.html', title='О нас')
 
@@ -73,7 +73,7 @@ def about():
 # ///////////////////////////////
 # СТРАНИЦА ПОИСКА ПО ХУДОЖНИКАМ
 # //////////////////////////////
-@app.route('/search/artist', methods=['GET'])
+@app.route('/search/artist/', methods=['GET'])
 def search_artist():
     session = db_session.create_session()
     q = request.args.get('q')
@@ -88,7 +88,7 @@ def search_artist():
 # ///////////////////
 # СТРАНИЦА ХУДОЖНИКА
 # ///////////////////
-@app.route('/artist/<int:artist_id>', methods=['GET'])
+@app.route('/artist/<int:artist_id>/', methods=['GET'])
 def artist(artist_id):
     session = db_session.create_session()
     author = session.query(Artist).filter(Artist.id == artist_id).first()  # Забираем все данные по уникальному id
@@ -100,7 +100,7 @@ def artist(artist_id):
 # ////////////////////////////
 # СТРАНИЦА ПОИСКА ПО СТАТЬЯМ
 # ////////////////////////////
-@app.route('/search/article', methods=['GET'])
+@app.route('/search/article/', methods=['GET'])
 def search_article():
     session = db_session.create_session()
     q = request.args.get('q')
@@ -126,7 +126,7 @@ def article(article_id):
 # ///////////////////////////////////////////////
 # ВХОД И РЕГИСТРАЦИЯ НА СТРАНИЦУ АДМИНИСТРАТОРА
 # //////////////////////////////////////////////
-@app.route('/admin', methods=['GET', "POST"])
+@app.route('/admin/', methods=['GET', "POST"])
 def login():
     session = db_session.create_session()
     user = session.query(User).first()
@@ -187,7 +187,7 @@ def login():
 # //////////////////////////////////
 # ВЫХОД ИЗ СТРАНИЦЫ АДМИНИСТРАТОРА
 # //////////////////////////////////
-@app.route('/logout')
+@app.route('/logout/')
 @login_required
 def logout():
     logout_user()
@@ -197,7 +197,7 @@ def logout():
 # /////////////////////////
 # СТРАНИЦА АДМИНИСТРАТОРА
 # /////////////////////////
-@app.route('/admin/panel', methods=['GET'])
+@app.route('/admin/panel/', methods=['GET'])
 def admin_panel():
     # По умолчанию делаем все списки None
     users = None
@@ -241,7 +241,7 @@ def admin_panel():
 # /////////////////////////////////
 # СТРАНИЦА СОЗДАНИЯ НОВОЙ СТАТЬИ
 # /////////////////////////////////
-@app.route('/admin/article/new', methods=['GET', 'POST'])
+@app.route('/admin/article/new/', methods=['GET', 'POST'])
 @login_required
 def new_article():
     session = db_session.create_session()
@@ -251,7 +251,7 @@ def new_article():
 # ////////////////////////////////
 # СТРАНИЦА РЕДАКТИРОВАНИЯ СТАТЬИ
 # ////////////////////////////////
-@app.route('/admin/article/<int:article_id>', methods=['GET', 'POST'])
+@app.route('/admin/article/<int:article_id>/', methods=['GET', 'POST'])
 @login_required
 def edit_article(article_id):
     session = db_session.create_session()
@@ -343,7 +343,7 @@ def new_edit_article(article, session):
 # /////////////////
 # УДАЛЕНИЕ СТАТЬИ
 # ////////////////
-@app.route('/admin/article/del/<int:id_article>', methods=['GET'])
+@app.route('/admin/article/del/<int:id_article>/', methods=['GET'])
 @login_required
 def delete_article(id_article):
     if current_user.is_authenticated:
@@ -381,7 +381,7 @@ def delete_article(id_article):
 # //////////////////////////////////
 # СТРАНИЦА СОЗДАНИЯ НОВОГО ХУДОЖНИКА
 # //////////////////////////////////
-@app.route('/admin/artist/new', methods=['GET', 'POST'])
+@app.route('/admin/artist/new/', methods=['GET', 'POST'])
 @login_required
 def new_artist():
     session = db_session.create_session()
@@ -391,7 +391,7 @@ def new_artist():
 # //////////////////////////////////
 # СТРАНИЦА РЕДАКТИРОВАНИЯ ХУДОЖНИКА
 # //////////////////////////////////
-@app.route('/admin/artist/<int:artist_id>', methods=['GET', 'POST'])
+@app.route('/admin/artist/<int:artist_id>/', methods=['GET', 'POST'])
 @login_required
 def edit_artist(artist_id):
     session = db_session.create_session()
@@ -505,7 +505,7 @@ def new_edit_artist(artist, session):
 # ////////////////////
 # УДАЛЕНИЕ ХУДОЖНИКА
 # ///////////////////
-@app.route('/admin/artist/del/<int:id_artist>', methods=['GET'])
+@app.route('/admin/artist/del/<int:id_artist>/', methods=['GET'])
 @login_required
 def delete_artist(id_artist):
     if current_user.is_authenticated:
@@ -543,7 +543,7 @@ def delete_artist(id_artist):
 # /////////////////////////////////////
 # СТРАНИЦА РЕДАКТИРОВАНИЯ ПОЛЬЗОВАТЕЛЯ
 # /////////////////////////////////////
-@app.route('/admin/user/<int:user_id>', methods=['GET', 'POST'])
+@app.route('/admin/user/<int:user_id>/', methods=['GET', 'POST'])
 @login_required
 def edit_user(user_id):
     form = UserForm()
